@@ -37,18 +37,16 @@
                 
                 exit();
             } else {
+                header("Location:index.php");
                 $_SESSION['isLoggedIn'] = false;
                 $_SESSION['error'] = "Invalid password.";
-                header("Location:index.php");
-                
                 
                 exit();
             }
         } else {
+            header("Location:index.php");
             $_SESSION['isLoggedIn'] = false;
             $_SESSION['error'] = "No user found with that email.";
-            header("Location:index.php");
-            
             
             exit();
         }
@@ -59,4 +57,3 @@
     $stmt->close();
     $conn->close();
 ?>
-
