@@ -1,0 +1,249 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.sidebar {
+    width: 200px;
+    background-color: #343a40;
+    color: #fff;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+}
+.sidebar a {
+    display: block;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    background-color: #495057;
+}
+.container {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    margin-bottom: 5px;
+    background-color: #343a40;
+    padding: 35;
+    color: white;
+}
+h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.menu-item, .user-item, .order-item {
+    padding: 25px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.menu-item:nth-child(odd), .user-item:nth-child(odd), .order-item:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+.menu-item:nth-child(even), .user-item:nth-child(even), .order-item:nth-child(even) {
+    background-color: #fff;
+}
+.menu-item div, .user-item div, .order-item div {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.menu-item img {
+    position: absolute;
+    width: 165px;
+    height: 165px;
+    object-fit: cover;
+    border-radius: 5px;
+    right: 45;
+}
+.btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 3px;
+}
+.btn-edit {
+    font-weight:normal;
+    background-color: #28a745;
+    border-radius: 50px;
+}
+.btn-save {
+    font-weight:normal;
+    background-color: #007bff;
+    border-radius: 50px;
+}
+.btn-delete {
+    font-weight:normal;
+    background-color: #dc3545;
+    border-radius: 50px;
+}
+.btn-add {
+    display: block;
+    width: 200px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.btn-view {
+    background-color: #17a2b8;
+    font-weight:normal;
+    border-radius: 50px;
+}
+.hidden {
+    display: none;
+}
+
+.modal-body p {
+    margin: 5px;
+}
+
+.modal-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+.line {
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+.menu-item{
+    border-radius: 30px;
+}
+input.input{
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+    border: 1px solid #0f5f004d;
+    padding: 14px;
+    font-size: 15px;
+    width: 700;
+    height: 30;
+    margin-bottom: 8px;
+}
+input#product-name, input#product-id, input#product-price, input#product-description{
+    font-family: "Montserrat", sans-serif;
+    border-radius: 30px;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 15px;
+}
+h3{
+    font-size: 25px;
+}
+#order-details-modal.modal{
+    width: 800;
+    border-radius: 25px;
+}
+label{
+    font-size:16px;
+}
+.user-details {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-details p {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.user-details strong {
+    font-weight: bold;
+}
+span.text{
+    font-weight: normal;
+}
+.user-details-container{
+    font-weight: bold;
+}
+
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    width: 850;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.modal-close {
+    cursor: pointer;
+    color: #dc3545;
+    font-size: 30px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+#add-user-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#add-user-form div {
+    margin-bottom: 20px;
+}
+
+#add-user-form label {
+    margin-bottom: 10px;
+}
+
+#add-user-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#add-user-form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
