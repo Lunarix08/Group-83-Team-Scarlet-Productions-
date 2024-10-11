@@ -6,33 +6,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="index_styles.css" rel="stylesheet">
 
-    <?php
-        session_start();
-        if (isset($_SESSION['error'])) {
-            ?>
-            <script>
-                window.onload = function() {
-                    setTimeout(function() {
-                        alert('<?php echo $_SESSION['error']; ?>');
-                    }, 100);
-                };
-            </script>
-            <?php
-            unset($_SESSION['error']);
-        }
-        if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true) {
-            ?>
-            <script>
-                window.onload = function() {
-                    isLoggedIn=true;
-                    showHome();
-                };
-            </script>
-            <?php
-        } 
-
-        
-    ?>
     
 
 </head>
