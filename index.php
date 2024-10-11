@@ -4,72 +4,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="index_styles.css" rel="stylesheet">
 
     <?php
-    session_start();
-        ?>
-        <script>
-
-            let isLoggedIn = false;
-
-            <?php if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true) { ?>
-                function checkLoggedIn() {
-                    if (<?php echo $_SESSION['isLoggedIn'] ? 'true' : 'false'; ?>) {
-                        isLoggedIn = true;
-                        showHomeLoggedIn();
-                    } else {
-                        isLoggedIn = false;
-                        showHomeLoggedOut();
-                    }
-                }
-            <?php } else { ?>
-                function checkLoggedIn() {
-                    isLoggedIn = false;
-                    showHomeLoggedOut();
-                }
-            <?php } ?>
-
-            function showHomeLoggedIn() {
-                document.querySelector('.home-container').style.display = 'flex';
-                document.querySelector('.login-container').style.display = 'none';
-                document.querySelector('.register-container').style.display = 'none';
-                document.querySelector('.view-menu-btn').style.display = 'block';
-                document.querySelector('.home-container .login-btn').style.display = 'none';
-                document.querySelector('.signup-btn').style.display = 'none';
-                document.getElementById('login-btn').style.display = 'none';
-                document.getElementById('logout-btn').style.display = 'block';
-            }
-
-            function showHomeLoggedOut() {
-                document.querySelector('.home-container').style.display = 'flex';
-                document.querySelector('.login-container').style.display = 'none';
-                document.querySelector('.register-container').style.display = 'none';
-                document.querySelector('.view-menu-btn').style.display = 'none';
-                document.querySelector('.home-container .login-btn').style.display = 'block';
-                document.querySelector('.signup-btn').style.display = 'block';
-                document.getElementById('login-btn').style.display = 'block';
-                document.getElementById('logout-btn').style.display = 'none';
-            }
-
-            window.onload = function() {
-                checkLoggedIn();
-                <?php if (isset($_SESSION['error'])) { ?>
+        session_start();
+        if (isset($_SESSION['error'])) {
+            ?>
+            <script>
+                window.onload = function() {
                     setTimeout(function() {
                         alert('<?php echo $_SESSION['error']; ?>');
                     }, 100);
-                <?php } ?>
-            };
-        </script>
-        <?php
-    if (isset($_SESSION['error'])) {
-        unset($_SESSION['error']);
-    }
+                };
+            </script>
+            <?php
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true) {
+            ?>
+            <script>
+                window.onload = function() {
+                    isLoggedIn=true;
+                    showHome();
+                };
+            </script>
+            <?php
+        } 
 
+        
     ?>
-
-    <link href="index_styles.css" rel="stylesheet">
-
-
     
 
 </head>
