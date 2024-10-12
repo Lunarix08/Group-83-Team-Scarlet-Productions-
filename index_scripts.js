@@ -1,9 +1,13 @@
-// Update the JavaScript code to remove the loading screen after the animation is complete
+
+
 window.onload = function() {
+    
     setTimeout(function() {
         document.getElementById('loading-screen').style.display = 'none';
     }, 1000);
+    showHome()
 }
+
 const prices = { 
     'Espresso': 8.00,
     'Americano': 10.00,
@@ -427,7 +431,7 @@ function logout() {
     document.querySelector('.view-menu-btn').style.display = 'none';
     document.querySelector('.home-container .login-btn').style.display = 'block';
     document.querySelector('.signup-btn').style.display = 'block';
-    isLoggedIn = false;
+
 }
 function viewMenu(){
     
