@@ -6,8 +6,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="index_styles.css" rel="stylesheet">
 
-    
-
 </head>
     <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
         <div class="spinner-border" role="status">
@@ -19,16 +17,17 @@
     <!-- Homepage -->
     <div class="top-bar">
     <div class="topBar-left">
-      <div class="location">
-        <i class="bx bxs-map"></i>
-        <span><a href="#">George Town, Penang, Malaysia</a></span>
-      </div>
+        <div class="location">
+            <i class="bx bxs-map"></i>
+            <span><a href="#">George Town, Penang, Malaysia</a></span>
+        </div>
       <hr>
-      <div class="time">
-        <i class="bx bxs-time"></i>
-        <span>Daily: 6:00am to 12:00pm</span>
-      </div>
+        <div class="time">
+            <i class="bx bxs-time"></i>
+            <span>Daily: 6:00am to 12:00pm</span>
+        </div>
     </div>
+    
     <div class="topBar-right">
       <div class="phone">
         <i class="bx bxs-phone"></i>
@@ -76,7 +75,7 @@
                     <input name="password" placeholder="Password" type="password" required/><i class="fas fa-lock"></i>
                 </div>
 
-                <button class="login-btn" type="submit">Log-In</button>
+                <button class="login-btn">Log-In</button>
                 <a class="register-link" href="#" onclick="showRegister()">Don't have an account? Register!</a>
             </form>
         </div>
@@ -104,7 +103,7 @@
                     <i class="fas fa-lock"></i>
                 </div>
 
-                <button class="register-btn" type="submit">Sign-Up</button>
+                <button class="register-btn">Sign-Up</button>
                 <a class="login-link" href="#" onclick="showLogin()">Already have an account? Login</a>
             </form>
         </div>
