@@ -3,7 +3,6 @@ session_start();
 $isLoggedIn = isset($_SESSION['user']);
 ?>
 
-
 <head>
     <title>Fabianero || Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -13,7 +12,6 @@ $isLoggedIn = isset($_SESSION['user']);
     <link href="index_styles.css" rel="stylesheet">
 
 </head>
-   
 
     <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
         <div class="spinner-border" role="status">
@@ -64,8 +62,11 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="cart">
             <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> </a>
         </div>
-        <a class="login-btn" href="#" id="login-btn" onclick="showLogin()">Log-In</a>
-        <a class="logout-btn" href="#" id="logout-btn" onclick="logout()" style="display: none;">Log-Out</a>
+        <?php if ($isLoggedIn): ?>
+            <a href="logout.php" class="logout-btn">Log-Out</a>
+        <?php else: ?>
+            <a href="#" onclick="showLogin()" class="login-btn">Log-In</a>
+        <?php endif; ?>
     </div>
 
     <!-- Login & Registeration Section-->
@@ -132,17 +133,17 @@ $isLoggedIn = isset($_SESSION['user']);
     <div id="non-menu">
         <div class="home-container" style="display: flex;">
             <div class="home-content">
-                <div class="home-title-container">
-                    <h1>Fabianero Coffee</h1>
-                    <p>A cozy destination that prides itself on serving high-quality coffee and a welcoming atmosphere.<br>Features a selection of pastries and light bites to complement your drink.</p>
-                    <?php if ($isLoggedIn): ?>
-                        <button class="view-menu-btn" onclick="viewMenu()">Order Menu</button>
-                    <?php else: ?>
-                        <button class="login-btn" onclick="showLogin()" style="display: block;">Log-In</button>
-                        <button class="signup-btn" onclick="showRegister()" style="display: block;">Sign-Up</button>
-                    <?php endif; ?>
-                    <div class="home-container-img"></div>
-                </div>
+            <div class="home-title-container">
+                <h1>Fabianero Coffee</h1>
+                <p>A cozy destination that prides itself on serving high-quality coffee and a welcoming atmosphere.<br>Features a selection of pastries and light bites to complement your drink.</p>
+                <?php if ($isLoggedIn): ?>
+                    <button class="view-menu-btn" onclick="viewMenu()">Order Menu</button>
+                <?php else: ?>
+                    <button class="login-btn" onclick="showLogin()">Log-In</button>
+                    <button class="signup-btn" onclick="showRegister()">Sign-Up</button>
+                <?php endif; ?>
+                <div class="home-container-img"></div>
+            </div>
 
                 <div class="line" style="margin-top:25;"></div>
 
