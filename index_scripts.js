@@ -747,6 +747,7 @@ function showHome() {
         }
     }
 }
+
 function logout() {
     // Send a request to logout.php to destroy the session
     fetch('logout.php')
