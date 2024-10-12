@@ -1,12 +1,12 @@
 
 
 window.onload = function() {
-    
     setTimeout(function() {
         document.getElementById('loading-screen').style.display = 'none';
+        showHome();
     }, 1000);
-    showHome()
 }
+
 
 const prices = { 
     'Espresso': 8.00,
@@ -421,52 +421,15 @@ function showAbout() {
     document.querySelector('.about-container').style.display = 'flex';
 }
 
-function logout() {
-
-    document.querySelector('.home-container').style.display = 'flex';
-    document.querySelector('.login-container').style.display = 'none';
-    document.querySelector('.register-container').style.display = 'none';
-    document.getElementById('login-btn').style.display = 'block';
-    document.getElementById('logout-btn').style.display = 'none';
-    document.querySelector('.view-menu-btn').style.display = 'none';
-    document.querySelector('.home-container .login-btn').style.display = 'block';
-    document.querySelector('.signup-btn').style.display = 'block';
-
-}
 function viewMenu(){
     
     document.getElementById('non-menu').style.display = 'none';
     document.getElementById('menu').style.display = 'flex';
 }
-function showHome() {
-    document.getElementById('menu').style.display = 'none';
-    document.getElementById('non-menu').style.display = 'flex';
-    document.title = "Fabianero || Home";
-    document.querySelector('.about-container').style.display = 'none';
-    if (isLoggedIn) {
-        document.querySelector('.login-container').style.display = 'none';
-        document.querySelector('.register-container').style.display = 'none';
-        document.querySelector('.home-container').style.display = 'flex';
-        document.querySelector('.view-menu-btn').style.display = 'block';
-        document.querySelector('.home-container .login-btn').style.display = 'none';
-        document.querySelector('.signup-btn').style.display = 'none';
-        document.getElementById('login-btn').style.display = 'none';
-        document.getElementById('logout-btn').style.display = 'block';
-    } else {
-        document.querySelector('.home-container').style.display = 'flex';
-        document.querySelector('.login-container').style.display = 'none';
-        document.querySelector('.register-container').style.display = 'none';
-        document.querySelector('.view-menu-btn').style.display = 'none';
-        document.querySelector('.home-container .login-btn').style.display = 'block';
-        document.querySelector('.signup-btn').style.display = 'block';
-        document.getElementById('login-btn').style.display = 'block';
-        document.getElementById('logout-btn').style.display = 'none';
-        
-    }
 
-    
 
-}
+// Make sure to set this variable when logging in
+
 
 function showLogin() {
 
@@ -728,8 +691,93 @@ function makePayment() {
 // Add an event listener to the make payment button
 document.getElementById('make-payment').addEventListener('click', makePayment);
 
+function showHome() {
+    const homeContainer = document.querySelector('.home-container');
+    const aboutContainer = document.querySelector('.about-container');
+    const loginContainer = document.querySelector('.login-container');
+    const registerContainer = document.querySelector('.register-container');
+    const menu = document.getElementById('menu');
+    const viewMenuBtn = document.querySelector('.view-menu-btn');
+    const logoutBtn = document.querySelector('.logout-btn');
+    const loginBtn = document.querySelector('.login-btn');
+    const signupBtn = document.querySelector('.signup-btn');
 
+    if (homeContainer) {
+        homeContainer.style.display = 'flex';
+    }
+    if (aboutContainer) {
+        aboutContainer.style.display = 'none';
+    }
+    if (loginContainer) {
+        loginContainer.style.display = 'none';
+    }
+    if (registerContainer) {
+        registerContainer.style.display = 'none';
+    }
+    if (menu) {
+        menu.style.display = 'none';
+    }
 
+    // Check if user is logged in (you'll need to set this variable when logging in)
+    if (isLoggedIn) {
+        if (viewMenuBtn) {
+            viewMenuBtn.style.display = 'block';
+        }
+        if (logoutBtn) {
+            logoutBtn.style.display = 'block';
+        }
+        if (loginBtn) {
+            loginBtn.style.display = 'none';
+        }
+        if (signupBtn) {
+            signupBtn.style.display = 'none';
+        }
+    } else {
+        if (viewMenuBtn) {
+            viewMenuBtn.style.display = 'none';
+        }
+        if (logoutBtn) {
+            logoutBtn.style.display = 'none';
+        }
+        if (loginBtn) {
+            loginBtn.style.display = 'block';
+        }
+        if (signupBtn) {
+            signupBtn.style.display = 'block';
+        }
+    }
+}
+function logout() {
+    // Send a request to logout.php to destroy the session
+    fetch('logout.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                isLoggedIn = false;
+                showHome();
+                // Optionally, show a logout success message
+                alert('You have been logged out successfully.');
+            }
+        });
+}
 
+// Make sure to set this variable when logging in
+let isLoggedIn = document.querySelector('#is-logged-in').value === 'true';
 
-
+document.querySelector('.login-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Assuming you're using fetch to submit the form
+    fetch('login.php', {
+        method: 'POST',
+        body:new FormData(this)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            isLoggedIn = true;
+            showHome();
+            // Optionally, show a login success message
+            alert('You have been logged in successfully.');
+        }
+    });
+});
