@@ -62,7 +62,7 @@ body, html {
 .navbar ul {
     list-style: none;
     display: flex;
-    margin: 0;
+    margin-left: 250;
     padding: 0;
 }
 
@@ -658,8 +658,10 @@ footer {
     position: absolute;
 }
 .container {
-    padding-top: 350;
+    padding: 350 100 0 100;
     text-align: center;
+    width: 100%;
+
 }
 .container h1 {
     display: inline-block;
@@ -673,23 +675,25 @@ footer {
 }
 .category-selector i {
     font-size: 24px;
-    vertical-align: middle;
 }
 .category-dropdown {
     display: none;
     position: absolute;
-    top: 30px;
-    left: 0;
+    top: 40px;
+    left: -275;
     background-color: #333;
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: 0 0 31px rgb(0 0 0);
     z-index: 1;
+    border: 1px solid white;
 }
 .category-dropdown a {
     display: block;
     padding: 10px 20px;
     color: #fff;
     text-decoration: none;
+    width: 300px;
 }
 .category-dropdown a:hover {
     background-color: #555;
@@ -892,12 +896,13 @@ footer {
 
 .payment-page {
     position: fixed;
-    top: 10%;
-    left: 5%;
+    left: -100%;
+    bottom: 80px;
+    transform: translateX(-50%);
     width: 90%;
     height: 80%;
     background-color: rgb(4 1 1 / 83%);
-    display: none;
+    display: flex;
     z-index: 1001;
     justify-content: center;
     align-items: center;
@@ -905,10 +910,11 @@ footer {
     border: 2px solid white;
     padding: 10;
     border-radius: 20px;
+    transition: 0.5s ease-in-out;
 }
 
 .payment-page.show {
-    display: flex;
+    left:50%;
 }
 .payment-sidebar {
     width: 30%;
@@ -1016,7 +1022,7 @@ footer {
     color: white;
     position: absolute;
     right: 150;
-    top: 75;
+    top: 81;
 }
 .remove-button{
     font-family: "Montserrat", sans-serif;

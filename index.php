@@ -127,16 +127,32 @@ $isLoggedIn = isset($_SESSION['user']);
             </form>
         </div>
     </div>
+    
     <div class="register-container">
         <div class="register-box">
             <div class="close-btn" onclick="showHome()">×</div>
             <h2>Sign-Up</h2>
-           
+
             <form method="POST" action="register.php">
+
+                <div class="input-group">
+                    <input name="username" placeholder="Username" type="text" required/>
+                    <i class="fas fa-user"></i>
+                </div>
 
                 <div class="input-group">
                     <input name="email" placeholder="Email" type="text" required/>
                     <i class="fas fa-envelope"></i>
+                </div>
+
+                <div class="input-group">
+                    <input name="phone_number" placeholder="Phone Number" type="text" required/>
+                    <i class="fas fa-phone"></i>
+                </div>
+
+                <div class="input-group">
+                    <input name="address" placeholder="Address" type="text" required/>
+                    <i class="fas fa-map-marker-alt"></i>
                 </div>
 
                 <div class="input-group">
@@ -148,10 +164,11 @@ $isLoggedIn = isset($_SESSION['user']);
                     <input name="confirm_password" placeholder="Confirm Password" type="password" required/>
                     <i class="fas fa-lock"></i>
                 </div>
+
                 <?php if (isset($registerError)): ?>
                     <p style="color: red;"><?php echo $registerError; ?></p>
-                    <?php unset($registerError); ?>
                 <?php endif; ?>
+
                 <button class="register-btn">Sign-Up</button>
                 <a class="login-link" href="#" onclick="showLogin()">Already have an account? Login</a>
             </form>
@@ -358,7 +375,7 @@ $isLoggedIn = isset($_SESSION['user']);
             </div>
         </div>
 
-        <div class="payment-page" style="display: none;">
+        <div class="payment-page">
             <button class="close-payment-btn" id="closePaymentButton">Close</button>
             <div class="payment-sidebar">
             <h2>Order Summary</h2>

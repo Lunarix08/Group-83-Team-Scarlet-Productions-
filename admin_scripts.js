@@ -375,24 +375,7 @@ const orders = [
         products: getRandomProducts(items, 4),
     },
 ];
-const users = [
-    {
-        userId: 1,
-        username: 'admin',
-        email: 'admin@example.com',
-        role: 'Admin',
-        phoneNumber: '123-456-7890',
-        address: '123 Main St, Anytown, USA'
-    },
-    {
-        userId: 2,
-        username: 'user',
-        email: 'user@example.com',
-        role: 'User ',
-        phoneNumber: '987-654-3210',
-        address: '456 Elm St, Othertown, USA'
-    }
-];
+
 
 function getRandomProducts(items, count) {
     const randomProducts = [];
@@ -573,50 +556,25 @@ function renderMenuItems() {
     });
 }
 
-
 document.addEventListener('DOMContentLoaded', renderMenuItems);
-function renderUserList() {
-    // Load users from local storage
-    const userList = document.getElementById('user-list');
-    userList.innerHTML = '';
-    
-    users.forEach(user => {
-        const userItem = document.createElement('div');
-        userItem.classList.add('user-item');
-        userItem.innerHTML = `
-            <div>
-                <div>User ID: <span class="text">${user.userId}</span><input type="text" class="input hidden" value="${user.userId}"></div>
-                <div>Username: <span class="text">${user.username}</span><input type="text" class="input hidden" value="${user.username}"></div>
-                <div>Role: <span class="text">${user.role}</span><input type="text" class="input hidden" value="${user.role}"></div>
-                <div class="user-details hidden">
-                    <p><strong>Email:</strong> <span class="text">${user.email}</span><input type="text" class="input hidden" value="${user.email}"></p>
-                    <p><strong>Phone Number:</strong> <span class="text">${user.phoneNumber}</span><input type="text" class="input hidden" value="${user.phoneNumber}"></p>
-                    <p><strong>Address:</strong> <span class="text">${user.address}</span><input type="text" class="input hidden" value="${user.address}"></p>
-                </div>
-                <div>
-                    <a href="#" class="btn btn-edit" onclick="editUser(event);editToggleDetail(event);">Edit</a>
-                    <a href="#" class="btn btn-save hidden" onclick="saveUser(event);">Save</a>
-                    <a href="#" class="btn btn-delete" onclick="deleteUser(event)">Delete</a>
-                    <a href="#" class="btn btn-view" onclick="toggleUserDetails(event)">View Details</a>
-                </div>
-            </div>
-        `;
-        
-        userList.appendChild(userItem);
-    });
-}
+
 function deleteUser(event) {
     if (confirm("Are you sure you want to delete this user?")) {
-        const userItem = event.target.closest('.user-item');
-        const userId = userItem.querySelector('div > div:first-child > span.text').textContent;
-        const userIndex = users.findIndex(user => user.userId === parseInt(userId));
-        if (userIndex !== -1) {
-            users.splice(userIndex, 1);
-        }
-        userItem.remove();
+        const userId = event.target.closest('.user-item').querySelector('div > div:first-child > span.text').textContent;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete_user.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('user_id=' + userId);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                event.target.closest('.user-item').remove();
+            } else {
+                alert('Error deleting user.');
+            }
+        };
     }
-}
-document.addEventListener('DOMContentLoaded', renderUserList);
+} 
+
 function addNewUser(event) {
     event.preventDefault();
     const addUserModal = document.getElementById('add-user-modal');

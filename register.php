@@ -6,22 +6,21 @@ $db_user = 'root';
 $db_password = '';
 $db_name = 'fabianero';
 
-// Create a connection to the database
 $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
     $email = $_POST['email'];
+    $phone_number = $_POST['phone_number'];
+    $address = $_POST['address'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Validate the form data
-    if (empty($email) || empty($password) || empty($confirm_password)) {
+    if (empty($username) || empty($email) || empty($phone_number) || empty($address) || empty($password) || empty($confirm_password)) {
         $_SESSION['register_error'] = "All fields are required.";
         header("Location: index.php");
         exit();
@@ -34,8 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: index.php");
         exit();
     } else {
-        // Check if the email address is already in use
-        $sql = "SELECT * FROM users WHERE email = ?";
+        $sql = "SELECT * FROM users WHERE email = ? ";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -46,23 +44,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: index.php");
             exit();
         } else {
-            // Hash the password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert the user into the database
-            $sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+            $sql = "INSERT INTO users (username, email, phone_number, address, password) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ss", $email, $hashed_password);
+            $stmt->bind_param("sssss", $username, $email, $phone_number, $address, $hashed_password);
             $stmt->execute();
 
-            // Set a success message
-            $_SESSION['register_success'] = "Registration successful!";
-            header("Location: index.php");
-            exit();
+            if ($stmt->affected_rows > 0) {
+                $_SESSION['register_success'] = "Registration successful!";
+                header("Location: index.php");
+                exit();
+            } else {
+                $_SESSION['register_error'] = "Error adding user.";
+                header("Location: index.php");
+                exit();
+            }
         }
     }
 }
 
-// Close the database connection
 $conn->close();
 ?>

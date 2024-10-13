@@ -465,12 +465,13 @@ closePaymentButton.addEventListener('click', function() {
 function makeCheckout() {
     // Hide the cart sidebar
     cartSidebar.classList.remove('open');
-    
 
     // Show the payment container
     const paymentPage = document.querySelector('.payment-page');
-    paymentPage.style.display = 'flex';
-    overlay.classList.remove('show');
+    paymentPage.classList.add('show'); // Add the show class to trigger the transition
+
+    // Show the overlay
+    overlay.classList.add('show');
 }
 
 function createCategoryLink(category) {
@@ -575,9 +576,16 @@ closeCartButton.addEventListener('click', function() {
     cartSidebar.classList.remove('open');
     overlay.classList.remove('show');
 });
+closePaymentButton.addEventListener('click', function() {
+    const paymentPage = document.querySelector('.payment-page');
+    paymentPage.classList.remove('show');
+    overlay.classList.remove('show');
+});
 
 overlay.addEventListener('click', function() {
     cartSidebar.classList.remove('open');
+    const paymentPage = document.querySelector('.payment-page');
+    paymentPage.classList.remove('show'); 
     overlay.classList.remove('show');
 });
 
