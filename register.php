@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: index.php");
         exit();
     } else {
-        $sql = "SELECT * FROM users WHERE email = ? ";
+        $sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -45,10 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         } else {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $role = 'User'; 
 
-            $sql = "INSERT INTO users (username, email, phone_number, address, password) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO users (username, email, phone_number, address, password, role) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssss", $username, $email, $phone_number, $address, $hashed_password);
+            $stmt->bind_param("ssssss", $username, $email, $phone_number, $address, $hashed_password, $role);
             $stmt->execute();
 
             if ($stmt->affected_rows > 0) {

@@ -427,7 +427,15 @@ span{
                             <div>
                                 <div>User ID: <span class="text"><?php echo $row['id']; ?></span><input type="text" class="input hidden" value="<?php echo $row['id']; ?>"></div>
                                 <div>Username: <span class="text"><?php echo $row['email']; ?></span><input type="text" class="input hidden" value="<?php echo $row['email']; ?>"></div>
-                                <div>Role: <span class="text">User</span><input type="text" class="input hidden" value="User"></div>
+                                <div>
+                                    <label for="role">Role:</label>
+                                    <span class="text"><?php echo $row['role']; ?></span>
+                                    <select class="input hidden" id="role-select">
+                                        <option value="user">User </option>
+                                        <option value="staff">Staff</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
                                 <div class="user-details hidden">
                                     <p><strong>Email: </strong><span class="text"><?php echo $row['email']; ?></span><input type="text" class="input hidden" value="<?php echo $row['email']; ?>"></p>
                                     <p><strong>Phone Number: </strong><span class="text"><?php echo $row['phone_number']; ?></span><input type="text" class="input hidden" value="<?php echo $row['phone_number']; ?>"></p>

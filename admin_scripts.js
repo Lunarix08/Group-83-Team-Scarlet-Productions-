@@ -575,13 +575,96 @@ function deleteUser(event) {
     }
 } 
 
-function addNewUser(event) {
+
+function addNewUser (event) {
     event.preventDefault();
     const addUserModal = document.getElementById('add-user-modal');
     const modalOverlay = document.getElementById('modal-overlay');
-    
+
     modalOverlay.classList.add('show');
     addUserModal.style.display = 'block';
+}
+
+document.getElementById('add-user-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const userId = document.getElementById('user-id').value;
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const role = document.getElementById('role').value;
+    const phoneNumber = document.getElementById('phone-number').value;
+    const address = document.getElementById('address').value;
+
+    const newUser   = document.createElement('div');
+    newUser  .classList.add('user-item');
+    newUser  .innerHTML = `
+        <div>
+            <div>User ID: <span class="text">${userId}</span><input type="text" class="input hidden" value="${userId}"></div>
+            <div>Username: <span class="text">${username}</span><input type="text" class="input hidden" value="${username}"></div>
+            <div>
+            <label for="role">Role:</label>
+                <span class="text"><?php echo ${role}; ?></span>
+                <select class="input hidden" id="role-select">
+                    <option value="user">User </option>
+                    <option value="staff">Staff</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="user-details hidden">
+                <p><strong>Email:</strong> <span class="text">${email}</span><input type="text" class="input hidden" value="${email}"></p>
+                <p><strong>Phone Number:</strong> <span class="text">${phoneNumber}</span><input type="text" class="input hidden" value="${phoneNumber}"></p>
+                <p><strong>Address:</strong> <span class="text">${address}</span><input type="text" class="input hidden" value="${address}"></p>
+            </div>
+            <div>
+                <a href="#" class="btn btn-edit" onclick="editUser (event);editToggleDetail(event);">Edit</a>
+                <a href="#" class="btn btn-save hidden" onclick="saveUser (event);">Save</a>
+                <a href="#" class="btn btn-delete" onclick="deleteUser (event)">Delete</a>
+                <a href="#" class="btn btn-view" onclick="toggleUser Details(event)">View Details</a>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('user-list').appendChild(newUser);
+    closeAddUserModal();
+
+    // Send the new user data to the server using Fetch
+    fetch('add_user.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            user_id: userId,
+            username: username,
+            email: email,
+            role: role,
+            phone_number: phoneNumber,
+            address: address
+        })
+    })
+    .then(response => response.text()) // Use response.json() if your PHP script returns JSON
+    .then(data => {
+        console.log('User  added successfully!');
+        console.log(data); // Log the response from the server
+    })
+    .catch(error => {
+        alert('Error adding user.');
+        console.error('Error:', error);
+    });
+});
+
+function closeAddUserModal() {
+    const addUserModal = document.getElementById('add-user-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    modalOverlay.classList.remove('show');
+    addUserModal.style.display = 'none';
+}
+
+function closeAddUserModal() {
+    const addUserModal = document.getElementById('add-user-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    modalOverlay.classList.remove('show');
+    addUserModal.style.display = 'none';
 }
 function editToggleDetail(event){
     event.preventDefault();
@@ -598,39 +681,7 @@ function closeAddUserModal() {
     modalOverlay.classList.remove('show');
     addUserModal.style.display = 'none';
 }
-document.getElementById('add-user-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const userId = document.getElementById('user-id').value;
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const role = document.getElementById('role').value;
-    const phoneNumber = document.getElementById('phone-number').value;
-    const address = document.getElementById('address').value;
-    
-    const newUser = document.createElement('div');
-    newUser .classList.add('user-item');
-    newUser .classList.add('user-details-container');
-    newUser.innerHTML = `
-        <div>User ID: <span class="text">${userId}</span><input type="text" class="input hidden" value="${userId}"></div>
-        <div>Username: <span class="text">${username}</span><input type="text" class="input hidden" value="${username}"></div>
-        <div>Role: <span class="text">${role}</span><input type="text" class="input hidden" value="${role}"></div>
-        <div class="user-details hidden">
-            <p><strong>Email:</strong> <span class="text">${email}</span><input type="text" class="input hidden" value="${email}"></p>
-            <p><strong>Phone Number:</strong> <span class="text">${phoneNumber}</span><input type="text" class="input hidden" value="${phoneNumber}"></p>
-            <p><strong>Address:</strong> <span class="text">${address}</span><input type="text" class="input hidden" value="${address}"></p>
-        </div>
-        <div>
-            <a href="#" class="btn btn-edit" onclick="editUser(event);editToggleDetail(event);">Edit</a>
-            <a href="#" class="btn btn-save hidden" onclick="saveUser(event);">Save</a>
-            <a href="#" class="btn btn-delete" onclick="deleteUser(event)>Delete</a>
-            <a href="#" class="btn btn-view" onclick="toggleUserDetails(event)">View Details</a>
-        </div>
-    `;
-    
-    document.getElementById('user-list').appendChild(newUser);
-    closeAddUserModal();
-});
+
 function editUser(event) {
 
     const item = event.target.closest('.user-item');
@@ -648,22 +699,6 @@ function editUser(event) {
     
     event.target.classList.add('hidden');
     item.querySelector('.btn-save').classList.remove('hidden');
-}
-function saveUser(event) {
-    event.preventDefault();
-    const item = event.target.closest('.user-item');
-    const userDetailsContainer = item.querySelector('.user-details-container');
-    const userDetails = item.querySelector('.user-details');
-    const phoneNumber = userDetails.querySelector('p:first-child');
-    const address = userDetails.querySelector('p:nth-child(2)');
-    const email = userDetails.querySelector('p:last-child');
-    
-    phoneNumber.innerHTML = `<strong>Phone Number:</strong> ${phoneNumber.querySelector('input').value}`;
-    address.innerHTML = `<strong>Address:</strong> ${address.querySelector('input').value}`;
-    email.innerHTML = `<strong>Email:</strong> ${email.querySelector('input').value}`;
-    
-    event.target.classList.add('hidden');
-    item.querySelector('.btn-edit').classList.remove('hidden');
 }
 function toggleUserDetails(event) {
     event.preventDefault();
@@ -723,18 +758,6 @@ function editUser(event) {
     item.querySelector('.btn-save').classList.remove('hidden');
 }
 
-function saveUser(event) {
-    event.preventDefault();
-    const item = event.target.closest('.user-item');
-    item.querySelectorAll('.text').forEach(el => {
-        const input = el.nextElementSibling;
-        el.textContent = input.value;
-        el.classList.remove('hidden');
-        input.classList.add('hidden');
-    });
-    item.querySelector('.btn-edit').classList.remove('hidden');
-    item.querySelector('.btn-save').classList.add('hidden');
-}
 
 function showAddProductModal(event) {
     event.preventDefault();
@@ -820,4 +843,67 @@ function Admin_LogOut(){
         isLoggedIn = false;
         window.location.href = 'index.php';
     }
+}
+function saveUser (event) {
+    event.preventDefault();
+    const item = event.target.closest('.user-item');
+
+    if (!item) {
+        console.error('User item not found.');
+        return;
+    }
+
+    // Select all necessary input fields
+    const userIdInput = item.querySelector('div > div:nth-child(1) > input.input');
+    const usernameInput = item.querySelector('div > div:nth-child(2) > input.input');
+    const emailInput = item.querySelector('.user-details p:nth-child(1) input.input');
+    const phoneNumberInput = item.querySelector('.user-details p:nth-child(2) input.input');
+    const addressInput = item.querySelector('.user-details p:nth-child(3) input.input');
+    
+
+    if (!userIdInput || !usernameInput || !emailInput || !phoneNumberInput || !addressInput) {
+        console.error('One or more input fields are missing.');
+        return;
+    }
+
+    const userId = userIdInput.value;
+    const username = usernameInput.value;
+    const email = emailInput.value;
+    const phoneNumber = phoneNumberInput.value;
+    const address = addressInput.value;
+
+    // Update the UI to show the new values
+    item.querySelectorAll('.text').forEach(el => {
+        const input = el.nextElementSibling;
+        if (input && input.classList.contains('input')) {
+            el.textContent = input.value;
+            el.classList.remove('hidden');
+            input.classList.add('hidden');
+        }
+    });
+
+    item.querySelector('.btn-edit').classList.remove('hidden');
+    item.querySelector('.btn-save').classList.add('hidden');
+
+    // Send the updated user data to the server
+    console.log("Sending data to update_user.php:", {
+        user_id: userId,
+        username: username,
+        email: email,
+        phone_number: phoneNumber,
+        address: address
+    });
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'update_user.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(`user_id=${userId}&username=${username}&email=${email}&phone_number=${phoneNumber}&address=${address}`);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log('User  updated successfully!');
+        } else {
+            console.error('Error updating user:', xhr.statusText);
+        }
+    };
 }
