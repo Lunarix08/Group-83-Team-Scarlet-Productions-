@@ -3,6 +3,44 @@ session_start();
 $isLoggedIn = isset($_SESSION['user']);
 ?>
 
+<?php if (isset($_SESSION['login_error'])): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showLogin();
+        });
+    </script>
+    <?php 
+    $loginError = $_SESSION['login_error']; 
+    unset($_SESSION['login_error']); 
+    ?>
+<?php elseif (isset($_SESSION['register_error'])): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showRegister();
+        });
+    </script>
+    <?php 
+    $registerError = $_SESSION['register_error']; 
+    unset($_SESSION['register_error']); 
+    ?>
+<?php elseif (isset($_SESSION['register_success'])): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            alert('Registeration Sucessful!')
+            showLogin();
+        });
+    </script>
+    <?php 
+    unset($_SESSION['register_success']); 
+    ?>
+<?php else: ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+        });
+    </script>
+<?php endif; ?>
+
 <head>
     <title>Fabianero || Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -13,12 +51,9 @@ $isLoggedIn = isset($_SESSION['user']);
 
 </head>
 
-    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
         <div class="spinner-border" role="status">
-            
         </div>
-        <span class="sr-only" style="margin-left: 15px;">Loading</span>
-        <li class="sr-only" style="margin-left: 15px;">Please Be Patient.</li>
     </div>
     <input type="hidden" id="is-logged-in" value="<?php echo $isLoggedIn ? 'true' : 'false'; ?>">
     <!-- Homepage -->
@@ -74,10 +109,6 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="login-box">
             <div class="close-btn" onclick="showHome()">×</div>
             <h2>Log-In </h2>
-            <?php if (isset($_SESSION['login_error'])): ?>
-                <p style="color: red;"><?php echo $_SESSION['login_error']; ?></p>
-                <?php unset($_SESSION['login_error']); ?>
-            <?php endif; ?>
             <form method="POST" action="login.php">
                 <div class="input-group">
                     <input name="email" placeholder="Email" type="text" required/>
@@ -89,22 +120,18 @@ $isLoggedIn = isset($_SESSION['user']);
                 </div>
 
                 <button class="login-btn">Log-In</button>
+                <?php if (isset($loginError)): ?>
+                    <p style="color: red;"><?php echo $loginError; ?></p>
+                <?php endif; ?>
                 <a class="register-link" href="#" onclick="showRegister()">Don't have an account? Register!</a>
             </form>
         </div>
-    </div>    
-
+    </div>
     <div class="register-container">
         <div class="register-box">
             <div class="close-btn" onclick="showHome()">×</div>
             <h2>Sign-Up</h2>
-            <?php if (isset($_SESSION['register_error'])): ?>
-                <p style="color: red;"><?php echo $_SESSION['register_error']; ?></p>
-                <?php unset($_SESSION['register_error']); ?>
-            <?php elseif (isset($_SESSION['register_success'])): ?>
-                <p style="color: green;"><?php echo $_SESSION['register_success']; ?></p>
-                <?php unset($_SESSION['register_success']); ?>
-            <?php endif; ?>
+           
             <form method="POST" action="register.php">
 
                 <div class="input-group">
@@ -121,7 +148,10 @@ $isLoggedIn = isset($_SESSION['user']);
                     <input name="confirm_password" placeholder="Confirm Password" type="password" required/>
                     <i class="fas fa-lock"></i>
                 </div>
-
+                <?php if (isset($registerError)): ?>
+                    <p style="color: red;"><?php echo $registerError; ?></p>
+                    <?php unset($registerError); ?>
+                <?php endif; ?>
                 <button class="register-btn">Sign-Up</button>
                 <a class="login-link" href="#" onclick="showLogin()">Already have an account? Login</a>
             </form>

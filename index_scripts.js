@@ -1,12 +1,9 @@
 
-
 window.onload = function() {
     setTimeout(function() {
         document.getElementById('loading-screen').style.display = 'none';
-        showHome();
     }, 1000);
 }
-
 
 const prices = { 
     'Espresso': 8.00,
@@ -412,6 +409,7 @@ function loadingPage(){
     }, 1000);
 }
 function showAbout() {
+    loadingPage();
     document.getElementById('menu').style.display = 'none';
     document.getElementById('non-menu').style.display = 'flex';
     document.title = "Fabianero || About Us";
@@ -432,7 +430,7 @@ function viewMenu(){
 
 
 function showLogin() {
-
+    loadingPage();
     document.title = "Fabianero || Login";
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
@@ -440,6 +438,7 @@ function showLogin() {
 }
 
 function showRegister() {
+    loadingPage();
     document.title = "Fabianero || Register";
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'none';
@@ -640,12 +639,12 @@ function addToCart(event) {
 }
 function makePayment() {
     // Get the payment form data
+    
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const cardNumber = document.getElementById('card-number').value;
     const expirationDate = document.getElementById('expiration-date').value;
     const cvv = document.getElementById('cvv').value;
-
     // Validate the payment form data
     if (name === '' || email === '' || cardNumber === '' || expirationDate === '' || cvv === '') {
         alert('Please fill in all fields');
@@ -678,8 +677,6 @@ function makePayment() {
 
         // Close the payment page
         document.querySelector('.payment-page').style.display = 'none';
-        document.getElementById('overlay').classList.remove('show');
-
         // Display a success message
         alert('Payment successful!');
     } else {
@@ -692,6 +689,7 @@ function makePayment() {
 document.getElementById('make-payment').addEventListener('click', makePayment);
 
 function showHome() {
+    loadingPage();
     const homeContainer = document.querySelector('.home-container');
     const aboutContainer = document.querySelector('.about-container');
     const loginContainer = document.querySelector('.login-container');

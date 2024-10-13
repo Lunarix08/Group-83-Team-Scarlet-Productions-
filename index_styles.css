@@ -313,7 +313,12 @@ body, html {
     justify-content: space-between;
     margin-top: 20px;
 }
-
+.recommend-box{
+    padding: 20;
+    background-color: #d1cbb3ba;
+    margin-right: 60;
+    border-radius: 20px;
+}
 .recommend-item {
     width: 25%;
     margin: 10px;
@@ -619,17 +624,16 @@ footer {
     font-size: 24px;
     font-weight: bold;
     animation: fadeOut 1s forwards;
-
     z-index: 10;
 }
 /* Add this to your CSS file */
 .spinner-border {
-    border: 4px solid rgb(0, 0, 0,0.1);
-    border-top: 4px solid cornsilk;
+    border: 4px solid rgb(255 255 255 / 37%);
+    border-top: 4px solid #ffffff;
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite
 }
 @keyframes spin {
     0% {
@@ -770,7 +774,7 @@ footer {
     border-radius: 25px;
 }
 #cartItemsContainer{
-    max-height: 75vh;
+    max-height: 70vh;
     overflow-y: auto;
     margin-bottom: 35;
 }
@@ -831,18 +835,29 @@ footer {
     position: absolute;
 }
 .cart-footer .total-price {
-    font-size: 18px;
+    font-size: 23px;
     margin-bottom: 10px;
+    margin-left: 20;
+    font-weight: bold;
 }
+
 .cart-footer .checkout-btn, .cart-footer .view-cart-btn {
-    background-color: #ff9800;
+    background-color: #212020;
     color: #fff;
-    border: none;
+    border: 1px solid white;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 5px;
+    border-radius: 100px;
+    margin-left: 18px;
+    margin-top: 5;
+    width: 225;
+    height: 60;
+    font-size: 17;
+    font-family: 'Oswald';
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
 }
+
 .cart-footer .checkout-btn:hover, .cart-footer .view-cart-btn:hover {
     background-color: #e68900;
 }
@@ -877,15 +892,19 @@ footer {
 
 .payment-page {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: 80%;
+    background-color: rgb(4 1 1 / 83%);
     display: none;
     z-index: 1001;
     justify-content: center;
     align-items: center;
+    color: white;
+    border: 2px solid white;
+    padding: 10;
+    border-radius: 20px;
 }
 
 .payment-page.show {
@@ -970,14 +989,22 @@ footer {
 #payment-form input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: 2px solid #00bb00;
+    font-family: "Montserrat", sans-serif;
 }
 #make-payment {
-    background-color: #ff9800;
+    background-color: #000000;
     color: #fff;
-    border: none;
+    border: 2px solid aliceblue;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 15;
+    transition: 0.3 cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 #make-payment:hover {
     background-color: #e68900;
