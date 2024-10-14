@@ -25,6 +25,7 @@ body {
 .container {
     margin-left: 220px;
     width: calc(100% - 220px);
+    height: fit-content;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -36,8 +37,8 @@ h1 {
     color: white;
 }
 h2 {
-    margin-top: 40px;
     margin-bottom: 20px;
+    font-size: 35px;
 }
 .menu-item, .user-item, .order-item {
     padding: 25px;
@@ -63,7 +64,9 @@ h2 {
     object-fit: cover;
     border-radius: 5px;
     right: 45;
+    top: 17;
 }
+
 .btn {
     padding: 5px 10px;
     text-decoration: none;
@@ -74,41 +77,75 @@ h2 {
     font-weight:normal;
     background-color: #28a745;
     border-radius: 50px;
+    cursor: pointer;
 }
 .btn-save {
-    font-weight:normal;
-    background-color: #007bff;
+    font-weight: normal;
+    background-color: #193d0b91;
     border-radius: 50px;
+    border: 1px solid black;
+    font-family: 'Montserrat';
+    width: 75;
+    cursor: pointer;
 }
 .btn-delete {
     font-weight:normal;
     background-color: #dc3545;
     border-radius: 50px;
+    cursor: pointer;
 }
 .btn-add {
     display: block;
     width: 200px;
-    margin: 0 auto 20px;
+    margin-bottom: 20px;
     padding: 10px;
     text-align: center;
     background-color: #007bff;
     color: #fff;
     text-decoration: none;
     border-radius: 3px;
+    cursor: pointer;
 }
 .btn-view {
     background-color: #17a2b8;
     font-weight:normal;
     border-radius: 50px;
+    cursor: pointer;
 }
 .hidden {
     display: none;
 }
-
-.modal-body p {
-    margin: 5px;
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
 }
-
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.modal-header h3 {
+    margin: 0;
+}
+.modal-body p {
+    margin: 10px 0;
+}
+.modal-close {
+    cursor: pointer;
+    color: #dc3545;
+    font-size: 30px;
+}
 .modal-overlay {
     display: flex;
     position: fixed;
@@ -132,15 +169,16 @@ h2 {
 }
 .menu-item{
     border-radius: 30px;
+    position: relative;
 }
 input.input{
     font-family: "Montserrat", sans-serif;
-    border-radius: 10px;
-    border: 1px solid #0f5f004d;
-    padding: 14px;
+    border-radius: 30px;
+    border: 1px solid black;
+    padding: 15px;
     font-size: 15px;
     width: 700;
-    height: 30;
+    height: 40;
     margin-bottom: 8px;
 }
 input#product-name, input#product-id, input#product-price, input#product-description{
@@ -182,7 +220,15 @@ span.text{
 .user-details-container{
     font-weight: bold;
 }
-
+.btn-refresh {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 3px;
+    background-color: #007bff;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
 
 .modal {
     position: fixed;
@@ -194,7 +240,6 @@ span.text{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
-    width: 850;
 }
 
 .modal-header {
@@ -246,4 +291,43 @@ span.text{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+span{
+    font-weight: normal;
+}
+.status-select{
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    height: 30;
+    padding: 5;
+}
+.order-item.cancelled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+#btn-admin-logout{
+    border-radius: 10px;
+    width: 165;
+    position: absolute;
+    left: 15px;
+    bottom: 55;
+    height: 35;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 17;
+    border: 2px solid white;
+    color: #ffffff;
+    background-color: #16181a7a;
+    cursor: pointer;
+}
+#role-select.input{
+    font-family: "Montserrat", sans-serif;
+    border-radius: 30px;
+    border: 1px solid black;
+    padding: 10;
+    font-size: 15px;
+    width: 100;
+    height: 40;
+    margin-bottom: 8px;
 }

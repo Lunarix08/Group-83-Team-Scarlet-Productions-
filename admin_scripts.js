@@ -844,7 +844,7 @@ function Admin_LogOut(){
         window.location.href = 'index.php';
     }
 }
-function saveUser (event) {
+function saveUser(event) {
     event.preventDefault();
     const item = event.target.closest('.user-item');
 
@@ -859,9 +859,9 @@ function saveUser (event) {
     const emailInput = item.querySelector('.user-details p:nth-child(1) input.input');
     const phoneNumberInput = item.querySelector('.user-details p:nth-child(2) input.input');
     const addressInput = item.querySelector('.user-details p:nth-child(3) input.input');
-    
+    const roleSelect = item.querySelector('div > div:nth-child(3) select.input');
 
-    if (!userIdInput || !usernameInput || !emailInput || !phoneNumberInput || !addressInput) {
+    if (!userIdInput || !usernameInput || !emailInput || !phoneNumberInput || !addressInput || !roleSelect) {
         console.error('One or more input fields are missing.');
         return;
     }
@@ -871,6 +871,7 @@ function saveUser (event) {
     const email = emailInput.value;
     const phoneNumber = phoneNumberInput.value;
     const address = addressInput.value;
+    const role = roleSelect.value;
 
     // Update the UI to show the new values
     item.querySelectorAll('.text').forEach(el => {
@@ -891,13 +892,14 @@ function saveUser (event) {
         username: username,
         email: email,
         phone_number: phoneNumber,
-        address: address
+        address: address,
+        role: role
     });
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'update_user.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(`user_id=${userId}&username=${username}&email=${email}&phone_number=${phoneNumber}&address=${address}`);
+    xhr.send(`user_id=${userId}&username=${username}&email=${email}&phone_number=${phoneNumber}&address=${address}&role=${role}`);
 
     xhr.onload = function() {
         if (xhr.status === 200) {
