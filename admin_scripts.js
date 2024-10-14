@@ -375,14 +375,8 @@ const orders = [
         products: getRandomProducts(items, 4),
     },
 ];
-function generateOrderId() {
-    const timestamp = Date.now(); // Current timestamp
-    const randomNum = Math.floor(Math.random() * 1000000); // Random number
-    return `order_${timestamp}_${randomNum}`;
-}
 
-// Set the generated order ID to the hidden input field
-document.getElementById('order-id').value = generateOrderId();
+
 
 function getRandomProducts(items, count) {
     const randomProducts = [];

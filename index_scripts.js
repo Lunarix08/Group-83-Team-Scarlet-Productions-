@@ -402,6 +402,8 @@ const items = [
         ]
     }
 ];
+
+
 function loadingPage(){
     document.getElementById('loading-screen').style.display = 'flex';
     setTimeout(function() {
@@ -457,11 +459,7 @@ const cartItemsContainer = document.getElementById('cartItemsContainer');
 const totalPriceElement = document.getElementById('totalPrice');
 const checkoutButton = document.getElementById('checkoutButton');
 const closePaymentButton = document.getElementById('closePaymentButton');
-closePaymentButton.addEventListener('click', function() {
-    const paymentPage = document.querySelector('.payment-page');
-    paymentPage.style.display = 'none';
-    overlay.classList.remove('show');
-});
+
 function makeCheckout() {
     // Hide the cart sidebar
     cartSidebar.classList.remove('open');
@@ -578,7 +576,7 @@ closeCartButton.addEventListener('click', function() {
 });
 closePaymentButton.addEventListener('click', function() {
     const paymentPage = document.querySelector('.payment-page');
-    paymentPage.classList.remove('show');
+    paymentPage.classList.remove('show'); 
     overlay.classList.remove('show');
 });
 
@@ -645,56 +643,8 @@ function addToCart(event) {
     });
 
 }
-function makePayment() {
-    // Get the payment form data
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const cardNumber = document.getElementById('card-number').value;
-    const expirationDate = document.getElementById('expiration-date').value;
-    const cvv = document.getElementById('cvv').value;
-    // Validate the payment form data
-    if (name === '' || email === '' || cardNumber === '' || expirationDate === '' || cvv === '') {
-        alert('Please fill in all fields');
-        return;
-    }
-
-    // Simulate a payment request (in a real application, you would send a request to a payment gateway)
-    const paymentRequest = {
-        name: name,
-        email: email,
-        cardNumber: cardNumber,
-        expirationDate: expirationDate,
-        cvv: cvv,
-        amount: parseFloat(document.getElementById('total-price').textContent.split('$')[1])
-    };
-
-    // Simulate a payment response (in a real application, you would receive a response from the payment gateway)
-    const paymentResponse = {
-        success: true,
-        message: 'Payment successful'
-    };
-
-    // Handle the payment response
-    if (paymentResponse.success) {
-        // Clear the cart
-        document.getElementById('cartItemsContainer').innerHTML = '';
-        document.getElementById('order-summary').innerHTML = '';
-        document.getElementById('totalPrice').textContent = 'Total: $0.00';
-        document.getElementById('total-price').textContent = 'Total: $0.00';
-
-        // Close the payment page
-        document.querySelector('.payment-page').style.display = 'none';
-        // Display a success message
-        alert('Payment successful!');
-    } else {
-        // Display an error message
-        alert('Payment failed: ' + paymentResponse.message);
-    }
-}
 
 // Add an event listener to the make payment button
-document.getElementById('make-payment').addEventListener('click', makePayment);
 
 function showHome() {
     loadingPage();

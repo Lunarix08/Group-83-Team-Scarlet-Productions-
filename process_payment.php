@@ -40,20 +40,21 @@ $stmt = $conn->prepare("INSERT INTO payments (order_id, name, email, phone_numbe
 $stmt->bind_param("ssssss", $new_order_id, $name, $email, $phone_number, $card_number, $cvv);
 
 // Execute the statement
+// ...
+
 if ($stmt->execute()) {
-    // Payment information saved successfully
-    $stmt->close(); // Close the statement
-    $conn->close(); // Close the connection
+    // Payment information saved successfully// Close the statement
+     // Close the connection
     $_SESSION['payment_status'] = 'success';
     $_SESSION['order_id'] = $new_order_id;
     header("Location: index.php");
     exit();
 } else {
     // Payment failed
-    $stmt->close(); // Close the statement
-    $conn->close(); // Close the connection
+
     $_SESSION['payment_status'] = 'failed';
     header("Location: index.php");
     exit();
 }
+
 ?>

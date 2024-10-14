@@ -1,6 +1,7 @@
 <?php
 session_start();
 $isLoggedIn = isset($_SESSION['user']);
+
 ?>
 
 <?php if (isset($_SESSION['login_error'])): ?>
@@ -50,7 +51,7 @@ $isLoggedIn = isset($_SESSION['user']);
     <link href="index_styles.css" rel="stylesheet">
 
 </head>
-
+    
     <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
         <div class="spinner-border" role="status">
         </div>
