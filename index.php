@@ -386,20 +386,29 @@ $isLoggedIn = isset($_SESSION['user']);
             <p id="total-price">Total: $0.00</p>
             </div>
             <div class="payment-form">
-            <h2>Make Payment</h2>
-            <form id="payment-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name"><br><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br><br>
-                <label for="card-number">Card Number:</label>
-                <input type="text" id="card-number" name="card-number"><br><br>
-                <label for="expiration-date">Expiration Date:</label>
-                <input type="text" id="expiration-date" name="expiration-date"><br><br>
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv"><br><br>
-                <button id="make-payment">Make Payment</button>
-            </form>
+                <h2>Make Payment</h2>
+                <form id="payment-form" method="POST" action="process_payment.php" style="display: block;">
+                    <input type="hidden" id="order-id" name="order_id" value="">
+                    
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+
+                    <label for="expiration-date">Phone Number:</label>
+                    <input type="text" id="phone_number" name="phone_number" required><br><br>
+                    
+                    
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" name="card-number" required><br><br>
+                    
+                    
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" required><br><br>
+                    
+                    <button type="submit" id="make-payment">Make Payment</button>
+                </form>
             </div>
         </div>
         

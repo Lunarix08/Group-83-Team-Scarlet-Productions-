@@ -10,6 +10,7 @@
         <a href="#" onclick="showSection('menu-management')"><i class="fas fa-coffee"></i> Menu</a>
         <a href="#" onclick="showSection('user-management')"><i class="fas fa-users"></i> User</a>
         <a href="#" onclick="showSection('order-management')"><i class="fas fa-shopping-cart"></i> Order</a>
+        <a href="#" onclick="showSection('payment-management')"><i class="fas fa-shopping-cart"></i> Payment</a>
         <button id="btn-admin-logout" onclick="Admin_LogOut()">Log Out</button>
     </div>
     <div class="container">
@@ -142,6 +143,12 @@
         <div id="order-management" class="hidden">
             <h2>Order Management</h2>
             
+        </div>
+        <div id="payment-management" class="hidden">
+            <h2>Payment Management</h2>
+            <div id="payment-list">
+                <!-- Payment records will be displayed here -->
+            </div>
         </div>
     </div>
 

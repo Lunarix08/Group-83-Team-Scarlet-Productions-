@@ -375,7 +375,14 @@ const orders = [
         products: getRandomProducts(items, 4),
     },
 ];
+function generateOrderId() {
+    const timestamp = Date.now(); // Current timestamp
+    const randomNum = Math.floor(Math.random() * 1000000); // Random number
+    return `order_${timestamp}_${randomNum}`;
+}
 
+// Set the generated order ID to the hidden input field
+document.getElementById('order-id').value = generateOrderId();
 
 function getRandomProducts(items, count) {
     const randomProducts = [];
@@ -575,7 +582,6 @@ function deleteUser(event) {
     }
 } 
 
-
 function addNewUser (event) {
     event.preventDefault();
     const addUserModal = document.getElementById('add-user-modal');
@@ -666,6 +672,7 @@ function closeAddUserModal() {
     modalOverlay.classList.remove('show');
     addUserModal.style.display = 'none';
 }
+
 function editToggleDetail(event){
     event.preventDefault();
     const item = event.target.closest('.user-item');
@@ -675,6 +682,7 @@ function editToggleDetail(event){
         userDetails.classList.remove('hidden');
     }
 }
+
 function closeAddUserModal() {
     const addUserModal = document.getElementById('add-user-modal');
     const modalOverlay = document.getElementById('modal-overlay');
@@ -700,6 +708,7 @@ function editUser(event) {
     event.target.classList.add('hidden');
     item.querySelector('.btn-save').classList.remove('hidden');
 }
+
 function toggleUserDetails(event) {
     event.preventDefault();
     const item = event.target.closest('.user-item');
@@ -716,12 +725,14 @@ function toggleUserDetails(event) {
         event.target.textContent = 'View Details';
     }
 }
+
 function showSection(sectionId) {
     document.getElementById('menu-management').classList.add('hidden');
     document.getElementById('user-management').classList.add('hidden');
     document.getElementById('order-management').classList.add('hidden');
     document.getElementById(sectionId).classList.remove('hidden');
 }
+
 function closeDetails() {
     document.getElementById('modal-overlay').classList.remove('show');
     document.getElementById('order-details-modal').style.display = 'none';
@@ -757,7 +768,6 @@ function editUser(event) {
     item.querySelector('.btn-edit').classList.add('hidden');
     item.querySelector('.btn-save').classList.remove('hidden');
 }
-
 
 function showAddProductModal(event) {
     event.preventDefault();
@@ -844,6 +854,7 @@ function Admin_LogOut(){
         window.location.href = 'index.php';
     }
 }
+
 function saveUser(event) {
     event.preventDefault();
     const item = event.target.closest('.user-item');
