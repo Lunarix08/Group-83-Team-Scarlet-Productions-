@@ -485,27 +485,7 @@ function createCategoryLink(category) {
     return link;
 }
 
-function displayProducts(products, categoryName) {
-    productsContainer.innerHTML = '';
-    categoryTitle.textContent = categoryName;
-    products.forEach(product => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
-        productDiv.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h2>${product.name} <span>$${product.price.toFixed(2)}</span></h2>
-            <p>${product.description}</p>
-            <button class="add-to-cart" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">+ Quick Add</button>
-        `;
-        productsContainer.appendChild(productDiv);
-    });
 
-    // Add event listeners to "Add to Cart" buttons
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', addToCart);
-    });
-}
 
 
 

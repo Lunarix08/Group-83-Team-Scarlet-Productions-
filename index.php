@@ -375,7 +375,43 @@ $isLoggedIn = isset($_SESSION['user']);
                 <button>Sort by: Best selling</button>
             </div>
             <div class="products" id="productsContainer">
-                <!-- Products will be dynamically added here -->
+                <?php
+                // Connect to the database
+                $db_host = 'localhost';
+                $db_user = 'root';
+                $db_password = '';
+                $db_name = 'fabianero';
+
+                $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Retrieve product data from the database
+                $sql = "SELECT * FROM products";
+                $result = $conn->query($sql);
+
+                // Display product data
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <div class="product">
+                            <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
+                            <h2><?php echo $row['name']; ?> <span>$<?php echo number_format($row['price'], 2); ?></span></h2>
+                            <p><?php echo $row['description']; ?></p>
+                            <button class="add-to-cart" data-name="<?php echo $row['name']; ?>" data-price="<?php echo $row['price']; ?>" data-image="<?php echo $row['image']; ?>">+ Quick Add</button>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "No products found.";
+                }
+
+                // Close the database connection
+                $conn->close();
+                ?>
             </div>
         </div>
 
