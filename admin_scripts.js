@@ -724,6 +724,7 @@ function showSection(sectionId) {
     document.getElementById('menu-management').classList.add('hidden');
     document.getElementById('user-management').classList.add('hidden');
     document.getElementById('order-management').classList.add('hidden');
+    document.getElementById('payment-management').classList.add('hidden');
     document.getElementById(sectionId).classList.remove('hidden');
 }
 
@@ -913,4 +914,30 @@ function saveUser(event) {
             console.error('Error updating user:', xhr.statusText);
         }
     };
+}
+function deletePayment(event) {
+    event.preventDefault();
+    const paymentItem = event.target.closest('.payment-item');
+    const paymentId = paymentItem.querySelector('.text').textContent; // Assuming the first text element is the Payment ID
+
+    if (confirm('Are you sure you want to delete this payment?')) {
+        // Send an AJAX request to delete the payment record in the database
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete_payment.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert('Payment deleted successfully.');
+                paymentItem.remove();
+            } else {
+                alert('Failed to delete payment.');
+            }
+        };
+        xhr.send('payment_id=' + encodeURIComponent(paymentId));
+    }
+}
+function togglePaymentDetails(event) {
+    event.preventDefault();
+    const paymentItem = event.target.closest('.payment-item');
+    paymentItem.querySelector('.payment-details').classList.toggle('hidden');
 }

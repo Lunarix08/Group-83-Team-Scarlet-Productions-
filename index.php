@@ -51,6 +51,23 @@ $isLoggedIn = isset($_SESSION['user']);
     <link href="index_styles.css" rel="stylesheet">
 
 </head>
+<body>
+    <?php // Start the session at the beginning of the file
+    if (isset($_SESSION['payment_status'])): ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var paymentStatus = '<?php echo $_SESSION['payment_status']; ?>';
+                if (paymentStatus == 'success') {
+                    alert('Payment successful!');
+                } else if (paymentStatus == 'failed') {
+                    alert('Payment failed. Please try again.');
+                }
+                viewMenu();
+                <?php unset($_SESSION['payment_status']); ?> // Unset the session variable
+            });
+        </script>
+    <?php endif; ?>   
+
     
     <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
         <div class="spinner-border" role="status">

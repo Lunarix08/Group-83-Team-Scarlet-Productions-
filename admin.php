@@ -145,11 +145,60 @@
             
         </div>
         <div id="payment-management" class="hidden">
-            <h2>Payment Management</h2>
-            <div id="payment-list">
-                <!-- Payment records will be displayed here -->
-            </div>
-        </div>
+    <h2>Payment Management</h2>
+    <div id="payment-list">
+        <?php
+        // Connect to the database
+        $db_host = 'localhost';
+        $db_user = 'root';
+        $db_password = '';
+        $db_name = 'fabianero';
+
+        $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Retrieve payment data from the database
+        $sql = "SELECT * FROM payments";
+        $result = $conn->query($sql);
+
+        // Display payment data
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="payment-item">
+                    <div>
+                        <div>Payment ID: <span class="text"><?php echo $row['payment_id']; ?></span></div>
+                        <div>Order ID: <span class="text"><?php echo $row['order_id']; ?></span></div>
+                        <div>Created At: <span class="text"><?php echo $row['created_at']; ?></span></div>
+                        <div class="payment-details hidden">
+                            <div>Full Name: <span class="text"><?php echo $row['name']; ?></span></div>
+                            <div>Email: <span class="text"><?php echo $row['email']; ?></span></div>
+                            <div>Phone Number: <span class="text"><?php echo $row['phone_number']; ?></span></div>
+                            <div>Card Number: <span class="text"><?php echo str_repeat('*', strlen($row['card_number']) - 4) . substr($row['card_number'], -4); ?></span></div>
+                            
+                        </div>
+                        
+                        <div style="margin-top: 25;">
+                            <a href="#" class="btn btn-view" onclick="togglePaymentDetails(event)">View Details</a>
+                            <a href="#" class="btn btn-delete" onclick="deletePayment(event)">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            echo "No payments found.";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </div>
+</div>
     </div>
 
     <div class="modal-overlay" id="modal-overlay"></div>

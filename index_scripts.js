@@ -424,7 +424,10 @@ function showAbout() {
 function viewMenu(){
     
     document.getElementById('non-menu').style.display = 'none';
-    document.getElementById('menu').style.display = 'flex';
+    const menu = document.getElementById('menu');
+    if (menu) {
+        menu.style.display = 'flex'; // or 'block', depending on your layout
+    }
 }
 
 
