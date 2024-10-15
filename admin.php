@@ -17,62 +17,58 @@
         <h1>Fabianero Admin Panel</h1>
         
         <div id="menu-management">
-            <!--<a href="#" class="btn btn-add" onclick="showAddProductModal(event)">Add New Product</a> -->
             <h2>Menu Management</h2>
             <a href="#" class="btn btn-add" onclick="showAddProductModal(event)">Add New Product</a>
-            <div id="espresso-beverages">
-                <h3>Espresso Beverages</h3>
-            </div>
+            <div id="productsContainer">
+                <?php
+                // Connect to the database
+                $db_host = 'localhost';
+                $db_user = 'root';
+                $db_password = '';
+                $db_name = 'fabianero';
 
-            <div id="iced-espresso-beverages">
-                <h3>Iced Espresso Beverages</h3>
-            </div>
+                $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-            <div id="blonde-roast-&-brewed-coffee">
-                <h3>Blonde Roast & Brewed Coffee</h3>
-            </div> 
-            
-            <div id="cold-coffee">
-                <h3>Cold Coffee</h3>
-            </div>
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-            <div id="donut">
-                <h3>Donut</h3>
-            </div>
+                // Retrieve all product data from the database
+                $sql = "SELECT * FROM products";
+                $result = $conn->query($sql);
 
-            <div id="bagels">
-                <h3>Bagels</h3>
-            </div>
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='menu-item'>";
+                        echo "<div>";
+                        foreach ($row as $key => $value) {
+                            if ($key !== 'image' && $key !== 'maincategory' && $key !== 'subcategory') {  // Skip image and category fields
+                                $displayKey = ucfirst($key);  // Capitalize the first letter
+                                echo "<div>$displayKey: <span class='text'>$value</span><input type='text' class='input hidden' value='$value'></div>";
+                            }
+                            if (isset($row['image'])) {
+                                echo "<img src='" . $row['image'] . "' alt='Product Image' width='100' height='100'>";
+                            }
+                        }
+                        echo "<div>
+                                <a href='#' class='btn btn-edit' onclick='editMenuItem(event)'>Edit</a>
+                                <a href='#' class='btn btn-save hidden' onclick='saveMenuItem(event)'>Save</a>
+                                <a href='#' class='btn btn-delete' onclick='deleteMenuItem(event)'>Delete</a>
+                            </div>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>No products found.</p>";
+                }
 
-            <div id="savory-pastries">
-                <h3>Savory Pastries</h3>
+                // Close the database connection
+                $conn->close();
+                ?>
             </div>
-
-            <div id="scones">
-                <h3>Scones</h3>
-            </div>
-
-            <div id="sweet-pastries">
-                <h3>Sweet Pastries</h3>
-            </div>
-
-            <div id="creamy-cakes">
-                <h3>Creamy Cakes</h3>
-            </div>
-
-            <div id="layered-cakes">
-                <h3>Layered Cakes</h3>
-            </div>
-
-            <div id="citrus-cakes">
-                <h3>Citrus Cakes</h3>
-            </div>
-
-            <div id="brownie">
-                <h3>Brownie</h3>
-            </div>
-
         </div>
+    </div>
 
         
         <div id="user-management" class="hidden">

@@ -356,7 +356,7 @@ const orders = [
         orderDate: '2023-10-01',
         time: '01:30 p.m.',
         status: 'pending',
-        products: getRandomProducts(items, 3),
+        products: 'a',
     },
     {
         id: 2,
@@ -364,7 +364,7 @@ const orders = [
         orderDate: '2023-10-02',
         time: '02:30 p.m.',
         status: 'completed',
-        products: getRandomProducts(items, 2),
+        products: 'a',
     },
     {
         id: 3,
@@ -372,30 +372,13 @@ const orders = [
         orderDate: '2023-10-03',
         time: '03:30 p.m.',
         status: 'pending',
-        products: getRandomProducts(items, 4),
+        products:'a',
     },
 ];
 
 
 
-function getRandomProducts(items, count) {
-    const randomProducts = [];
-    for (let i = 0; i < count; i++) {
-        const randomCategoryIndex = Math.floor(Math.random() * items.length);
-        const randomCategory = items[randomCategoryIndex];
-        const randomSubcategoryIndex = Math.floor(Math.random() * randomCategory.items.length);
-        const randomSubcategory = randomCategory.items[randomSubcategoryIndex];
-        const randomProductIndex = Math.floor(Math.random() * randomSubcategory.items.length);
-        const randomProduct = randomSubcategory.items[randomProductIndex];
-        const product = {
-            name: randomProduct.name,
-            price: randomProduct.price,
-            quantity: Math.floor(Math.random() * 5) + 1,
-        };
-        randomProducts.push(product);
-    }
-    return randomProducts;
-}
+
 function renderOrderList() {
     // Load orders from local storage
     const orderList = document.getElementById('order-management');
@@ -524,40 +507,6 @@ function deleteMenuItem(event) {
     }
 }
 
-function renderMenuItems() {
-    items.forEach(category => {
-        category.items.forEach(subcategory => {
-            const subcategoryDiv = document.getElementById(subcategory.id);
-            if (!subcategoryDiv) {
-                console.error(`Subcategory div for ${subcategory.id} not found!`);
-                return; 
-            }
-
-            subcategory.items.forEach(product => {
-                const newItem = document.createElement('div');
-                newItem.classList.add('menu-item');               
-                newItem.innerHTML = `
-                    <div>
-                        <div>Product ID: <span class="text">1</span><input type="text" class="input hidden" value="1"></div>
-                        <div>Product Name: <span class="text">${product.name}</span><input type="text" class="input hidden" value="${product.name}"></div>
-                        <div>Price (RM): <span class="text">${product.price.toFixed(2)}</span><input type="text" class="input hidden" value="${product.price.toFixed(2)}"></div>
-                        <div>Description: <span class="text">${product.description}</span><input type="text" class="input hidden" value="${product.description}"></div>
-                        <img src="${product.image}" alt="Image of ${product.name}" width="100" height="100">
-                        <div>
-                            <a href="#" class="btn btn-edit" onclick="editItem(event)">Edit</a>
-                            <a href="#" class="btn btn-save hidden" onclick="saveItem(event)">Save</a>
-                            <a href="#" class="btn btn-delete" onclick="deleteMenuItem(event)">Delete</a>
-                        </div>
-                    </div>
-                `;
-
-                subcategoryDiv.appendChild(newItem);
-            });
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', renderMenuItems);
 
 function deleteUser(event) {
     if (confirm("Are you sure you want to delete this user?")) {
@@ -724,7 +673,6 @@ function showSection(sectionId) {
     document.getElementById('menu-management').classList.add('hidden');
     document.getElementById('user-management').classList.add('hidden');
     document.getElementById('order-management').classList.add('hidden');
-    document.getElementById('payment-management').classList.add('hidden');
     document.getElementById(sectionId).classList.remove('hidden');
 }
 

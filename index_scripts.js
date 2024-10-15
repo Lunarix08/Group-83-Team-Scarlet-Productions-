@@ -422,7 +422,7 @@ function showAbout() {
 }
 
 function viewMenu(){
-    
+    loadingPage();
     document.getElementById('non-menu').style.display = 'none';
     const menu = document.getElementById('menu');
     if (menu) {
@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Display all products by default
-displayProducts(items.flatMap(category => category.items.flatMap(subCategory => subCategory.items)), 'All Products');
+
 
 // Cart sidebar functionality
 cartButton.addEventListener('click', function(event) {
@@ -571,64 +571,105 @@ overlay.addEventListener('click', function() {
 });
 
 function addToCart(event) {
-    const button = event.target;
-    const name = button.getAttribute('data-name');
-    const price = button.getAttribute('data-price');
-    const image = button.getAttribute('data-image');
+    if (event.target.classList.contains('add-to-cart')) {
+        const button = event.target;
+        const name = button.getAttribute('data-name');
+        const price = parseFloat(button.getAttribute('data-price'));
+        const image = button.getAttribute('data-image');
 
-    const cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
-    cartItem.innerHTML = `
-        <img src="${image}" alt="${name}">
-        <div class="item-details">
-            <h4>${name}</h4>
-            <p>$${parseFloat(price).toFixed(2)}</p>
-        </div>
-        <input type="number" class="quantity" value="1" min="1" data-price="${price}">
-        <button class="remove-button">Remove</button>
-    `;
-    cartItemsContainer.appendChild(cartItem);
+        const existingItem = cartItems.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cartItems.push({ name, price, image, quantity: 1 });
+        }
+
+        updateCartDisplay();
+    }
+}
+
+function updateCartDisplay() {
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+
+    cartItems.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <h4>${item.name}</h4>
+                <p>$${item.price.toFixed(2)}</p>
+            </div>
+            <input type="number" class="quantity" value="${item.quantity}" min="1" data-name="${item.name}">
+            <button class="remove-button">Remove</button>
+        `;
+
+        const quantityInput = cartItem.querySelector('.quantity');
+        quantityInput.addEventListener('input', () => {
+            const newQuantity = parseInt(quantityInput.value);
+            const itemIndex = cartItems.findIndex(item => item.name === quantityInput.getAttribute('data-name'));
+            if (newQuantity > 0) {
+                cartItems[itemIndex].quantity = newQuantity;
+            } else {
+                cartItems.splice(itemIndex, 1);
+            }
+            updateCartDisplay();
+        });
+
+        const removeButton = cartItem.querySelector('.remove-button');
+        removeButton.addEventListener('click', () => {
+            const itemIndex = cartItems.findIndex(item => item.name === removeButton.parentNode.querySelector('.quantity').getAttribute('data-name'));
+            cartItems.splice(itemIndex, 1);
+            updateCartDisplay();
+        });
+
+        cartItemsContainer.appendChild(cartItem);
+        total += item.price * item.quantity;
+    });
+
+    totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
 
     // Update order summary
     const orderSummary = document.getElementById('order-summary');
-    const orderItem = document.createElement('li');
-    orderItem.innerHTML = `
-        <img src="${image}" alt="${name}">
-        <div class="item-details">
-            <h4>${name}</h4>
-            <p>$${parseFloat(price).toFixed(2)}</p>
-        </div>
-        <div class="quantity-container">
-            <p class="quantity">1</p>
-        </div>
-    `;
-    orderSummary.appendChild(orderItem);
-
-    // Update total price
-    updateTotalPrice();
-
-    // Add event listener to quantity input
-    const quantityInput = cartItem.querySelector('.quantity');
-    quantityInput.addEventListener('input', () => {
-        updateTotalPrice();
-        const orderItem = document.querySelector(`#order-summary li img[src="${image}"]`).parentNode;
-        const orderQuantity = orderItem.querySelector('.quantity');
-        orderQuantity.textContent = quantityInput.value;
+    orderSummary.innerHTML = '';
+    cartItems.forEach(item => {
+        const orderItem = document.createElement('li');
+        orderItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <h4>${item.name}</h4>
+                <p>$${item.price.toFixed(2)}</p>
+            </div>
+            <div class="quantity-container">
+                <p class="quantity">${item.quantity}</p>
+            </div>
+        `;
+        orderSummary.appendChild(orderItem);
     });
 
-// Add event listener to remove button
-    const removeButton = cartItem.querySelector('.remove-button');
-    removeButton.addEventListener('click', () => {
-        cartItem.remove();
-        const orderItem = document.querySelector(`#order-summary li img[src="${image}"]`).parentNode;
-        orderItem.remove();
-        updateTotalPrice();
-    });
-
+    const totalPriceElementInOrderSummary = document.getElementById('total-price');
+    totalPriceElementInOrderSummary.textContent = `Total: $${total.toFixed(2)}`;
 }
-
 // Add an event listener to the make payment button
+productsContainer.addEventListener('click', addToCart);
+function displayProducts(products, categoryName) {
+    loadingPage();
+    productsContainer.innerHTML = '';
+    categoryTitle.textContent = categoryName;
 
+    products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'product';
+        productElement.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h2>${product.name} <span>$${product.price.toFixed(2)}</span></h2>
+            <p>${product.description}</p>
+            <button class="add-to-cart" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">+ Quick Add</button>
+        `;
+        productsContainer.appendChild(productElement);
+    });
+}
 function showHome() {
     loadingPage();
     const homeContainer = document.querySelector('.home-container');
@@ -636,6 +677,7 @@ function showHome() {
     const loginContainer = document.querySelector('.login-container');
     const registerContainer = document.querySelector('.register-container');
     const menu = document.getElementById('menu');
+    const nonmenu = document.getElementById('non-menu');
     const viewMenuBtn = document.querySelector('.view-menu-btn');
     const logoutBtn = document.querySelector('.logout-btn');
     const loginBtn = document.querySelector('.login-btn');
@@ -655,6 +697,9 @@ function showHome() {
     }
     if (menu) {
         menu.style.display = 'none';
+    }
+    if (nonmenu) {
+        nonmenu.style.display = 'flex';
     }
 
     // Check if user is logged in (you'll need to set this variable when logging in)
