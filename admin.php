@@ -34,33 +34,62 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                // Retrieve all product data from the database
-                $sql = "SELECT * FROM products";
-                $result = $conn->query($sql);
+                // Function to format text: remove dashes and capitalize each word
+                function formatText($text) {
+                    $words = explode('-', $text);
+                    $words = array_map('ucwords', $words);
+                    return implode(' ', $words);
+                }
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<div class='menu-item'>";
-                        echo "<div>";
-                        foreach ($row as $key => $value) {
-                            if ($key !== 'image' && $key !== 'maincategory' && $key !== 'subcategory') {  // Skip image and category fields
-                                $displayKey = ucfirst($key);  // Capitalize the first letter
-                                echo "<div>$displayKey: <span class='text'>$value</span><input type='text' class='input hidden' value='$value'></div>";
+                // Fetch main categories
+                $sql_categories = "SELECT DISTINCT maincategory FROM products ORDER BY maincategory";
+                $result_categories = $conn->query($sql_categories);
+
+                while ($category = $result_categories->fetch_assoc()) {
+                    echo "<div class='category-section'>";
+                    echo "<h3>" . formatText(htmlspecialchars($category['maincategory'])) . "</h3>";
+
+                    // Fetch subcategories for this main category
+                    $sql_subcategories = "SELECT DISTINCT subcategory FROM products WHERE maincategory = ? ORDER BY subcategory";
+                    $stmt_subcategories = $conn->prepare($sql_subcategories);
+                    $stmt_subcategories->bind_param("s", $category['maincategory']);
+                    $stmt_subcategories->execute();
+                    $result_subcategories = $stmt_subcategories->get_result();
+
+                    while ($subcategory = $result_subcategories->fetch_assoc()) {
+                        echo "<div class='subcategory-section'>";
+                        echo "<h4>" . formatText(htmlspecialchars($subcategory['subcategory'])) . "</h4>";
+
+                        // Fetch products for this subcategory
+                        $sql_products = "SELECT * FROM products WHERE maincategory = ? AND subcategory = ?";
+                        $stmt_products = $conn->prepare($sql_products);
+                        $stmt_products->bind_param("ss", $category['maincategory'], $subcategory['subcategory']);
+                        $stmt_products->execute();
+                        $result_products = $stmt_products->get_result();
+
+                        while ($product = $result_products->fetch_assoc()) {
+                            echo "<div class='menu-item'>";
+                            echo "<div>";
+                            echo "<div>ID: <span class='text'>" . htmlspecialchars($product['product_ID']) . "</span></div>";
+                            echo "<div>Name: <span class='text'>" . formatText(htmlspecialchars($product['name'])) . "</span></div>";
+                            echo "<div>Price: <span class='text'>$" . htmlspecialchars($product['price']) . "</span></div>";
+                            echo "<div>Description: <span class='text'>" . htmlspecialchars($product['description']) . "</span></div>";
+                            if (isset($product['image'])) {
+                                echo "<img src='" . htmlspecialchars($product['image']) . "' alt='Product Image' width='100' height='100'>";
                             }
-                            if (isset($row['image'])) {
-                                echo "<img src='" . $row['image'] . "' alt='Product Image' width='100' height='100'>";
-                            }
+                            echo "<div>
+                                    <a href='#' class='btn btn-edit' onclick='editItem(event)'>Edit</a>
+                                    <a href='#' class='btn btn-save hidden' onclick='saveItem(event)'>Save</a>
+                                    <a href='#' class='btn btn-delete' onclick='deleteMenuItem(event)'>Delete</a>
+                                </div>";
+                            echo "</div>";
+                            echo "</div>"; // End of menu-item
                         }
-                        echo "<div>
-                                <a href='#' class='btn btn-edit' onclick='editMenuItem(event)'>Edit</a>
-                                <a href='#' class='btn btn-save hidden' onclick='saveMenuItem(event)'>Save</a>
-                                <a href='#' class='btn btn-delete' onclick='deleteMenuItem(event)'>Delete</a>
-                            </div>";
-                        echo "</div>";
-                        echo "</div>";
+
+                        echo "</div>"; // End of subcategory-section
                     }
-                } else {
-                    echo "<p>No products found.</p>";
+
+                    echo "</div>"; // End of category-section
                 }
 
                 // Close the database connection
@@ -68,7 +97,7 @@
                 ?>
             </div>
         </div>
-    </div>
+    
 
         
         <div id="user-management" class="hidden">
@@ -141,7 +170,7 @@
             
         </div>
         <div id="payment-management" class="hidden">
-    <h2>Payment Management</h2>
+            <h2>Payment Management</h2>
             <div id="payment-list">
                 <?php
                 // Connect to the database
@@ -201,7 +230,7 @@
             </div>
         </div>
     </div>
- 
+    </div>
     <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal" id="order-details-modal">
             <div class="modal-header">

@@ -684,24 +684,18 @@ function closeDetails() {
 function editItem(event) {
     event.preventDefault();
     const item = event.target.closest('.menu-item');
-    item.querySelectorAll('.text').forEach(el => el.classList.add('hidden'));
-    item.querySelectorAll('.input').forEach(el => el.classList.remove('hidden'));
+    item.querySelectorAll('.text').forEach(el => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = el.textContent;
+        input.className = 'input';
+        el.parentNode.insertBefore(input, el.nextSibling);
+        el.classList.add('hidden');
+    });
     item.querySelector('.btn-edit').classList.add('hidden');
     item.querySelector('.btn-save').classList.remove('hidden');
 }
 
-function saveItem(event) {
-    event.preventDefault();
-    const item = event.target.closest('.menu-item');
-    item.querySelectorAll('.text').forEach(el => {
-        const input = el.nextElementSibling;
-        el.textContent = input.value;
-        el.classList.remove('hidden');
-        input.classList.add('hidden');
-    });
-    item.querySelector('.btn-edit').classList.remove('hidden');
-    item.querySelector('.btn-save').classList.add('hidden');
-}
 
 function editUser(event) {
     event.preventDefault();
