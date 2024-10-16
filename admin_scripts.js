@@ -696,7 +696,53 @@ function editItem(event) {
     item.querySelector('.btn-save').classList.remove('hidden');
 }
 
+function saveItem(event) {
+    event.preventDefault();
+    const item = event.target.closest('.menu-item');
+    const id = item.querySelector('div > div:nth-child(1) > span.text').textContent;
+    const name = item.querySelector('div > div:nth-child(2) > input.input').value;
+    const price = item.querySelector('div > div:nth-child(3) > input.input').value;
+    const description = item.querySelector('div > div:nth-child(4) > input.input').value;
 
+    // Create a FormData object to send the data
+    const formData = new FormData();
+    formData.append('action', 'update_product');
+    formData.append('id', id);
+    formData.append('name', name);
+    formData.append('price', price);
+    formData.append('description', description);
+
+    // Send the data to the server using fetch
+    fetch('update_products.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Update the UI
+            item.querySelector('div > div:nth-child(2) > span.text').textContent = name;
+            item.querySelector('div > div:nth-child(3) > span.text').textContent = price;
+            item.querySelector('div > div:nth-child(4) > span.text').textContent = description;
+
+            // Hide inputs and show text
+            item.querySelectorAll('.text').forEach(el => el.classList.remove('hidden'));
+            item.querySelectorAll('.input').forEach(el => el.classList.add('hidden'));
+
+            // Show edit button and hide save button
+            item.querySelector('.btn-edit').classList.remove('hidden');
+            item.querySelector('.btn-save').classList.add('hidden');
+
+            alert('Product updated successfully');
+        } else {
+            alert('Error updating product: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the product');
+    });
+}
 function editUser(event) {
     event.preventDefault();
     const item = event.target.closest('.user-item');
