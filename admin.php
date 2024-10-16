@@ -1,6 +1,18 @@
 <html>
+<?php if (isset($_SESSION['error_message'])): ?>
+    <script>
+        alert('<?php echo $_SESSION['error_message']; ?>');
+    </script>
+    <?php unset($_SESSION['error_message']); ?>
+<?php endif; ?>
+<?php if (isset($_SESSION['success_message'])): ?>
+    <script>
+        alert('<?php echo $_SESSION['success_message']; ?>');
+    </script>
+    <?php unset($_SESSION['success_message']); ?>
+<?php endif; ?>
 <head>
-    <title>Fabianero || Admin Panel</title>
+    <title>Daily Grind || Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="admin_styles.css" rel="stylesheet">
@@ -9,12 +21,11 @@
     <div class="sidebar">
         <a href="#" onclick="showSection('menu-management')"><i class="fas fa-coffee"></i> Menu</a>
         <a href="#" onclick="showSection('user-management')"><i class="fas fa-users"></i> User</a>
-        <a href="#" onclick="showSection('order-management')"><i class="fas fa-shopping-cart"></i> Order</a>
         <a href="#" onclick="showSection('payment-management')"><i class="fas fa-shopping-cart"></i> Payment</a>
         <button id="btn-admin-logout" onclick="Admin_LogOut()">Log Out</button>
     </div>
     <div class="container">
-        <h1>Fabianero Admin Panel</h1>
+        <h1>Daily Grind Admin Panel</h1>
         
         <div id="menu-management">
             <h2>Menu Management</h2>

@@ -763,74 +763,30 @@ function closeAddProductModal() {
     document.getElementById('add-product-modal').style.display = 'none';
 }
 
-document.getElementById('add-product-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.getElementById('add-product-form').addEventListener('submit', function(e) {
+    e.preventDefault();
     
-    const productId = document.getElementById('product-id').value;
-    const productName = document.getElementById('product-name').value;
-    const productPrice = document.getElementById('product-price').value;
-    const productDescription = document.getElementById('product-description').value;
-    const productImage = document.getElementById('product-image').files[0];
-    const productCategory = document.getElementById('product-category').value; // Get the selected category ID
+    const formData = new FormData(this);
 
-    if (!productName || !productDescription) {
-        alert('Please fill in all the required fields');
-        return;
-    }
-
-    if (!productImage) {
-        alert('Please select a product image');
-        return;
-    }
-
-    if (!/^\d+$/.test(productId)) {
-        alert('Product ID must be a number');
-        return;
-    }
-
-    const priceParts = productPrice.split('.');
-    if (priceParts.length > 2) {
-        alert('Price must be a number with up to 2 decimal places');
-        return;
-    }
-
-    if (priceParts.length === 2 && priceParts[1].length > 2) {
-        alert('Price must be a number with up to 2 decimal places');
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const newItem = document.createElement('div');
-        newItem.classList.add('menu-item');
-        newItem.innerHTML = `
-            <div>
-                <div>Product ID: <span class="text">${productId}</span><input type="text" class="input hidden" value="${productId}" required pattern="[0-9]*"></div>
-                <div>Product Name: <span class="text">${productName}</span><input type="text" class="input hidden" value="${productName}" required></div>
-                <div>Price (RM): <span class="text">${productPrice}</span><input type="text" class="input hidden" value="${productPrice}" required></div>
-                <div>Description: <span class="text">${productDescription}</span><input type="text" class="input hidden" value="${productDescription}" required></div>
-                <img src="${e.target.result}" alt="Image of ${productName}" width="100" height="100">
-                <div>
-                    <a href="#" class="btn btn-edit" onclick="editItem(event)">Edit</a>
-                    <a href="#" class="btn btn-save hidden" onclick="saveItem(event)">Save</a>
-                    <a href="#" class="btn btn-delete" onclick="deleteMenuItem(event)">Delete</a>
-                </div>
-            </div>
-        `;
-
-        // Append the new item to the selected category
-        const categoryDiv = document.getElementById(productCategory);
-        if (categoryDiv) {
-            categoryDiv.appendChild(newItem);
+    fetch('add_product.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Product added successfully!');
+            // Optionally, refresh the product list or close the modal
+            closeAddProductModal();
         } else {
-            alert('Selected category not found!');
+            alert('Error adding product: ' + data.message);
         }
-
-        closeAddProductModal();
-    };
-    reader.readAsDataURL(productImage);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while adding the product.');
+    });
 });
-
 function Admin_LogOut(){
     if (confirm("You are trying log-out admin system panel, proceed to continue this action.")) {
         isLoggedIn = false;

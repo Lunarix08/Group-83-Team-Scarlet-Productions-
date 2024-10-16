@@ -189,87 +189,7 @@ overlay.addEventListener('click', function() {
     overlay.classList.remove('show');
 });
 
-function addToCart(event) {
-    if (event.target.classList.contains('add-to-cart')) {
-        const button = event.target;
-        const name = button.getAttribute('data-name');
-        const price = parseFloat(button.getAttribute('data-price'));
-        const image = button.getAttribute('data-image');
 
-        const existingItem = cartItems.find(item => item.name === name);
-        if (existingItem) {
-            existingItem.quantity++;
-        } else {
-            cartItems.push({ name, price, image, quantity: 1 });
-        }
-
-        updateCartDisplay();
-    }
-}
-
-function updateCartDisplay() {
-    cartItemsContainer.innerHTML = '';
-    let total = 0;
-
-    cartItems.forEach(item => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="item-details">
-                <h4>${item.name}</h4>
-                <p>$${item.price.toFixed(2)}</p>
-            </div>
-            <input type="number" class="quantity" value="${item.quantity}" min="1" data-name="${item.name}">
-            <button class="remove-button">Remove</button>
-        `;
-
-        const quantityInput = cartItem.querySelector('.quantity');
-        quantityInput.addEventListener('input', () => {
-            const newQuantity = parseInt(quantityInput.value);
-            const itemIndex = cartItems.findIndex(item => item.name === quantityInput.getAttribute('data-name'));
-            if (newQuantity > 0) {
-                cartItems[itemIndex].quantity = newQuantity;
-            } else {
-                cartItems.splice(itemIndex, 1);
-            }
-            updateCartDisplay();
-        });
-
-        const removeButton = cartItem.querySelector('.remove-button');
-        removeButton.addEventListener('click', () => {
-            const itemIndex = cartItems.findIndex(item => item.name === removeButton.parentNode.querySelector('.quantity').getAttribute('data-name'));
-            cartItems.splice(itemIndex, 1);
-            updateCartDisplay();
-        });
-
-        cartItemsContainer.appendChild(cartItem);
-        total += item.price * item.quantity;
-    });
-
-    totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
-
-    // Update order summary
-    const orderSummary = document.getElementById('order-summary');
-    orderSummary.innerHTML = '';
-    cartItems.forEach(item => {
-        const orderItem = document.createElement('li');
-        orderItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="item-details">
-                <h4>${item.name}</h4>
-                <p>$${item.price.toFixed(2)}</p>
-            </div>
-            <div class="quantity-container">
-                <p class="quantity">${item.quantity}</p>
-            </div>
-        `;
-        orderSummary.appendChild(orderItem);
-    });
-
-    const totalPriceElementInOrderSummary = document.getElementById('total-price');
-    totalPriceElementInOrderSummary.textContent = `Total: $${total.toFixed(2)}`;
-}
 // Add an event listener to the make payment button
 productsContainer.addEventListener('click', addToCart);
 function displayProducts(products, categoryName) {
@@ -364,7 +284,18 @@ function logout() {
             }
         });
 }
-
+function addToCartEventListeners() {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior
+            const name = this.getAttribute('data-name');
+            const price = parseFloat(this.getAttribute('data-price'));
+            const image = this.getAttribute('data-image');
+            addToCart(name, price, image);
+        });
+    });
+}
 // Make sure to set this variable when logging in
 let isLoggedIn = document.querySelector('#is-logged-in').value === 'true';
 
@@ -385,16 +316,30 @@ document.querySelector('.login-form')?.addEventListener('submit', function(e) {
         }
     });
 });
+function formatCategoryName(category) {
+    return category
+        .split(/[-\s]+/)
+        .map(word => {
+            return word.replace(/\w+/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        })
+        .join(' ');
+}
 
 // Function to load subcategories
 function loadSubcategories() {
-    fetch('get_subcategories.php')
+    return fetch('get_subcategories.php')
         .then(response => response.json())
         .then(subcategories => {
             const categoryDropdown = document.querySelector('.category-dropdown');
+            if (!categoryDropdown) {
+                console.error('Category dropdown not found');
+                return;
+            }
             categoryDropdown.innerHTML = '<a href="#" data-category="all">All Products</a>';
             subcategories.forEach(subcategory => {
-                categoryDropdown.innerHTML += `<a href="#" data-category="${subcategory}">${subcategory}</a>`;
+                categoryDropdown.innerHTML += `<a href="#" data-category="${subcategory}">${formatCategoryName(subcategory)}</a>`;
             });
             addCategoryEventListeners();
         })
@@ -404,20 +349,30 @@ function loadSubcategories() {
 // Function to add event listeners to category links
 function addCategoryEventListeners() {
     const categoryLinks = document.querySelectorAll('.category-dropdown a');
-    const categoryText = document.querySelector('.category-selector .category-text');
+    const categoryTitle = document.getElementById('categoryTitle');
+    
+    if (!categoryTitle) {
+        console.warn('Category title element not found. Retrying in 500ms.');
+        setTimeout(addCategoryEventListeners, 500);
+        return;
+    }
+
     categoryLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const category = this.getAttribute('data-category');
-            categoryText.textContent = category === 'all' ? 'All Products' : category;
+            categoryTitle.textContent = category === 'all' ? 'All Products' : formatCategoryName(category);
             loadProducts(category);
-            toggleCategoryDropdown(); // Close the dropdown after selection
+            toggleCategoryDropdown();
         });
     });
 
-    // Add click event to the category selector to toggle dropdown
     const categorySelector = document.querySelector('.category-selector');
-    categorySelector.addEventListener('click', toggleCategoryDropdown);
+    if (categorySelector) {
+        categorySelector.addEventListener('click', toggleCategoryDropdown);
+    } else {
+        console.warn('Category selector not found');
+    }
 }
 
 // Function to toggle category dropdown visibility
@@ -428,21 +383,39 @@ function toggleCategoryDropdown() {
 
 // Function to load products
 function loadProducts(category = 'all') {
-    const url = category === 'all' ? 'get_products.php' : `get_products.php?subcategory=${category}`;
+    const url = category === 'all' 
+        ? 'get_products.php' 
+        : `get_products.php?subcategory=${encodeURIComponent(category)}`;
+    
     fetch(url)
         .then(response => response.json())
         .then(products => {
             const productsContainer = document.querySelector('.products');
+            const categoryTitle = document.getElementById('categoryTitle');
+            
+            if (!productsContainer) {
+                console.error('Products container not found');
+                return;
+            }
+            
+            if (categoryTitle) {
+                categoryTitle.textContent = category === 'all' ? 'All Products' : formatCategoryName(category);
+            }
+
             productsContainer.innerHTML = '';
             products.forEach(product => {
-                productsContainer.innerHTML += `
-                    <div class="product">
-                        <img src="${product.image}" alt="${product.name}">
-                        <h2>${product.name} <span>RM${parseFloat(product.price).toFixed(2)}</span></h2>
-                        <p>${product.description}</p>
-                        <button class="add-to-cart" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">+ Quick Add</button>
-                    </div>
-                `;
+                if (product && product.name && product.price && product.image) {
+                    productsContainer.innerHTML += `
+                        <div class="product">
+                            <img src="${product.image}" alt="${product.name}">
+                            <h2>${product.name} <span>RM${parseFloat(product.price).toFixed(2)}</span></h2>
+                            <p>${product.description || ''}</p>
+                            <button class="add-to-cart" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">+ Quick Add</button>
+                         </div>
+                    `;
+                } else {
+                    console.error('Invalid product data:', product);
+                }
             });
             addToCartEventListeners();
         })
@@ -450,31 +423,110 @@ function loadProducts(category = 'all') {
 }
 
 // Function to add event listeners to "Add to Cart" buttons
-function addToCartEventListeners() {
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const name = this.getAttribute('data-name');
-            const price = parseFloat(this.getAttribute('data-price'));
-            const image = this.getAttribute('data-image');
-            addToCart(name, price, image);
-        });
-    });
-}
+function addToCart(name, price, image) {
 
-// Call these functions when the page loads
+    const existingItem = cartItems.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+        cartItems.push({ name, price, image, quantity: 1 });
+    }
+    updateCartDisplay();
+}
+// Function to update cart display
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const orderSummary = document.getElementById('order-summary');
+    if (!cartItemsContainer || !orderSummary) {
+        console.error('Cart items container or order summary not found');
+        return;
+    }
+    cartItemsContainer.innerHTML = '';
+    orderSummary.innerHTML = '';
+    let total = 0;
+
+    cartItems.forEach((item, index) => {
+        if (!item || typeof item.price !== 'number') {
+            console.error(`Invalid item at index ${index}:`, item);
+            return; // Skip this item and continue with the next
+        }
+
+        // Update cart sidebar
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+            <img src="${item.image || ''}" alt="${item.name || 'Unknown Item'}">
+            <div class="item-details">
+                <h4>${item.name || 'Unknown Item'}</h4>
+                <p>RM${item.price.toFixed(2)}</p>
+            </div>
+            <input type="number" class="quantity" value="${item.quantity || 1}" min="1" data-name="${item.name || ''}">
+            <button class="remove-button">Remove</button>
+        `;
+
+        // Add event listeners for quantity input and remove button
+        const quantityInput = cartItem.querySelector('.quantity');
+        quantityInput.addEventListener('input', () => {
+            const newQuantity = parseInt(quantityInput.value);
+            const itemIndex = cartItems.findIndex(i => i.name === quantityInput.getAttribute('data-name'));
+            if (itemIndex !== -1) {
+                if (newQuantity > 0) {
+                    cartItems[itemIndex].quantity = newQuantity;
+                } else {
+                    cartItems.splice(itemIndex, 1);
+                }
+                updateCartDisplay();
+            }
+        });
+
+        const removeButton = cartItem.querySelector('.remove-button');
+        removeButton.addEventListener('click', () => {
+            const itemIndex = cartItems.findIndex(i => i.name === item.name);
+            if (itemIndex !== -1) {
+                cartItems.splice(itemIndex, 1);
+                updateCartDisplay();
+            }
+        });
+
+        cartItemsContainer.appendChild(cartItem);
+
+        // Update order summary
+        const orderItem = document.createElement('li');
+        orderItem.innerHTML = `
+            <img src="${item.image || ''}" alt="${item.name || 'Unknown Item'}">
+            <div class="item-details">
+                <h4>${item.name || 'Unknown Item'}</h4>
+                <p>RM${item.price.toFixed(2)}</p>
+            </div>
+            <div class="quantity-container">
+                <p class="quantity">${item.quantity || 1}</p>
+            </div>
+        `;
+        orderSummary.appendChild(orderItem);
+
+        total += item.price * (item.quantity || 1);
+    });
+
+    // Update total price in cart sidebar
+    const totalPriceElement = document.getElementById('totalPrice');
+    if (totalPriceElement) {
+        totalPriceElement.textContent = `Total: RM${total.toFixed(2)}`;
+    }
+
+    // Update total price in order summary
+    const totalPriceElementInOrderSummary = document.getElementById('total-price');
+    if (totalPriceElementInOrderSummary) {
+        totalPriceElementInOrderSummary.textContent = `Total: RM${total.toFixed(2)}`;
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     loadSubcategories();
     loadProducts();
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        const categorySelector = document.querySelector('.category-selector');
-        const dropdown = document.querySelector('.category-dropdown');
-        if (!categorySelector.contains(event.target) && dropdown.style.display === 'block') {
-            dropdown.style.display = 'none';
-        }
-    });
 });
-
-// ... (keep the rest of your existing functions like
+document.addEventListener('click', function(event) {
+    const dropdown = document.querySelector('.category-dropdown');
+    const categorySelector = document.querySelector('.category-selector');
+    if (!categorySelector.contains(event.target) && dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+    }
+});
