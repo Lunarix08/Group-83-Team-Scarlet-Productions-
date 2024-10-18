@@ -29,7 +29,7 @@
         
         <div id="menu-management">
             <h2>Menu Management</h2>
-            <a href="#" class="btn btn-add" onclick="addNewProduct(event)">Add New User</a>
+            <a href="#" class="btn btn-add" onclick="addNewProduct(event)">New Product</a>
             <div id="productsContainer">
                 <?php
                 // Connect to the database
@@ -111,7 +111,7 @@
     
         <div id="user-management" class="hidden">
             <h2>User Management</h2>
-            <a href="#" class="btn btn-add" onclick="addNewUser(event)">Add New User</a>
+            <a href="#" class="btn btn-add" onclick="addNewUser(event)">New User</a>
             <div id="user-list">
                 <?php
                 // Connect to the database
@@ -254,40 +254,53 @@
     <div class="modal" id="add-product-modal">
         <div class="modal-header">
             <h3>Add New Product</h3>
-            <span class="modal-close" onclick="closModal()">×</span>
+            <span class="modal-close" onclick="closeAddProductModal()">×</span>
         </div>
         <div class="modal-body">
             <form id="add-product-form">
-                <div class="input-group">
+                <div class="input-group" style=" margin-bottom: 15px; ">
+                    
+                    <label for="user-id">Product Name:</label>
+                    <br>
                     <input name="name" placeholder="Product Name" type="text" required/>
-                    <i class="fas fa-coffee"></i>
+
                 </div>
-                <div class="input-group">
+                <div class="input-group" style=" margin-bottom: 15px; ">
+                    <label for="user-id">Price:</label>
+                    <br>
                     <input name="price" placeholder="Price" type="number" step="0.01" required/>
-                    <i class="fas fa-dollar-sign"></i>
+
                 </div>
-                <div class="input-group">
+                <div class="input-group" style=" margin-bottom: 15px; ">
+                    <label for="user-id">Image (Currently support URL only):</label>
+                    <br>
                     <input name="image" placeholder="Image URL" type="text" required/>
-                    <i class="fas fa-image"></i>
+
                 </div>
-                <div class="input-group">
+                <div class="input-group" style=" margin-bottom: 15px; ">
+                    <label for="user-id">Description:</label>
+                    <br>
                     <textarea name="description" placeholder="Description" required></textarea>
-                    <i class="fas fa-info-circle"></i>
                 </div>
-                <div class="input-group">
+                <div class="input-group" style=" margin-bottom: 15px; ">
+                    <label for="user-id">Main Category:</label>
+                    <br>
                     <select name="maincategory" required>
                         <option value="">Select Main Category</option>
-                        <option value="coffe">Coffe</option>
+                        <option value="coffee">Coffee</option>
                         <option value="bread">Bread</option>
                         <option value="cake">Cake</option>
                     </select>
-                    <i class="fas fa-list"></i>
+
                 </div>
-                <div class="input-group">
+                <div class="input-group" style=" margin-bottom: 15px; ">
+                    <label for="user-id">Subcategory:</label>
+                    <label for="user-id"><br>(Help: If you want to create a new subcategory, type the subcategory name.)<br></label>
                     <input name="subcategory" placeholder="Subcategory" type="text" required/>
-                    <i class="fas fa-tag"></i>
                 </div>
-                <button type="submit" class="add-product-btn">Add Product</button>
+                <div>
+                    <button type="submit" class="btn btn-save">Save</button>
+                </div>
             </form>
         </div>
     </div>

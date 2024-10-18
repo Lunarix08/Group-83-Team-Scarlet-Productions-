@@ -83,7 +83,7 @@ h2 {
     font-weight: normal;
     background-color: #193d0b91;
     border-radius: 50px;
-    border: 1px solid black;
+    border: none;
     font-family: 'Montserrat';
     width: 75;
     cursor: pointer;
@@ -126,6 +126,8 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     z-index: 1000;
+    width: 70%;
+
 }
 .modal-header {
     display: flex;
@@ -369,4 +371,14 @@ span{
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
+}
+select#role, input, textarea, select{
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 450;
+    height: 40;
+    margin-bottom: 8px;
 }

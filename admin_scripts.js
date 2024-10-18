@@ -896,7 +896,7 @@ document.getElementById('add-product-form').addEventListener('submit', function(
     });
 });
 function renderProductList() {
-    const productList = document.getElementById('menu-management');
+    const productList = document.getElementById('productsContainer');
     productList.innerHTML = '';
 
     // Fetch categories
