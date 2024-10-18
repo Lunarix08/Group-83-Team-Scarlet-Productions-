@@ -29,7 +29,7 @@
         
         <div id="menu-management">
             <h2>Menu Management</h2>
-
+            <a href="#" class="btn btn-add" onclick="addNewProduct(event)">Add New User</a>
             <div id="productsContainer">
                 <?php
                 // Connect to the database
@@ -109,8 +109,6 @@
             </div>
         </div>
     
-
-        
         <div id="user-management" class="hidden">
             <h2>User Management</h2>
             <a href="#" class="btn btn-add" onclick="addNewUser(event)">Add New User</a>
@@ -177,9 +175,9 @@
         </div>
 
         <div id="order-management" class="hidden">
-            <h2>Order Management</h2>
-            
+            <h2>Order Management</h2>            
         </div>
+
         <div id="payment-management" class="hidden">
             <h2>Payment Management</h2>
             <div id="payment-list">
@@ -241,62 +239,101 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="modal-overlay" id="modal-overlay"></div>
-        <div class="modal" id="order-details-modal">
-            <div class="modal-header">
-                <h3>Order Details</h3>
-                <span class="modal-close" onclick="closeDetails()">&times;</span>
-            </div>
-            <div class="modal-body" id="order-details-modal-body">
-                <!-- Order details will be displayed here -->
-            </div>
-        </div>
 
     <div class="modal-overlay" id="modal-overlay"></div>
-        <div class="modal" id="add-user-modal">
-            <div class="modal-header">
-                <h3>Add New User</h3>
-                <span class="modal-close" onclick="closeAddUserModal()">×</span>
-            </div>
-            <div class="modal-body">
-                <form id="add-user-form">
-                    <div>
-                        <label for="user-id">User  ID:</label>
-                        <input type="text" id="user-id" name="user-id">
-                    </div>
-                    <div>
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username">
-                    </div>
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div>
-                        <label for="role">Role:</label>
-                        <select name="role" id="role">
-                            <option value="admin">Admin</option>
-                            <option value="editor">Staff</option>
-                            <option value="viewer">User</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="phone-number">Phone Number:</label>
-                        <input type="text" id="phone-number" name="role">
-                    </div>
-                    <div>
-                        <label for="role">Address:</label>
-                        <input type="text" id="address" name="role">
-                    </div>
-                    
-                    <div>
-                        <button type="submit" class="btn btn-save">Save</button>
-                    </div>
-                </form>
-            </div>
+
+    <div class="modal" id="order-details-modal">
+        <div class="modal-header">
+            <h3>Order Details</h3>
+            <span class="modal-close" onclick="closeDetails()">&times;</span>
         </div>
-    </div>    
+        <div class="modal-body" id="order-details-modal-body">
+            <!-- Order details will be displayed here -->
+        </div>
+    </div>
+    <div class="modal" id="add-product-modal">
+        <div class="modal-header">
+            <h3>Add New Product</h3>
+            <span class="modal-close" onclick="closModal()">×</span>
+        </div>
+        <div class="modal-body">
+            <form id="add-product-form">
+                <div class="input-group">
+                    <input name="name" placeholder="Product Name" type="text" required/>
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <div class="input-group">
+                    <input name="price" placeholder="Price" type="number" step="0.01" required/>
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="input-group">
+                    <input name="image" placeholder="Image URL" type="text" required/>
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="input-group">
+                    <textarea name="description" placeholder="Description" required></textarea>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="input-group">
+                    <select name="maincategory" required>
+                        <option value="">Select Main Category</option>
+                        <option value="coffe">Coffe</option>
+                        <option value="bread">Bread</option>
+                        <option value="cake">Cake</option>
+                    </select>
+                    <i class="fas fa-list"></i>
+                </div>
+                <div class="input-group">
+                    <input name="subcategory" placeholder="Subcategory" type="text" required/>
+                    <i class="fas fa-tag"></i>
+                </div>
+                <button type="submit" class="add-product-btn">Add Product</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="add-user-modal">
+        <div class="modal-header">
+            <h3>Add New User</h3>
+            <span class="modal-close" onclick="closeAddUserModal()">×</span>
+        </div>
+        <div class="modal-body">
+            <form id="add-user-form">
+                <div>
+                    <label for="user-id">User  ID:</label>
+                    <input type="text" id="user-id" name="user-id">
+                </div>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div>
+                    <label for="role">Role:</label>
+                    <select name="role" id="role">
+                        <option value="admin">Admin</option>
+                        <option value="editor">Staff</option>
+                        <option value="viewer">User</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="phone-number">Phone Number:</label>
+                    <input type="text" id="phone-number" name="role">
+                </div>
+                <div>
+                    <label for="role">Address:</label>
+                    <input type="text" id="address" name="role">
+                </div>
+                
+                <div>
+                    <button type="submit" class="btn btn-save">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+ 
 
 
     <script src="admin_scripts.js"></script>

@@ -853,3 +853,45 @@ function togglePaymentDetails(event) {
     const paymentItem = event.target.closest('.payment-item');
     paymentItem.querySelector('.payment-details').classList.toggle('hidden');
 }
+// In admin_scripts.js
+
+function addNewProduct(event) {
+    event.preventDefault();
+    const addProductModal = document.getElementById('add-product-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+
+    modalOverlay.classList.add('show');
+    addProductModal.style.display = 'block';
+}
+
+function closeAddProductModal() {
+    const addProductModal = document.getElementById('add-product-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    modalOverlay.classList.remove('show');
+    addProductModal.style.display = 'none';
+}
+
+document.getElementById('add-product-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('add_product.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Product added successfully!');
+            closeAddProductModal();
+            renderProductList(); // You'll need to implement this function
+        } else {
+            alert('Error adding product: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while adding the product');
+    });
+});
