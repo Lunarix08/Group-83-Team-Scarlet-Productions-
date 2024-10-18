@@ -544,19 +544,19 @@ document.getElementById('add-user-form').addEventListener('submit', function(eve
     const phoneNumber = document.getElementById('phone-number').value;
     const address = document.getElementById('address').value;
 
-    const newUser   = document.createElement('div');
-    newUser  .classList.add('user-item');
-    newUser  .innerHTML = `
+    const newUser = document.createElement('div');
+    newUser.classList.add('user-item');
+    newUser.innerHTML = `
         <div>
             <div>User ID: <span class="text">${userId}</span><input type="text" class="input hidden" value="${userId}"></div>
             <div>Username: <span class="text">${username}</span><input type="text" class="input hidden" value="${username}"></div>
             <div>
             <label for="role">Role:</label>
-                <span class="text"><?php echo ${role}; ?></span>
+                <span class="text">${capitalizeFirstLetter(role)}</span>
                 <select class="input hidden" id="role-select">
-                    <option value="user">User </option>
-                    <option value="staff">Staff</option>
-                    <option value="admin">Admin</option>
+                    <option value="user" ${role === 'user' ? 'selected' : ''}>User</option>
+                    <option value="staff" ${role === 'staff' ? 'selected' : ''}>Staff</option>
+                    <option value="admin" ${role === 'admin' ? 'selected' : ''}>Admin</option>
                 </select>
             </div>
             <div class="user-details hidden">
@@ -565,10 +565,10 @@ document.getElementById('add-user-form').addEventListener('submit', function(eve
                 <p><strong>Address:</strong> <span class="text">${address}</span><input type="text" class="input hidden" value="${address}"></p>
             </div>
             <div>
-                <a href="#" class="btn btn-edit" onclick="editUser (event);editToggleDetail(event);">Edit</a>
-                <a href="#" class="btn btn-save hidden" onclick="saveUser (event);">Save</a>
-                <a href="#" class="btn btn-delete" onclick="deleteUser (event)">Delete</a>
-                <a href="#" class="btn btn-view" onclick="toggleUser Details(event)">View Details</a>
+                <a href="#" class="btn btn-edit" onclick="editUser(event);editToggleDetail(event);">Edit</a>
+                <a href="#" class="btn btn-save hidden" onclick="saveUser(event);">Save</a>
+                <a href="#" class="btn btn-delete" onclick="deleteUser(event)">Delete</a>
+                <a href="#" class="btn btn-view" onclick="toggleUserDetails(event)">View Details</a>
             </div>
         </div>
     `;
@@ -673,6 +673,7 @@ function showSection(sectionId) {
     document.getElementById('menu-management').classList.add('hidden');
     document.getElementById('user-management').classList.add('hidden');
     document.getElementById('order-management').classList.add('hidden');
+    document.getElementById('payment-management').classList.add('hidden');
     document.getElementById(sectionId).classList.remove('hidden');
 }
 
@@ -752,41 +753,8 @@ function editUser(event) {
     item.querySelector('.btn-save').classList.remove('hidden');
 }
 
-function showAddProductModal(event) {
-    event.preventDefault();
-    document.getElementById('modal-overlay').classList.add('show');
-    document.getElementById('add-product-modal').style.display = 'block';
-}
 
-function closeAddProductModal() {
-    document.getElementById('modal-overlay').classList.remove('show');
-    document.getElementById('add-product-modal').style.display = 'none';
-}
 
-document.getElementById('add-product-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-
-    fetch('add_product.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Product added successfully!');
-            // Optionally, refresh the product list or close the modal
-            closeAddProductModal();
-        } else {
-            alert('Error adding product: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while adding the product.');
-    });
-});
 function Admin_LogOut(){
     if (confirm("You are trying log-out admin system panel, proceed to continue this action.")) {
         isLoggedIn = false;
@@ -827,7 +795,12 @@ function saveUser(event) {
     item.querySelectorAll('.text').forEach(el => {
         const input = el.nextElementSibling;
         if (input && input.classList.contains('input')) {
-            el.textContent = input.value;
+            if (input.tagName.toLowerCase() === 'select') {
+                // Handle role separately
+                el.textContent = capitalizeFirstLetter(input.value);
+            } else {
+                el.textContent = input.value;
+            }
             el.classList.remove('hidden');
             input.classList.add('hidden');
         }
@@ -853,12 +826,15 @@ function saveUser(event) {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            console.log('User  updated successfully!');
+            console.log('User updated successfully!');
         } else {
             console.error('Error updating user:', xhr.statusText);
         }
     };
 }
+
+// Helper function to capitalize the first letter
+
 function deletePayment(event) {
     event.preventDefault();
     const paymentItem = event.target.closest('.payment-item');
@@ -884,4 +860,7 @@ function togglePaymentDetails(event) {
     event.preventDefault();
     const paymentItem = event.target.closest('.payment-item');
     paymentItem.querySelector('.payment-details').classList.toggle('hidden');
+}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }

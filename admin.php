@@ -29,7 +29,7 @@
         
         <div id="menu-management">
             <h2>Menu Management</h2>
-            <a href="#" class="btn btn-add" onclick="showAddProductModal(event)">Add New Product</a>
+
             <div id="productsContainer">
                 <?php
                 // Connect to the database
@@ -143,7 +143,7 @@
                                 <div>Username: <span class="text"><?php echo $row['email']; ?></span><input type="text" class="input hidden" value="<?php echo $row['email']; ?>"></div>
                                 <div>
                                     <label for="role">Role:</label>
-                                    <span class="text"><?php echo $row['role']; ?></span>
+                                    <span class="text"><?php echo ucfirst(strtolower($row['role'])); ?></span>
                                     <select class="input hidden" id="role-select">
                                         <option value="user">User </option>
                                         <option value="staff">Staff</option>
@@ -275,10 +275,14 @@
                     </div>
                     <div>
                         <label for="role">Role:</label>
-                        <input type="text" id="role" name="role">
+                        <select name="role" id="role">
+                            <option value="admin">Admin</option>
+                            <option value="editor">Staff</option>
+                            <option value="viewer">User</option>
+                        </select>
                     </div>
                     <div>
-                        <label for="role">Phone Number:</label>
+                        <label for="phone-number">Phone Number:</label>
                         <input type="text" id="phone-number" name="role">
                     </div>
                     <div>
@@ -294,66 +298,6 @@
         </div>
     </div>    
 
-    <div class="modal" id="add-product-modal" style="width: 750; border-radius:25px;">
-        <div class="modal-header">
-            <h3>Add New Product</h3>
-            <span class="modal-close" onclick="closeAddProductModal()">&times;</span>
-        </div>
-        <div class="modal-body">
-            <form id="add-product-form">
-                <div style="margin-top: 10;">
-                    <label for="product-id">Product ID:</label>
-                    <input type="text" id="product-id" name="product-id">
-                </div>
-                <div style="margin-top: 10;">
-                    <label for="product-name">Product Name:</label>
-                    <input type="text" id="product-name" name="product-name">
-                </div>
-                <div style="margin-top: 10;">
-                    <label for="product-category-id">Product Category_ID:</label>
-                    <select id="product-category-id" name="product-category-id">
-                        <option value="coffee">Coffee</option>
-                        <option value="bread">Bread</option>
-                        <option value="cake">Cake</option>
-                    </select>
-                </div>
-                <div style="margin-top: 10;">
-                    <label for="product-category">Product Category:</label>
-                    <select id="product-category" name="product-category">
-                        <option value="espresso-beverages">Espresso Beverages</option>
-                        <option value="iced-espresso-beverages">Iced Espresso Beverages</option>
-                        <option value="blonde-roast-&-brewed-coffee">Blonde Roast & Brewed Coffee</option>
-                        <option value="cold-coffee">Cold Coffee</option>
-                        <option value="donut">Donut</option>
-                        <option value="bagels">Bagels</option>
-                        <option value="savory-pastries">Savory Pastries</option>
-                        <option value="scones">Scones</option>
-                        <option value="sweet-pastries">Sweet Pastries</option>
-                        <option value="creamy-cakes">Creamy Cakes</option>
-                        <option value="layered-cakes">Layered Cakes</option>
-                        <option value="citrus-cakes">Citrus Cakes</option>
-                        <option value="brownie">Brownie</option>
-                        <option value="others">--- Others ---</option>
-                    </select>
-                </div>
-                <div style="margin-top: 10;">
-                    <label for="product-price">Price:</label>
-                    <input type="text" id="product-price" name="product-price">
-                </div>
-                <div style="margin-top: 10;">
-                    <label for="product-description">Description:</label>
-                    <input type="text" id="product-description" name="product-description">
-                </div>
-                <div style="margin-top: 23;border-top:1px solid #dddd;padding-top:15px;">
-                    <label for="product-image">Image:</label>
-                    <input type="file" id="product-image" name="product-image">
-                </div>
-                <div style="margin-top: 10;">
-                    <button type="submit" class="btn btn-save">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <script src="admin_scripts.js"></script>
 </body>
