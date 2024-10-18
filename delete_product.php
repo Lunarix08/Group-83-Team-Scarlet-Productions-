@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $db_host = 'localhost';
 $db_user = 'root';
 $db_password = '';
@@ -6,28 +9,46 @@ $db_name = 'fabianero';
 
 $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-header('Content-Type: application/json');
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['product_id'])) {
     $product_id = $_POST['product_id'];
-    
-    // Prepare SQL statement to delete the product
+
+    error_log("Attempting to delete product with ID: " . $product_id);
+
+    // Update the SQL query to use product_ID
     $stmt = $conn->prepare("DELETE FROM products WHERE product_ID = ?");
+    if (!$stmt) {
+        error_log("Prepare failed: " . $conn->error);
+        http_response_code(500);
+        echo "Prepare failed: " . $conn->error;
+        exit;
+    }
+
     $stmt->bind_param("i", $product_id);
-    
+
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            echo json_encode(['success' => true]);
+            echo "Product deleted successfully";
+            error_log("Product deleted successfully. Affected rows: " . $stmt->affected_rows);
         } else {
-            echo json_encode(['success' => false, 'error' => 'No product found with that ID']);
+            http_response_code(404);
+            echo "No product found with the given ID";
+            error_log("No product found with ID: " . $product_id);
         }
     } else {
-        echo json_encode(['success' => false, 'error' => $conn->error]);
+        http_response_code(500);
+        echo "Error deleting product: " . $stmt->error;
+        error_log("Error deleting product: " . $stmt->error);
     }
-    
+
     $stmt->close();
 } else {
-    echo json_encode(['success' => false, 'error' => 'Invalid request']);
+    http_response_code(400);
+    echo "Invalid request";
+    error_log("Invalid request received");
 }
 
 $conn->close();

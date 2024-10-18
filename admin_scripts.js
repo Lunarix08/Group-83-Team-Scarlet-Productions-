@@ -473,41 +473,29 @@ function showOrderDetails(orderId) {
 }
 document.addEventListener('DOMContentLoaded', renderOrderList);
 
-
 function deleteMenuItem(event) {
     if (confirm("Are you sure you want to delete this menu item?")) {
         var menuItem = event.target.closest('.menu-item');
-        var productName = menuItem.querySelector('div > div:nth-child(2) > span.text').textContent;
-        var productPrice = menuItem.querySelector('div > div:nth-child(3) > span.text').textContent;
-        var productDescription = menuItem.querySelector('div > div:nth-child(4) > span.text').textContent;
-        var productImage = menuItem.querySelector('img').src;
+        var productId = menuItem.querySelector('div > div:nth-child(1) > span.text').textContent;
 
-        // Find the product in the items array
-        var productIndex = -1;
-        items.forEach((category, categoryIndex) => {
-            category.items.forEach((subcategory, subcategoryIndex) => {
-                subcategory.items.forEach((product, productIndex) => {
-                    if (product.name === productName && product.price === parseFloat(productPrice) && product.description === productDescription && product.image === productImage) {
-                        productIndex = categoryIndex + subcategoryIndex + productIndex;
-                    }
-                });
-            });
-        });
-
-        // Remove the product from the items array
-        if (productIndex !== -1) {
-            var categoryIndex = Math.floor(productIndex / (items[0].items.length * items[0].items[0].items.length));
-            var subcategoryIndex = Math.floor((productIndex % (items[0].items.length * items[0].items[0].items.length)) / items[0].items[0].items.length);
-            var productIndexInSubcategory = productIndex % items[0].items[0].items.length;
-            items[categoryIndex].items[subcategoryIndex].items.splice(productIndexInSubcategory, 1);
-        }
-
-        // Remove the product from the DOM
-        menuItem.remove();
+        // Send AJAX request to delete the product
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete_product.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            console.log('Server response:', xhr.responseText); // Log the server response
+            if (xhr.status === 200) {
+                // Remove the product from the DOM
+                menuItem.remove();
+                console.log('Product deleted successfully');
+                renderProductList();
+            } else {
+                console.error('Error deleting product. Status:', xhr.status, 'Response:', xhr.responseText);
+            }
+        };
+        xhr.send('product_id=' + encodeURIComponent(productId));
     }
 }
-
-
 function deleteUser(event) {
     if (confirm("Are you sure you want to delete this user?")) {
         const userId = event.target.closest('.user-item').querySelector('div > div:first-child > span.text').textContent;
@@ -885,7 +873,7 @@ document.getElementById('add-product-form').addEventListener('submit', function(
         if (data.status === 'success') {
             alert('Product added successfully!');
             closeAddProductModal();
-            renderProductList(); // You'll need to implement this function
+            renderProductList();
         } else {
             alert('Error adding product: ' + data.message);
         }
@@ -899,7 +887,6 @@ function renderProductList() {
     const productList = document.getElementById('productsContainer');
     productList.innerHTML = '';
 
-    // Fetch categories
     fetch('get_categories.php')
         .then(response => response.json())
         .then(categories => {
@@ -908,7 +895,6 @@ function renderProductList() {
                 categorySection.className = 'category-section';
                 categorySection.innerHTML = `<h3>${formatText(category)}</h3>`;
 
-                // Fetch subcategories for this category
                 fetch(`get_subcategories.php?maincategory=${encodeURIComponent(category)}`)
                     .then(response => response.json())
                     .then(subcategories => {
@@ -917,7 +903,6 @@ function renderProductList() {
                             subcategorySection.className = 'subcategory-section';
                             subcategorySection.innerHTML = `<h4>${formatText(subcategory)}</h4>`;
 
-                            // Fetch products for this subcategory
                             fetch(`get_products.php?maincategory=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}`)
                                 .then(response => response.json())
                                 .then(products => {
