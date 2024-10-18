@@ -895,3 +895,70 @@ document.getElementById('add-product-form').addEventListener('submit', function(
         alert('An error occurred while adding the product');
     });
 });
+function renderProductList() {
+    const productList = document.getElementById('menu-management');
+    productList.innerHTML = '';
+
+    // Fetch categories
+    fetch('get_categories.php')
+        .then(response => response.json())
+        .then(categories => {
+            categories.forEach(category => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                categorySection.innerHTML = `<h3>${formatText(category)}</h3>`;
+
+                // Fetch subcategories for this category
+                fetch(`get_subcategories.php?maincategory=${encodeURIComponent(category)}`)
+                    .then(response => response.json())
+                    .then(subcategories => {
+                        subcategories.forEach(subcategory => {
+                            const subcategorySection = document.createElement('div');
+                            subcategorySection.className = 'subcategory-section';
+                            subcategorySection.innerHTML = `<h4>${formatText(subcategory)}</h4>`;
+
+                            // Fetch products for this subcategory
+                            fetch(`get_products.php?maincategory=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}`)
+                                .then(response => response.json())
+                                .then(products => {
+                                    products.forEach(product => {
+                                        const productItem = document.createElement('div');
+                                        productItem.className = 'menu-item';
+                                        productItem.innerHTML = `
+                                            <div>
+                                                <div>ID: <span class="text">${product.product_ID}</span></div>
+                                                <div>Name: <span class="text">${formatText(product.name)}</span></div>
+                                                <div>Price: <span class="text">$${product.price}</span></div>
+                                                <div>Description: <span class="text">${product.description}</span></div>
+                                                ${product.image ? `<img src="${product.image}" alt="Product Image" width="100" height="100">` : ''}
+                                                <div>
+                                                    <a href="#" class="btn btn-edit" onclick="editItem(event)">Edit</a>
+                                                    <a href="#" class="btn btn-save hidden" onclick="saveItem(event)">Save</a>
+                                                    <a href="#" class="btn btn-delete" onclick="deleteMenuItem(event)">Delete</a>
+                                                </div>
+                                            </div>
+                                        `;
+                                        subcategorySection.appendChild(productItem);
+                                    });
+                                });
+
+                            categorySection.appendChild(subcategorySection);
+                        });
+                    });
+
+                productList.appendChild(categorySection);
+            });
+        });
+}
+function formatText(text) {
+    // Check if text is null, undefined, or not a string
+    if (text == null || typeof text !== 'string') {
+        return ''; // Return an empty string or some default value
+    }
+    // If text is an empty string, return it as is
+    if (text.length === 0) {
+        return text;
+    }
+    // Implement your text formatting logic here
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}

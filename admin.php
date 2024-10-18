@@ -315,7 +315,7 @@
                     <select name="role" id="role">
                         <option value="admin">Admin</option>
                         <option value="editor">Staff</option>
-                        <option value="viewer">User</option>
+                        <option value="user">User</option>
                     </select>
                 </div>
                 <div>
