@@ -544,19 +544,19 @@ document.getElementById('add-user-form').addEventListener('submit', function(eve
     const phoneNumber = document.getElementById('phone-number').value;
     const address = document.getElementById('address').value;
 
-    const newUser = document.createElement('div');
-    newUser.classList.add('user-item');
-    newUser.innerHTML = `
+    const newUser   = document.createElement('div');
+    newUser  .classList.add('user-item');
+    newUser  .innerHTML = `
         <div>
             <div>User ID: <span class="text">${userId}</span><input type="text" class="input hidden" value="${userId}"></div>
             <div>Username: <span class="text">${username}</span><input type="text" class="input hidden" value="${username}"></div>
             <div>
             <label for="role">Role:</label>
-                <span class="text">${capitalizeFirstLetter(role)}</span>
+                <span class="text">${role}; ?></span>
                 <select class="input hidden" id="role-select">
-                    <option value="user" ${role === 'user' ? 'selected' : ''}>User</option>
-                    <option value="staff" ${role === 'staff' ? 'selected' : ''}>Staff</option>
-                    <option value="admin" ${role === 'admin' ? 'selected' : ''}>Admin</option>
+                    <option value="user">User </option>
+                    <option value="staff">Staff</option>
+                    <option value="admin">Admin</option>
                 </select>
             </div>
             <div class="user-details hidden">
@@ -565,10 +565,10 @@ document.getElementById('add-user-form').addEventListener('submit', function(eve
                 <p><strong>Address:</strong> <span class="text">${address}</span><input type="text" class="input hidden" value="${address}"></p>
             </div>
             <div>
-                <a href="#" class="btn btn-edit" onclick="editUser(event);editToggleDetail(event);">Edit</a>
-                <a href="#" class="btn btn-save hidden" onclick="saveUser(event);">Save</a>
-                <a href="#" class="btn btn-delete" onclick="deleteUser(event)">Delete</a>
-                <a href="#" class="btn btn-view" onclick="toggleUserDetails(event)">View Details</a>
+                <a href="#" class="btn btn-edit" onclick="editUser (event);editToggleDetail(event);">Edit</a>
+                <a href="#" class="btn btn-save hidden" onclick="saveUser (event);">Save</a>
+                <a href="#" class="btn btn-delete" onclick="deleteUser (event)">Delete</a>
+                <a href="#" class="btn btn-view" onclick="toggleUser Details(event)">View Details</a>
             </div>
         </div>
     `;
@@ -795,12 +795,7 @@ function saveUser(event) {
     item.querySelectorAll('.text').forEach(el => {
         const input = el.nextElementSibling;
         if (input && input.classList.contains('input')) {
-            if (input.tagName.toLowerCase() === 'select') {
-                // Handle role separately
-                el.textContent = capitalizeFirstLetter(input.value);
-            } else {
-                el.textContent = input.value;
-            }
+            el.textContent = input.value;
             el.classList.remove('hidden');
             input.classList.add('hidden');
         }
@@ -826,15 +821,12 @@ function saveUser(event) {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            console.log('User updated successfully!');
+            console.log('User  updated successfully!');
         } else {
             console.error('Error updating user:', xhr.statusText);
         }
     };
 }
-
-// Helper function to capitalize the first letter
-
 function deletePayment(event) {
     event.preventDefault();
     const paymentItem = event.target.closest('.payment-item');
@@ -860,7 +852,4 @@ function togglePaymentDetails(event) {
     event.preventDefault();
     const paymentItem = event.target.closest('.payment-item');
     paymentItem.querySelector('.payment-details').classList.toggle('hidden');
-}
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
