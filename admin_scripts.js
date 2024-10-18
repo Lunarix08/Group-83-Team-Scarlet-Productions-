@@ -891,11 +891,12 @@ function renderProductList() {
         .then(response => response.json())
         .then(categories => {
             categories.forEach(category => {
+                console.log("Processing category:", category);
                 const categorySection = document.createElement('div');
                 categorySection.className = 'category-section';
                 categorySection.innerHTML = `<h3>${formatText(category)}</h3>`;
 
-                fetch(`get_subcategories.php?maincategory=${encodeURIComponent(category)}`)
+                fetch(`get_subcategories_admin.php?maincategory=${encodeURIComponent(category)}`)
                     .then(response => response.json())
                     .then(subcategories => {
                         subcategories.forEach(subcategory => {
