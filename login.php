@@ -34,9 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
-                if ($email == 'DailyGrindAdmin@gmail.com' && $password == 'DailyGrindAdmin123') { 
-                    header("Location: admin.php"); 
-                    exit(); 
+                if ($user['email'] == 'admin@example.com') {
+                    header("Location: admin.php");
+                    echo json_encode(['success' => true]);
+                    exit();
                 } else {
                     $_SESSION['user'] = $email;
                     header("Location: index.php");

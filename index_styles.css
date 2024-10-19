@@ -1,4 +1,3 @@
-
 body, html {
     margin: 0;
     padding: 0;
@@ -20,13 +19,13 @@ body, html {
     opacity: 0;
     transition: opacity 0.5s, visibility 0.5s;
 }
-
 .overlay.show {
     visibility: visible;
     opacity: 1;
 }
 .top-bar {
-    /* margin: 5px; */
+   /* margin: 5px;
+    */
     padding: 12px;
     background-color: rgb(41, 38, 38);
     display: flex;
@@ -34,7 +33,7 @@ body, html {
     font-family: "Montserrat", sans-serif;
     font-size: 0.9em;
     color: white;
-  }
+}
 .top-bar .topBar-left,.topBar-right {
     display: flex;
     gap: 20px;
@@ -43,39 +42,32 @@ body, html {
     text-decoration: none;
     color: white;
 }
-  
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     background-color: rgb(26 24 24);
-
 }
-
 .navbar .logo {
     color: white;
     font-size: 24px;
     font-weight: bold;
 }
-
 .navbar ul {
     list-style: none;
     display: flex;
     margin-left: 250;
     padding: 0;
 }
-
 .navbar ul li {
     margin: 0 15px;
 }
-
 .navbar ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
 }
-
 .navbar .login-btn, .navbar .logout-btn {
     font-family: "Montserrat", sans-serif;
     border: 1px solid white;
@@ -84,14 +76,12 @@ body, html {
     text-decoration: none;
     border-radius: 5px;
 }
-
 .login-container, .register-container, .main-container {
     display: none;
     justify-content: center;
     align-items: center;
     height: calc(100% - 80px);
 }
-
 .login-box, .register-box {
     font-family: "Montserrat", sans-serif;
     background: rgb(26 15 2 / 90%);
@@ -101,18 +91,15 @@ body, html {
     text-align: center;
     position: relative;
 }
-
 .login-box h2, .register-box h2 {
     color: white;
     margin-bottom: 20px;
     font-size: 24px;
 }
-
 .login-box .input-group, .register-box .input-group {
     margin-bottom: 20px;
     position: relative;
 }
-
 .login-box .input-group input, .register-box .input-group input {
     font-family: "Montserrat", sans-serif;
     border-radius: 25px;
@@ -122,7 +109,6 @@ body, html {
     box-shadow: 0 0 15px rgb(76 135 22);
     font-size: 16px;
 }
-
 .login-box .input-group i, .register-box .input-group i {
     position: absolute;
     right: 10px;
@@ -130,24 +116,20 @@ body, html {
     transform: translateY(-50%);
     color: #ccc;
 }
-
 .login-box .options, .register-box .options {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-
 .login-box .options input, .register-box .options input {
     margin-right: 10px;
 }
-
 .login-box .options a, .register-box .options a {
     color: #007BFF;
     text-decoration: none;
     margin-left: auto;
 }
-
 .login-box .login-btn, .register-box .register-btn {
     font-family: "Montserrat", sans-serif;
     background: #00000000;
@@ -158,14 +140,12 @@ body, html {
     cursor: pointer;
     font-size: 16px;
 }
-
 .login-box .register-link, .register-box .login-link {
     margin-top: 20px;
     display: block;
     color: #007BFF;
     text-decoration: none;
 }
-
 .close-btn {
     position: absolute;
     top: 10px;
@@ -173,13 +153,11 @@ body, html {
     font-size: 20px;
     cursor: pointer;
 }
-
 .home-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 .home-container-img{
     background-image: url(https://png.pngtree.com/background/20230519/original/pngtree-an-old-coffee-shop-with-very-dark-walls-picture-image_2652909.jpg);
@@ -192,14 +170,12 @@ body, html {
     border-radius: 40px;
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 30px #fff;
 }
-
 .home-container h1 {
     font-size: 70px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 0px;
     text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
-
 .home-container h2 {
     font-size: 70px;
     font-family: "Oswald", sans-serif;
@@ -216,8 +192,6 @@ body, html {
     font-family: "Oswald", sans-serif;
     color: #ffffff;
 }
-
-
 .home-container p {
     text-shadow: 2px 2px 5px rgb(0, 0, 0);
     font-size: 18px;
@@ -227,7 +201,6 @@ body, html {
     font-size: 18px;
     margin-bottom: 40px;
 }
-
 .home-container .view-menu-btn, .home-container .login-btn, .home-container .signup-btn {
     font-family: "Montserrat", sans-serif;
     background: #0b1c0788;
@@ -241,13 +214,12 @@ body, html {
     height: 40;
 }
 .home-container .view-menu-btn:hover, .home-container .login-btn:hover, .home-container .signup-btn:hover {
-    background: #fff; 
-    color: #000; 
-    border: 2px solid #000; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-    transition: all 0.3s ease-in-out; 
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
 }
-
 .home-title-container {
     display: flex;
     flex-direction: column;
@@ -258,7 +230,6 @@ body, html {
     margin: 0 auto;
     color: white;
 }
-
 .line {
     border-bottom: 1.5px solid #000000;
     width: 97%;
@@ -266,7 +237,6 @@ body, html {
     text-align: center !important;
     margin: 0 auto;
 }
-
 .home-advertise-container {
     text-align: left;
     margin-left: 75;
@@ -292,7 +262,6 @@ body, html {
     color: #000;
     padding: 15;
     background-color: #ffffff00;
-
 }
 .advertise-circle {
     border: 10px solid #bb7f5b;
@@ -304,8 +273,8 @@ body, html {
     border-radius: 50%;
     background: url('https://storage.googleapis.com/a1aa/image/cAosmZM91tIhF5Dz1eh427WQMqnTfEfQ979hmaJLPBndieSOB.jpg');
     right: 50;
-    background-size: cover; 
-    background-position: 13px; 
+    background-size: cover;
+    background-position: 13px;
     box-shadow: 0 0 80px #bb7f5b;
 }
 .recommend-row {
@@ -318,20 +287,20 @@ body, html {
     background-color: #d1cbb3ba;
     margin-right: 60;
     border-radius: 20px;
+    margin-top: 34;
+
 }
 .recommend-item {
     width: 25%;
     margin: 10px;
     position: relative;
 }
-
 .recommend-item img {
     width: 80%;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 0 80px #bb7f5b;
 }
-
 .item-info {
     position: absolute;
     bottom: 0;
@@ -347,10 +316,8 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 0 10px #1e3932;
 }
-
 .recommend-item:hover .item-info {
     opacity: 1;
-
 }
 .about-container {
     display: flex;
@@ -359,11 +326,9 @@ body, html {
     background-color: cornsilk;
     transition: opacity 0.5s;
 }
-
 .about-content {
     margin: 0 auto;
 }
-
 .about-title-container {
     background-image: url('https://kaapimachines.com/wp-content/uploads/2021/10/coffee-latte-art-2021-09-03-01-05-38-utc.webp');
     background-size: cover;
@@ -373,35 +338,24 @@ body, html {
     background-color:white;
     color: white;
     text-shadow: 5px 5px 10px rgb(33 31 39);
-    
 }
-
 .about-title-container h1 {
     font-size: 48px;
-    
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
-
 .about-text-container h1 {
     font-size: 48px;
     font-family: "Oswald", sans-serif;
-
 }
-
 .about-title-container p {
     font-size: 18px;
     margin-bottom: 20px;
 }
-
-
-
-
 .about-mission-container p {
     font-size: 18px;
     margin-bottom: 10px;
 }
-
 .about-team-container {
     padding: 60px;
     margin: 60;
@@ -409,7 +363,6 @@ body, html {
     width: 80%;
     border-radius: 50px;
 }
-
 .about-team-container h2 {
     font-size: 46px;
     font-family: "Oswald", sans-serif;
@@ -418,13 +371,11 @@ body, html {
     color: white;
     text-shadow: 5px 5px 10px rgb(33 31 39);
 }
-
 .team-members {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .team-member {
     margin: 20px;
     padding: 20px;
@@ -432,14 +383,12 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .team-member img {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }
-
 .contact-container {
     padding: 60;
     background-color: #292626;
@@ -447,24 +396,18 @@ body, html {
     margin-top: 100px;
     flex-direction: column;
 }
-
 .contact-container h2 {
     font-size: 36px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
-
-
-
 .contact-container p {
     font-size: 18px;
     margin-bottom: 10px;
 }
-
 .contact-info {
     margin-bottom: 20px;
 }
-
 .contact-info p {
     font-size: 18px;
     margin-bottom: 10px;
@@ -475,13 +418,11 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .about-goals-container h2 {
     font-size: 36px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
-
 .about-goals-container ul {
     list-style-type: none;
     padding: 0;
@@ -490,7 +431,6 @@ body, html {
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .about-goals-container li {
     margin: 10px;
     padding: 20px;
@@ -501,36 +441,28 @@ body, html {
     width: 200px;
     text-align: center;
 }
-
 .about-goals-container li h4 {
     font-size: 18px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
-
 .about-goals-container li p {
     font-size: 14px;
     margin-bottom: 10px;
 }
-
-.about-mission-container,
-.about-values-container, .about-goals-container {
+.about-mission-container, .about-values-container, .about-goals-container {
     margin-bottom: 100px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 35px;
 }
-
-.about-mission-container h2,
-.about-values-container h2, .about-goals-container h2 {
+.about-mission-container h2, .about-values-container h2, .about-goals-container h2 {
     font-size: 36px;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 10px;
 }
-
-.about-mission-container ul,
-.about-values-container ul, .about-goals-container ul {
+.about-mission-container ul, .about-values-container ul, .about-goals-container ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -538,9 +470,7 @@ body, html {
     flex-wrap: wrap;
     justify-content: center;
 }
-
-.about-mission-container li,
-.about-values-container li,  .about-goals-container li {
+.about-mission-container li, .about-values-container li, .about-goals-container li {
     margin: 10px;
     padding: 20px;
     background-color: #fff;
@@ -552,38 +482,28 @@ body, html {
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
-
-
-.about-mission-container li h4,
-.about-values-container li h4 , .about-goals-container li h4{
+.about-mission-container li h4, .about-values-container li h4 , .about-goals-container li h4{
     font-size: 18px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
-
-.about-mission-container li p,
-.about-values-container li p, .about-goals-container li p {
+.about-mission-container li p, .about-values-container li p, .about-goals-container li p {
     font-size: 14px;
     margin-bottom: 10px;
 }
 .about-mvg-container{
-    padding: 60px; 
+    padding: 60px;
     background-color: #ffffff;
 }
-.about-mission-container li:hover,
-.about-values-container li:hover,  .about-goals-container li:hover{
+.about-mission-container li:hover, .about-values-container li:hover, .about-goals-container li:hover{
     background-color: #f7f7f7;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
-
-.about-mission-container li:hover h4,
-.about-values-container li:hover h4,  .about-goals-container li:hover h4{
+.about-mission-container li:hover h4, .about-values-container li:hover h4, .about-goals-container li:hover h4{
     color: #007bff;
 }
-
-.about-mission-container li:hover p,
-.about-values-container li:hover p,  .about-goals-container li:hover p{
+.about-mission-container li:hover p, .about-values-container li:hover p, .about-goals-container li:hover p{
     color: #666;
 }
 footer {
@@ -598,7 +518,6 @@ footer {
     color: hsl(38, 61%, 73%);
     gap: 20px;
     margin-bottom: 8px;
-    
     transition: all 0.3s ease-in-out;
 }
 .socialMedia .bx{
@@ -610,7 +529,6 @@ footer {
     cursor: pointer;
     color: hsl(45, 3%, 28%);
     transform: translateY(-4px);
-    
 }
 /* Add this to your CSS file */
 #loading-screen {
@@ -633,35 +551,33 @@ footer {
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    animation: spin 1s linear infinite
+    animation: spin 1s linear infinite 
 }
 @keyframes spin {
     0% {
         transform: rotate(0deg);
-    }
+   }
     100% {
         transform: rotate(360deg);
-    }
+   }
 }
-
 @keyframes fadeOut {
     0% {
         opacity: 1;
-    }
+   }
     100% {
         opacity: 0;
-    }
+   }
 }
 .header-image {
     width: 100%;
-    height: 300px;    
+    height: 300px;
     position: absolute;
 }
 .container {
     padding: 350 100 0 100;
     text-align: center;
     width: 100%;
-
 }
 .container h1 {
     display: inline-block;
@@ -797,7 +713,6 @@ footer {
     cursor: pointer;
     border-radius: 50px;
 }
-
 .cart-item {
     display: flex;
     align-items: center;
@@ -844,7 +759,6 @@ footer {
     margin-left: 20;
     font-weight: bold;
 }
-
 .cart-footer .checkout-btn, .cart-footer .view-cart-btn {
     background-color: #212020;
     color: #fff;
@@ -861,7 +775,6 @@ footer {
     font-weight: bold;
     transition: 0.3s ease-in-out;
 }
-
 .cart-footer .checkout-btn:hover, .cart-footer .view-cart-btn:hover {
     background-color: #e68900;
 }
@@ -889,11 +802,9 @@ footer {
     cursor: pointer;
     border-radius: 5px;
 }
-
 .close-payment-btn:hover {
     background-color: #e68900;
 }
-
 .payment-page {
     position: fixed;
     left: -100%;
@@ -912,7 +823,6 @@ footer {
     border-radius: 20px;
     transition: 0.5s ease-in-out;
 }
-
 .payment-page.show {
     left:50%;
 }
@@ -929,14 +839,12 @@ footer {
     width: 60%;
     padding: 20px;
 }
-
 #order-summary {
     list-style: none;
     padding: 0;
     margin: 0;
     overflow-y: auto;
     max-height: 450px;
-    
 }
 #order-summary li {
     display: flex;
@@ -946,29 +854,24 @@ footer {
     padding: 10px;
     border-radius: 5px;
 }
-
 #order-summary li img {
     width: 50px;
     height: 50px;
     border-radius: 5px;
     margin-right: 10px;
 }
-
 #order-summary li .item-details {
     flex-grow: 1;
 }
-
 #order-summary li .item-details h4 {
     margin: 0;
     font-size: 14px;
 }
-
 #order-summary li .item-details p {
     margin: 0;
     font-size: 12px;
     color: #ccc;
 }
-
 #order-summary li .quantity-container {
     width: 50px;
     text-align: center;
@@ -978,7 +881,6 @@ footer {
     color: #fff;
     padding: 5px;
 }
-
 #order-summary li .quantity-container .quantity {
     margin: 0;
     font-size: 14px;
@@ -1021,7 +923,7 @@ footer {
 .fa-shopping-cart{
     color: white;
     position: absolute;
-    right: 150;
+    right: 150; 
     top: 81;
 }
 .remove-button{
