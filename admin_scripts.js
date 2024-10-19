@@ -1,354 +1,8 @@
-const items = [
-    {
-        id: "coffee",
-        name: "COFFEE",
-        items: [
-            {
-                id: "espresso-beverages",
-                name: "Espresso Beverages",
-                items: [
-                    { 
-                        name: "Espresso", 
-                        price: 8.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Espresso---Feb-2023.jpeg", 
-                        description: "A strong shot of pure coffee." 
-                    },
-                    { 
-                        name: "Americano", 
-                        price: 10.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Americano---Feb-2023.jpeg", 
-                        description: "Espresso diluted with hot water for a lighter flavor." 
-                    },
-                    { 
-                        name: "Cappuccino", 
-                        price: 13.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Cappuccino---Feb-2023.jpeg", 
-                        description: "A balanced mix of espresso, steamed milk, and foam." 
-                    },
-                    { 
-                        name: "Caffè Latte", 
-                        price: 14.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Latte-Mug---Feb-2023.jpeg", 
-                        description: "Espresso with steamed milk and a light layer of foam." 
-                    },
-                    { 
-                        name: "Flat White", 
-                        price: 14.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Flat-White---Feb-2023.jpeg", 
-                        description: "Velvety steamed milk over a double shot of espresso." 
-                    },
-                    { 
-                        name: "Caramel Macchiato", 
-                        price: 16.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Caramel-Macchiato---Feb-2023.jpeg", 
-                        description: "Layers of vanilla syrup, espresso, and caramel drizzle." 
-                    },
-                    { 
-                        name: "Mocha", 
-                        price: 16.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Mocha--Feb-2023.jpeg", 
-                        description: "Espresso, chocolate syrup, and steamed milk with whipped cream." 
-                    },
-                    { 
-                        name: "Espresso Macchiato", 
-                        price: 9.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Espresso-Macchiato---Feb-2023.jpeg", 
-                        description: "A shot of espresso with a dollop of steamed milk." 
-                    },
-                    { 
-                        name: "Espresso Con Panna", 
-                        price: 10.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Espresso-Con-Pana---Feb-2023.jpeg", 
-                        description: "Espresso topped with whipped cream." 
-                    }
-                ]
-            },
-            {
-                id: "iced-espresso-beverages",
-                name: "Iced Espresso Beverages",
-                items: [
-                    { 
-                        name: "Iced Americano", 
-                        price: 10.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Iced-Americano---Feb-2023.jpeg", 
-                        description: "Chilled espresso with water over ice." 
-                    },
-                    { 
-                        name: "Iced Latte", 
-                        price: 14.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Iced-Cafe-Latte---Feb-2023.jpeg", 
-                        description: "Espresso poured over ice and milk." 
-                    },
-                    { 
-                        name: "Iced Caramel Macchiato", 
-                        price: 16.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Iced-Caramel-Macchiato---Feb-2023.jpeg", 
-                        description: "Cold milk, ice, espresso, vanilla, and caramel drizzle." 
-                    },
-                    { 
-                        name: "Iced Mocha", 
-                        price: 16.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Iced-Mocha---Feb-2023.jpeg", 
-                        description: "Cold espresso, chocolate, milk, and ice, topped with whipped cream."
-                    },
-                    {
-                        name: "Iced Blonde Vanilla Latte", 
-                        price: 15.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/bev/SBX20190422_IcedVanillaLatte.jpg?impolicy=1by1_wide_topcrop_630", 
-                        description: "Light blonde espresso, vanilla syrup, milk, and ice." 
-                    }
-                        
-                    ]
-                },
-            {
-                id: "blonde-roast-&-brewed-coffee",
-                name: "Blonde Roast & Brewed Coffee",
-                items: [
-                    { 
-                        name: "Blonde Vanilla Latte", 
-                        price: 16.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/bev/SBX20190617_CaffeLatte.jpg?impolicy=1by1_wide_topcrop_630", 
-                        description: "Milder espresso with vanilla and steamed milk." 
-                    },
-                    { 
-                        name: "Dark Roast Coffee", 
-                        price: 8.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Fresh-Brewed-Coffee---Feb-2023.jpeg", 
-                        description: "Bold and robust dark roast drip coffee." 
-                    },
-                    { 
-                        name: "Caffè Misto", 
-                        price: 12.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Misto---Feb-2023.jpeg", 
-                        description: "Half brewed coffee, half steamed milk." 
-                    }
-                ]
-            },
-            {
-                id: "cold-coffee",
-                name: "Cold Coffee",
-                items: [
-                    { 
-                        name: "Cold Brew Coffee", 
-                        price: 12.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Cold-Brew---Feb-2023.jpeg", 
-                        description: "Smooth, slow-steeped coffee served cold." 
-                    },
-                    { 
-                        name: "Cold Brew Latte", 
-                        price: 9.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Cold-Brew-Latte--Feb-2023.jpeg", 
-                        description: "Freshly brewed latte chilled with ice." 
-                    },
-                    { 
-                        name: "Nitro Cold Brew", 
-                        price: 14.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/bev/SBX20190410_NitroColdBrew.jpg?impolicy=1by1_wide_topcrop_630", 
-                        description: "Creamy cold brew infused with nitrogen for a rich texture." 
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        id: "bread",
-        name: "BREAD",
-        items: [
-            {
-                id: "donut",
-                name: "Donut",
-                items: [
-                    { 
-                        name: "Classic Donut", 
-                        price: 6.50, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/CH-AT-MOP-Sugar-Donut.jpeg", 
-                        description: "A classic fried donut coated in a generous layer of granulated sugar, featuring a soft and fluffy interior." 
-                    }
-                ]
-            },
-            {
-                id: "bagels",
-                name: "Bagels",
-                items: [
-                    { 
-                        name: "Plain Bagel", 
-                        price: 7.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20190715_PlainBagel.jpg?impolicy=1by1_medium_630", 
-                        description: "A simple, soft, and chewy classic bagel, perfect for pairing with cream cheese, butter, or enjoyed on its own." 
-                    },
-                    { 
-                        name: "Multigrain Bagel", 
-                        price: 8.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20190821_EverythingBagel_US.jpg?impolicy=1by1_medium_630", 
-                        description: "A hearty, wholesome bagel made with a blend of grains and seeds." 
-                    }
-                ]
-            },
-            {
-                id: "savory-pastries",
-                name: "Savory Pastries",
-                items: [
-                    { 
-                        name: "Ham & Cheese Roll", 
-                        price: 11.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/HamAndSwissCroissant.jpg?impolicy=1by1_medium_630", 
-                        description: "A savory bread roll filled with slices of ham and melted cheese, baked to golden perfection." 
-                    }
-                ]
-            },
-            {
-                id: "scones",
-                name: "Scones",
-                items: [
-                    { 
-                        name: "Plain Scone", 
-                        price: 8.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20230406_PetiteVanillaScone.jpg?impolicy=1by1_medium_630", 
-                        description: "A classic, crumbly scone with a hint of sweetness, perfect when paired with butter or jam." 
-                    },
-                    { 
-                        name: "Blueberry Scone", 
-                        price: 8.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20181219_BlueberryScone.jpg?impolicy=1by1_medium_630", 
-                        description: "A crumbly, golden scone with fresh blueberries for a burst of fruit flavor in every bite." 
-                    },
-                    { 
-                        name: "Cheese Scone", 
-                        price: 8.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20190422_PumpkinScone.jpg?impolicy=1by1_medium_630", 
-                        description: "A savory scone baked with sharp cheddar cheese for a delicious snack with a hint of richness." 
-                    },
-                    { 
-                        name: "Raisin Scone", 
-                        price: 8.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20200630_CranberryOrangeScone.jpg?impolicy=1by1_medium_630", 
-                        description: "A buttery, lightly sweet scone with plump raisins, perfect for tea time." 
-                    }
-                ]
-            },
-            {
-                id: "sweet-pastries",
-                name: "Sweet Pastries",
-                items: [
-                    { 
-                        name: "Cinnamon Roll", 
-                        price: 10.50, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/CH-AT-MOP-Cinnamon-Swirl.jpeg", 
-                        description: "A soft, fluffy roll swirled with a generous amount of cinnamon sugar and topped with a sweet vanilla glaze." 
-                    },
-                    { 
-                        name: "Chocolate Croissant", 
-                        price: 9.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20220607_ChocolateCroissant-onGreen.jpg?impolicy=1by1_medium_630", 
-                        description: "Buttery, flaky croissant filled with rich, smooth chocolate, perfect for a light snack or breakfast." 
-                    },
-                    { 
-                        name: "Almond Croissant", 
-                        price: 10.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20190715_40001-AlmondCroissant.jpg?impolicy=1by1_medium_630", 
-                        description: "A delicate, golden-brown croissant filled with a sweet almond paste, topped with sliced almonds." 
-                    },
-                    { 
-                        name: "Cheese Danish", 
-                        price: 9.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20220125_CheeseDanish-onGreen.jpg?impolicy=1by1_medium_630", 
-                        description: "A flaky Danish pastry filled with a creamy cheese filling and lightly glazed for a perfect balance of sweet and savory." 
-                    },
-                    { 
-                        name: "Banana Nut Bread", 
-                        price: 12.00, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20190729_BananaNutBread_US.jpg?impolicy=1by1_medium_630", 
-                        description: "Moist, soft banana bread made with ripe bananas and crunchy walnuts for a delightful combination of flavors." 
-                    },
-                    { 
-                        name: "Blueberry Muffin", 
-                        price: 9.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20220125_BlueberryMuffin_US.jpg?impolicy=1by1_medium_630", 
-                    description: "A soft, buttery muffin loaded with juicy blueberries and a hint of vanilla for a satisfying treat." 
-                    },
-                    { 
-                        name: "Chocolate Chip Muffin", 
-                        price: 9.50, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/AT-MOP-Triple-Chocolate-Muffin.jpeg", 
-                        description: "A classic, crumbly scone with a hint of sweetness, perfect when paired with butter or jam." 
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        id: "cake",
-        name: "CAKE",
-        items: [
-            {
-                id: "creamy-cakes",
-                name: "Creamy Cakes",
-                items: [
-                    { 
-                        name: "Classic Cheesecake", 
-                        price: 15.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/AT-MOP-New-York-Cheesecake.jpeg", 
-                        description: "Rich and creamy cheesecake with a buttery graham cracker crust, perfect for indulgence." 
-                    },
-                    { 
-                        name: "Tiramisu", 
-                        price: 15.50, 
-                        image: "https://www.starbucks.com.hk/media/catalog/product/4/c/4ce5ff0e-7946-4a65-83c4-f8983842f62d.jpg", 
-                        description: "Layers of espresso-soaked sponge cake, mascarpone cream, and cocoa powder, perfect for coffee lovers." 
-                    }
-                ]
-            },
-            {
-                id: "layered-cakes",
-                name: "Layered Cakes",
-                items: [
-                    { 
-                        name: "Red Velvet Cake", 
-                        price: 14.50, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Red-Velvet-Loaf-Cake-_0.jpeg", 
-                        description: "A moist, velvety cake with layers of cream cheese frosting, offering a perfect balance of sweetness and tang." 
-                    },
-                    { 
-                        name: "Chocolate Fudge Cake", 
-                        price: 16.00, 
-                        image: "https://www.starbucks.co.th/stb-media/2020/08/Chocolate-Cake-1080.png", 
-                        description: "Decadent layers of chocolate sponge cake filled with rich, velvety chocolate fudge frosting." 
-                    },
-                    { 
-                        name: "Carrot Cake", 
-                        price: 14.00, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Carrot-Cake_0.jpeg", 
-                        description: "Moist spiced carrot cake with walnuts and a luscious cream cheese frosting." 
-                    }
-                ]
-            },
-            {
-                id: "citrus-cakes",
-                name: "Citrus Cakes",
-                items: [
-                    { 
-                        name: "Lemon Loaf Cake", 
-                        price: 13.50, 
-                        image: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Lemon-Loaf-Cake---Feb-2023.jpeg", 
-                        description: "A zesty, moist cake with a tangy lemon glaze, offering a burst of citrus in every bite." 
-                    }
-                ]
-            },
-            {
-                id: "brownie",
-                name: "Brownie",
-                items: [
-                    { 
-                        name: "Chocolate Brownie", 
-                        price: 12.50, 
-                        image: "https://globalassets.starbucks.com/digitalassets/products/food/SBX20190715_DoubleChocolateChunkBrownie.jpg?impolicy=1by1_medium_630", 
-                        description: "A rich, fudgy brownie with chunks of chocolate for an indulgent treat." 
-                    }
-                ]
-            }
-        ]
-    }
-];
+window.onload = function() {
+    setTimeout(function() {
+        document.getElementById('loading-screen').style.display = 'none';
+    }, 1000);
+}
 const orders = [
     {
         id: 1,
@@ -380,6 +34,7 @@ const orders = [
 
 
 function renderOrderList() {
+    loadingPage()
     // Load orders from local storage
     const orderList = document.getElementById('order-management');
     orderList.innerHTML = '';
@@ -473,41 +128,29 @@ function showOrderDetails(orderId) {
 }
 document.addEventListener('DOMContentLoaded', renderOrderList);
 
-
 function deleteMenuItem(event) {
     if (confirm("Are you sure you want to delete this menu item?")) {
         var menuItem = event.target.closest('.menu-item');
-        var productName = menuItem.querySelector('div > div:nth-child(2) > span.text').textContent;
-        var productPrice = menuItem.querySelector('div > div:nth-child(3) > span.text').textContent;
-        var productDescription = menuItem.querySelector('div > div:nth-child(4) > span.text').textContent;
-        var productImage = menuItem.querySelector('img').src;
+        var productId = menuItem.querySelector('div > div:nth-child(1) > span.text').textContent;
 
-        // Find the product in the items array
-        var productIndex = -1;
-        items.forEach((category, categoryIndex) => {
-            category.items.forEach((subcategory, subcategoryIndex) => {
-                subcategory.items.forEach((product, productIndex) => {
-                    if (product.name === productName && product.price === parseFloat(productPrice) && product.description === productDescription && product.image === productImage) {
-                        productIndex = categoryIndex + subcategoryIndex + productIndex;
-                    }
-                });
-            });
-        });
-
-        // Remove the product from the items array
-        if (productIndex !== -1) {
-            var categoryIndex = Math.floor(productIndex / (items[0].items.length * items[0].items[0].items.length));
-            var subcategoryIndex = Math.floor((productIndex % (items[0].items.length * items[0].items[0].items.length)) / items[0].items[0].items.length);
-            var productIndexInSubcategory = productIndex % items[0].items[0].items.length;
-            items[categoryIndex].items[subcategoryIndex].items.splice(productIndexInSubcategory, 1);
-        }
-
-        // Remove the product from the DOM
-        menuItem.remove();
+        // Send AJAX request to delete the product
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete_product.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            console.log('Server response:', xhr.responseText); // Log the server response
+            if (xhr.status === 200) {
+                // Remove the product from the DOM
+                menuItem.remove();
+                console.log('Product deleted successfully');
+                renderProductList();
+            } else {
+                console.error('Error deleting product. Status:', xhr.status, 'Response:', xhr.responseText);
+            }
+        };
+        xhr.send('product_id=' + encodeURIComponent(productId));
     }
 }
-
-
 function deleteUser(event) {
     if (confirm("Are you sure you want to delete this user?")) {
         const userId = event.target.closest('.user-item').querySelector('div > div:first-child > span.text').textContent;
@@ -548,15 +191,15 @@ document.getElementById('add-user-form').addEventListener('submit', function(eve
     newUser  .classList.add('user-item');
     newUser  .innerHTML = `
         <div>
-            <div>User ID: <span class="text">${userId}</span><input type="text" class="input hidden" value="${userId}"></div>
+            <div style='font-size: 30px;'>User ID: <span class="text">${userId}</span><input type="text" class="input hidden" value="${userId}"></div>
             <div>Username: <span class="text">${username}</span><input type="text" class="input hidden" value="${username}"></div>
             <div>
-            <label for="role">Role:</label>
-                <span class="text"><?php echo ${role}; ?></span>
+            <label for="role" style="color:red;">Role:</label>
+                <span class="text" style="color:red;">${role}</span>
                 <select class="input hidden" id="role-select">
-                    <option value="user">User </option>
-                    <option value="staff">Staff</option>
-                    <option value="admin">Admin</option>
+                    <option value="User">User </option>
+                    <option value="Staff">Staff</option>
+                    <option value="Admin">Admin</option>
                 </select>
             </div>
             <div class="user-details hidden">
@@ -670,9 +313,11 @@ function toggleUserDetails(event) {
 }
 
 function showSection(sectionId) {
+    loadingPage()
     document.getElementById('menu-management').classList.add('hidden');
     document.getElementById('user-management').classList.add('hidden');
     document.getElementById('order-management').classList.add('hidden');
+    document.getElementById('payment-management').classList.add('hidden');
     document.getElementById(sectionId).classList.remove('hidden');
 }
 
@@ -684,8 +329,14 @@ function closeDetails() {
 function editItem(event) {
     event.preventDefault();
     const item = event.target.closest('.menu-item');
-    item.querySelectorAll('.text').forEach(el => el.classList.add('hidden'));
-    item.querySelectorAll('.input').forEach(el => el.classList.remove('hidden'));
+    item.querySelectorAll('.text').forEach(el => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = el.textContent;
+        input.className = 'input';
+        el.parentNode.insertBefore(input, el.nextSibling);
+        el.classList.add('hidden');
+    });
     item.querySelector('.btn-edit').classList.add('hidden');
     item.querySelector('.btn-save').classList.remove('hidden');
 }
@@ -693,16 +344,50 @@ function editItem(event) {
 function saveItem(event) {
     event.preventDefault();
     const item = event.target.closest('.menu-item');
-    item.querySelectorAll('.text').forEach(el => {
-        const input = el.nextElementSibling;
-        el.textContent = input.value;
-        el.classList.remove('hidden');
-        input.classList.add('hidden');
-    });
-    item.querySelector('.btn-edit').classList.remove('hidden');
-    item.querySelector('.btn-save').classList.add('hidden');
-}
+    const id = item.querySelector('div > div:nth-child(1) > span.text').textContent;
+    const name = item.querySelector('div > div:nth-child(2) > input.input').value;
+    const price = item.querySelector('div > div:nth-child(3) > input.input').value;
+    const description = item.querySelector('div > div:nth-child(4) > input.input').value;
 
+    // Create a FormData object to send the data
+    const formData = new FormData();
+    formData.append('action', 'update_product');
+    formData.append('id', id);
+    formData.append('name', name);
+    formData.append('price', price);
+    formData.append('description', description);
+
+    // Send the data to the server using fetch
+    fetch('update_products.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Update the UI
+            item.querySelector('div > div:nth-child(2) > span.text').textContent = name;
+            item.querySelector('div > div:nth-child(3) > span.text').textContent = price;
+            item.querySelector('div > div:nth-child(4) > span.text').textContent = description;
+
+            // Hide inputs and show text
+            item.querySelectorAll('.text').forEach(el => el.classList.remove('hidden'));
+            item.querySelectorAll('.input').forEach(el => el.classList.add('hidden'));
+
+            // Show edit button and hide save button
+            item.querySelector('.btn-edit').classList.remove('hidden');
+            item.querySelector('.btn-save').classList.add('hidden');
+
+            alert('Product updated successfully');
+        } else {
+            alert('Error updating product: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the product');
+    });
+}
 function editUser(event) {
     event.preventDefault();
     const item = event.target.closest('.user-item');
@@ -712,88 +397,12 @@ function editUser(event) {
     item.querySelector('.btn-save').classList.remove('hidden');
 }
 
-function showAddProductModal(event) {
-    event.preventDefault();
-    document.getElementById('modal-overlay').classList.add('show');
-    document.getElementById('add-product-modal').style.display = 'block';
-}
 
-function closeAddProductModal() {
-    document.getElementById('modal-overlay').classList.remove('show');
-    document.getElementById('add-product-modal').style.display = 'none';
-}
-
-document.getElementById('add-product-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const productId = document.getElementById('product-id').value;
-    const productName = document.getElementById('product-name').value;
-    const productPrice = document.getElementById('product-price').value;
-    const productDescription = document.getElementById('product-description').value;
-    const productImage = document.getElementById('product-image').files[0];
-    const productCategory = document.getElementById('product-category').value; // Get the selected category ID
-
-    if (!productName || !productDescription) {
-        alert('Please fill in all the required fields');
-        return;
-    }
-
-    if (!productImage) {
-        alert('Please select a product image');
-        return;
-    }
-
-    if (!/^\d+$/.test(productId)) {
-        alert('Product ID must be a number');
-        return;
-    }
-
-    const priceParts = productPrice.split('.');
-    if (priceParts.length > 2) {
-        alert('Price must be a number with up to 2 decimal places');
-        return;
-    }
-
-    if (priceParts.length === 2 && priceParts[1].length > 2) {
-        alert('Price must be a number with up to 2 decimal places');
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const newItem = document.createElement('div');
-        newItem.classList.add('menu-item');
-        newItem.innerHTML = `
-            <div>
-                <div>Product ID: <span class="text">${productId}</span><input type="text" class="input hidden" value="${productId}" required pattern="[0-9]*"></div>
-                <div>Product Name: <span class="text">${productName}</span><input type="text" class="input hidden" value="${productName}" required></div>
-                <div>Price (RM): <span class="text">${productPrice}</span><input type="text" class="input hidden" value="${productPrice}" required></div>
-                <div>Description: <span class="text">${productDescription}</span><input type="text" class="input hidden" value="${productDescription}" required></div>
-                <img src="${e.target.result}" alt="Image of ${productName}" width="100" height="100">
-                <div>
-                    <a href="#" class="btn btn-edit" onclick="editItem(event)">Edit</a>
-                    <a href="#" class="btn btn-save hidden" onclick="saveItem(event)">Save</a>
-                    <a href="#" class="btn btn-delete" onclick="deleteMenuItem(event)">Delete</a>
-                </div>
-            </div>
-        `;
-
-        // Append the new item to the selected category
-        const categoryDiv = document.getElementById(productCategory);
-        if (categoryDiv) {
-            categoryDiv.appendChild(newItem);
-        } else {
-            alert('Selected category not found!');
-        }
-
-        closeAddProductModal();
-    };
-    reader.readAsDataURL(productImage);
-});
 
 function Admin_LogOut(){
     if (confirm("You are trying log-out admin system panel, proceed to continue this action.")) {
         isLoggedIn = false;
+        
         window.location.href = 'index.php';
     }
 }
@@ -888,4 +497,136 @@ function togglePaymentDetails(event) {
     event.preventDefault();
     const paymentItem = event.target.closest('.payment-item');
     paymentItem.querySelector('.payment-details').classList.toggle('hidden');
+}
+// In admin_scripts.js
+
+function addNewProduct(event) {
+    event.preventDefault();
+    const addProductModal = document.getElementById('add-product-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+
+    modalOverlay.classList.add('show');
+    addProductModal.style.display = 'block';
+}
+
+function closeAddProductModal() {
+    const addProductModal = document.getElementById('add-product-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    modalOverlay.classList.remove('show');
+    addProductModal.style.display = 'none';
+}
+
+document.getElementById('add-product-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('add_product.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Product added successfully!');
+            closeAddProductModal();
+            renderProductList();
+        } else {
+            alert('Error adding product: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while adding the product');
+    });
+});
+function renderProductList() {
+    loadingPage()
+    const productList = document.getElementById('productsContainer');
+    productList.innerHTML = '';
+
+    fetch('get_categories.php')
+        .then(response => response.json())
+        .then(categories => {
+            categories.forEach(category => {
+                console.log("Processing category:", category);
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                categorySection.innerHTML = `<h3>${formatText(category)}</h3>`;
+
+                fetch(`get_subcategories_admin.php?maincategory=${encodeURIComponent(category)}`)
+                    .then(response => response.json())
+                    .then(subcategories => {
+                        subcategories.forEach(subcategory => {
+                            const subcategorySection = document.createElement('div');
+                            subcategorySection.className = 'subcategory-section';
+                            subcategorySection.innerHTML = `<h4>${formatText(subcategory)}</h4>`;
+
+                            fetch(`get_products.php?maincategory=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}`)
+                                .then(response => response.json())
+                                .then(products => {
+                                    products.forEach(product => {
+                                        const productItem = document.createElement('div');
+                                        productItem.className = 'menu-item';
+                                        productItem.innerHTML = `
+                                            <div>
+                                                <div style='font-size: 30px;'>ID: <span class="text">${product.product_ID}</span></div>
+                                                <div>Name: <span class="text">${formatText(product.name)}</span></div>
+                                                <div>Price: <span class="text">$${product.price}</span></div>
+                                                <div class="line" style="margin-top:25;"></div>
+                                                <div>Description: <span class="text"><br>${product.description}</span></div>
+                                                ${product.image ? `<img src="${product.image}" alt="Product Image" width="100" height="100">` : ''}
+                                                <div>
+                                                    <a href="#" class="btn btn-edit" onclick="editItem(event)">Edit</a>
+                                                    <a href="#" class="btn btn-save hidden" onclick="saveItem(event)">Save</a>
+                                                    <a href="#" class="btn btn-delete" onclick="deleteMenuItem(event)">Delete</a>
+                                                </div>
+                                            </div>
+                                        `;
+                                        subcategorySection.appendChild(productItem);
+                                    });
+                                });
+
+                            categorySection.appendChild(subcategorySection);
+                        });
+                    });
+
+                productList.appendChild(categorySection);
+            });
+        });
+}
+function formatText(text) {
+    // Check if text is null, undefined, or not a string
+    if (text == null || typeof text !== 'string') {
+        return ''; // Return an empty string or some default value
+    }
+    // If text is an empty string, return it as is
+    if (text.length === 0) {
+        return text;
+    }
+    // Implement your text formatting logic here
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebarContainer = document.querySelector('.sidebar-container');
+    const container = document.querySelector('.container');
+
+    sidebarToggle.addEventListener('click', function() {
+        sidebarContainer.classList.toggle('collapsed');
+        container.classList.toggle('expanded');
+        
+        // Change button text based on sidebar state
+        if (sidebarContainer.classList.contains('collapsed')) {
+            sidebarToggle.textContent = '>';
+        } else {
+            sidebarToggle.textContent = '<';
+        }
+    });
+});
+function loadingPage(){
+    document.getElementById('loading-screen').style.display = 'flex';
+    setTimeout(function() {
+        document.getElementById('loading-screen').style.display = 'none';
+    }, 1000);
 }

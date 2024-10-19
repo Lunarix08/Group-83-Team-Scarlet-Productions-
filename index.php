@@ -43,7 +43,7 @@ $isLoggedIn = isset($_SESSION['user']);
 <?php endif; ?>
 
 <head>
-    <title>Fabianero || Home</title>
+    <title>Daily Grind || Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
@@ -79,7 +79,7 @@ $isLoggedIn = isset($_SESSION['user']);
     <div class="topBar-left">
         <div class="location">
             <i class="bx bxs-map"></i>
-            <span><a href="#">George Town, Penang, Malaysia</a></span>
+            <span><a href="#">123 Coffee Lane, Brewtown, CA 12345</a></span>
         </div>
       <hr>
         <div class="time">
@@ -96,7 +96,7 @@ $isLoggedIn = isset($_SESSION['user']);
       <hr>
       <div class="email">
         <i class="bx bxs-envelope"></i>
-        <span><a href="mailto:info@thegourmetgarage.com">info@fabianero.com</a></span>
+        <span><a href="mailto:info@thegourmetgarage.com">info@thedailygrind.com</a></span>
       </div>
       <div class="admin">
         <i class="bx bxs-lock"></i>
@@ -105,7 +105,7 @@ $isLoggedIn = isset($_SESSION['user']);
     </div>
   </div>
     <div class="navbar">
-        <div class="logo">FABIANERO</div>
+        <div class="logo">THE DAILY GRIND</div>
         <ul>
             <li><a href="#" onclick="showHome()">Home</a></li>
             <li><a href="#" onclick="showAbout()">About</a></li>
@@ -199,7 +199,7 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="home-container" style="display: flex;">
             <div class="home-content">
             <div class="home-title-container">
-                <h1>Fabianero Coffee</h1>
+                <h1>The Daily Grind</h1>
                 <p>A cozy destination that prides itself on serving high-quality coffee and a welcoming atmosphere.<br>Features a selection of pastries and light bites to complement your drink.</p>
                 <?php if ($isLoggedIn): ?>
                     <button class="view-menu-btn" onclick="viewMenu()">Order Menu</button>
@@ -213,9 +213,16 @@ $isLoggedIn = isset($_SESSION['user']);
                 <div class="line" style="margin-top:25;"></div>
 
                 <div class="home-advertise-container">
-
+                    <div class="advertise-circle"></div>
                     <h2>TRY OUR PRODUCTS</h2>
                     <p1>Experience the best. Upgrade your daily routine or treat yourself to <br> something special with our high-quality, innovative products.</p1>
+                    <button class="view-products-btn"style="display: flex;" onclick="viewMenu()">View Menu</button>
+                    <button class="menu-pdf-btn"style="display: flex;">Save Menu</button>
+
+                </div>
+
+
+                <div class="home-recommend-container">
                     <div class="recommend-box">
                         <h3>Recommandation</h3>
                         <div class="recommend-row">
@@ -249,11 +256,7 @@ $isLoggedIn = isset($_SESSION['user']);
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
-              
                 
             </div>
         </div>
@@ -262,7 +265,7 @@ $isLoggedIn = isset($_SESSION['user']);
             <div class="about-content">
                 <div class="about-title-container">
                     <h1>About Us</h1>
-                    <p>Fabianero is a cozy destination that prides itself on serving <br>high-quality coffee and a welcoming atmosphere. Our coffee<br>shop features a selection of pastries and light bites to <br>complement your drink.</p>
+                    <p>The Daily Grind Coffee Shop is a cozy destination that prides itself on serving <br>high-quality coffee and a welcoming atmosphere. Our coffee<br>shop features a selection of pastries and light bites to <br>complement your drink.</p>
                     <p>We are passionate about providing excellent customer service<br> and creating a warm and inviting environment for our customers to<br>relax and enjoy their favorite beverages. Our team is dedicated to<br>sourcing the finest ingredients and using only the best practices to<br>ensure that every cup of coffee is perfect.</p>
                 </div>
                 
@@ -271,7 +274,7 @@ $isLoggedIn = isset($_SESSION['user']);
                         <div class="about-text-container">
                         <h1>Our Mission, Values & Goals</h1>
                         <h2>Our Mission</h2>
-                        <p>At Fabianero, our mission is to provide high-quality coffee and exceptional customer service in a warm and welcoming environment. We strive to create a sense of community among our customers and to make every visit a memorable one.</p>
+                        <p>At Daily Grind, our mission is to provide high-quality coffee and exceptional customer service in a warm and welcoming environment. We strive to create a sense of community among our customers and to make every visit a memorable one.</p>
                             <div class="about-mission-container">
                             <ul>
                                 <li>
@@ -289,7 +292,7 @@ $isLoggedIn = isset($_SESSION['user']);
                             </ul>
                         </div>
                         <h2>Our Values</h2>
-                        <p>At Fabianero, our mission is to provide high-quality coffee and exceptional customer service in a warm and welcoming environment.</p>
+                        <p>At Daily Grind, our mission is to provide high-quality coffee and exceptional customer service in a warm and welcoming environment.</p>
                         <div class="about-values-container">
                             
                             <ul>
@@ -469,7 +472,7 @@ $isLoggedIn = isset($_SESSION['user']);
                 <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;">Contact</h4>
                 <p>Want to learn more about Fabianero or have a question about our coffee shop? We'd love to hear from you!</p>
                 <div class="contact-info" style="font-weight:bold;">
-                        <p>Address: 123 Main St, Anytown, USA</p>
+                        <p>Address: 123 Coffee Lane, Brewtown, CA 12345</p>
                         <p>Phone: 555-555-5555</p>
                         <p>Email: [info@fabianero.com](mailto:info@fabianero.com)</p>
                 </div>
