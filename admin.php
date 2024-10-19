@@ -15,18 +15,48 @@
     <title>Daily Grind || Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="admin_styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar">
-        <a href="#" onclick="showSection('menu-management')"><i class="fas fa-coffee"></i> Menu</a>
-        <a href="#" onclick="showSection('user-management')"><i class="fas fa-users"></i> User</a>
-        <a href="#" onclick="showSection('payment-management')"><i class="fas fa-shopping-cart"></i> Payment</a>
-        <button id="btn-admin-logout" onclick="Admin_LogOut()">Log Out</button>
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
+        <div class="spinner-border" role="status">
+        </div>
+    </div>
+    <div class="sidebar-container">
+        <button id="sidebar-toggle"><</button>
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-coffee"></i>
+                <h1 class="menu-text">Admin Panel</h1>
+                </div>
+                
+            <ul>
+                <li onclick="showSection('menu-management')">
+                    <i class="fas fa-utensils"></i>
+                    <span class="menu-text">Menu</span>
+                </li>
+                <li onclick="showSection('user-management')">
+                    <i class="fas fa-users"></i>
+                    <span class="menu-text">Users</span>
+                </li>
+                <li onclick="showSection('payment-management')">
+                    <i class="fas fa-credit-card"></i>
+                    <span class="menu-text">Payments</span>
+                </li>
+                <!-- Add more menu items as needed -->
+                
+            </ul>
+            <div class="sidebar-footer">
+                <button id="btn-admin-logout" onclick="Admin_LogOut()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="menu-text">Log Out</span>
+                </button>
+            </div>
+        </div>
     </div>
     <div class="container">
-        <h1>Daily Grind Admin Panel</h1>
-        
+    
         <div id="menu-management">
             <h2>Menu Management</h2>
             <a href="#" class="btn btn-add" onclick="addNewProduct(event)">New Product</a>
