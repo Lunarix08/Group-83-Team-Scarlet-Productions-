@@ -85,6 +85,14 @@ const checkoutButton = document.getElementById('checkoutButton');
 const closePaymentButton = document.getElementById('closePaymentButton');
 
 function makeCheckout() {
+    // Check if the cart is empty
+    if (cartItems.length === 0) {
+        // Alert the customer if the cart is empty
+        alert("Your cart is empty. Please add items to your cart before checking out.");
+        return; // Exit the function early
+    }
+
+    // If the cart is not empty, proceed with checkout
     // Hide the cart sidebar
     cartSidebar.classList.remove('open');
 
@@ -95,7 +103,6 @@ function makeCheckout() {
     // Show the overlay
     overlay.classList.add('show');
 }
-
 function createCategoryLink(category) {
     const link = document.createElement('a');
     link.href = '#';

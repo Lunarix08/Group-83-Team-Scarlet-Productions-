@@ -31,7 +31,7 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: rgb(26 24 24);
+    background-color: #292626;
     position: fixed;
     top: 0;
     left: 0;
@@ -81,6 +81,12 @@ body, html {
     text-decoration: none;
     border-radius: 5px;
     margin-left: 20px;
+    transition: 0.5s ease;
+}
+.navbar .login-btn:hover , .navbar .logout-btn:hover {
+    border: 1px solid gold;
+    color: gold;
+    font-weight: bold;
 }
 
 /* If you have any icons on the right, adjust their spacing */
@@ -191,21 +197,25 @@ body, html {
 .home-container .view-menu-btn, .home-container .login-btn, .home-container .signup-btn {
     font-family: "Montserrat", sans-serif;
     background: #0b1c0788;
-    color: white;
-    border: 2px solid white;
+    color: gold;
+    border: 2px solid gold;
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
     margin: 10px;
     width: 140;
     height: 40;
+    transition: 0.8s ease;
 }
 .home-container .view-menu-btn:hover, .home-container .login-btn:hover, .home-container .signup-btn:hover {
-    background: #fff; 
-    color: #000; 
-    border: 2px solid #000; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-    transition: all 0.3s ease-in-out; 
+    background-color: #0b1c0788;
+    color: cornsilk;
+    border: 2px solid cornsilk;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    
+    font-weight: bold;
+    width: 150;
+    height: 50;
 }
 
 
@@ -446,7 +456,7 @@ body, html {
     margin: 10px;
     padding: 20px;
     background-color: #2f3332;
-    border: 1px solid #ddd;
+    border: 1px solid gold;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 200px;
@@ -481,7 +491,7 @@ body, html {
 
 .about-mission-container li:hover h4,
 .about-values-container li:hover h4,  .about-goals-container li:hover h4{
-    color: #007bff;
+    color: rgb(99, 84, 0);
 }
 
 .about-mission-container li:hover p,
@@ -492,7 +502,6 @@ footer {
     
     background-color: #0000009e;
     text-align: center;
-    padding: 20px;
     color: white;
     position: fixed;
     width: 100%;
@@ -673,7 +682,7 @@ footer {
     top: 15;
     right: -700px;
     width: 500;
-    height: 855;
+    height: 93%;
     background-color: #333;
     color: #fff;
     padding: 20px;
@@ -1001,6 +1010,7 @@ footer {
     margin: 0;
 }
 .hero-text p {
+    color: #ffffe4;
     font-size: 20px;
     margin: 10px 0;
 }
@@ -1023,12 +1033,12 @@ footer {
     margin: 0 0 20px 0;
 }
 .browse h3 {
-    color: white;
+    color:  #ffffe4;;
     margin-top: -15;
     margin-bottom: 30;
 }
 .recommendation h3 {
-    color: white;
+    color:  #ffffe4;
     margin-top: -15;
     margin-bottom: 45;
     font-weight: normal;
@@ -1133,7 +1143,7 @@ p1{
     margin-bottom: 40px;
 }
 .contact-section p a {
-    color: #145c5c;
+    color: gold;
     text-decoration: underline;
 }
 .form-container {
@@ -1145,13 +1155,14 @@ p1{
     background-color: #262929;
     padding: 20px;
     border-radius: 20px;
+    border: 1px solid #6f5d00;
 }
 .form-container input, .form-container textarea {
     font-family: "Montserrat", sans-serif;
     width: 300px;
     padding: 15px;
     margin: 10px 0;
-    border: 1px solid #333333;
+    border: 1px solid #45453d;
     border-radius: 5px;
     background-color: #1e1e1e;
     color: #ffffff;

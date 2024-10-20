@@ -76,7 +76,13 @@ $isLoggedIn = isset($_SESSION['user']);
     <!-- Homepage -->
     
     <div class="navbar">
+        <img src="assets/icon.webp" alt="Admin Panel Icon" style="
+            width: 60;
+            margin-right: 10;
+            border-radius: 50%;
+        ">
         <div class="logo">THE DAILY GRIND</div>
+
         <ul>
             <li><a href="#" onclick="showHome()">Home</a></li>
             <li><a href="#" onclick="showAbout()">About</a></li>
@@ -538,7 +544,7 @@ $isLoggedIn = isset($_SESSION['user']);
     <script src="index_scripts.js"></script>
     
     <footer>
-        <p>&copy; 2024 Daily Grind Coffee. All rights reserved.<br>( Scarlet Production )</p>
+        <p>&copy; 2024 Daily Grind Coffee.( Scarlet Production )</p>
     </footer>
 </body>
 </html>
