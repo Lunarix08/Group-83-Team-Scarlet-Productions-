@@ -347,7 +347,7 @@ function saveItem(event) {
     const id = item.querySelector('div > div:nth-child(1) > span.text').textContent;
     const name = item.querySelector('div > div:nth-child(2) > input.input').value;
     const price = item.querySelector('div > div:nth-child(3) > input.input').value;
-    const description = item.querySelector('div > div:nth-child(4) > input.input').value;
+    const description = item.querySelector('div > div:nth-child(5) > input.input').value;
 
     // Create a FormData object to send the data
     const formData = new FormData();
@@ -368,7 +368,7 @@ function saveItem(event) {
             // Update the UI
             item.querySelector('div > div:nth-child(2) > span.text').textContent = name;
             item.querySelector('div > div:nth-child(3) > span.text').textContent = price;
-            item.querySelector('div > div:nth-child(4) > span.text').textContent = description;
+            item.querySelector('div > div:nth-child(5) > span.text').textContent = description;
 
             // Hide inputs and show text
             item.querySelectorAll('.text').forEach(el => el.classList.remove('hidden'));
@@ -379,6 +379,7 @@ function saveItem(event) {
             item.querySelector('.btn-save').classList.add('hidden');
 
             alert('Product updated successfully');
+            renderProductList()
         } else {
             alert('Error updating product: ' + data.message);
         }
@@ -572,9 +573,9 @@ function renderProductList() {
                                             <div>
                                                 <div style='font-size: 30px;'>ID: <span class="text">${product.product_ID}</span></div>
                                                 <div>Name: <span class="text">${formatText(product.name)}</span></div>
-                                                <div>Price: <span class="text">$${product.price}</span></div>
-                                                <div class="line" style="margin-top:25;"></div>
-                                                <div>Description: <span class="text"><br>${product.description}</span></div>
+                                                <div>Price: <span class="text">RM${product.price}</span></div>
+                                                <div class="line" style="margin-top:25;width: 80%';"></div>
+                                                <div>Description:<span class="text"><br>${product.description}</span></div>
                                                 ${product.image ? `<img src="${product.image}" alt="Product Image" width="100" height="100">` : ''}
                                                 <div>
                                                     <a href="#" class="btn btn-edit" onclick="editItem(event)">Edit</a>

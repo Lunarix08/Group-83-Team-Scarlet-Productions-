@@ -68,11 +68,25 @@ function showAbout() {
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
     document.querySelector('.about-container').style.display = 'flex';
+    document.querySelector('.contact-feedback-container').style.display = 'none';
+    document.querySelector('.contact-container').style.display = 'flex';
 }
-
+function showContact() {
+    loadingPage();
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('non-menu').style.display = 'flex';
+    document.title = "Fabianero || About Us";
+    document.querySelector('.home-container').style.display = 'none';
+    document.querySelector('.login-container').style.display = 'none';
+    document.querySelector('.register-container').style.display = 'none';
+    document.querySelector('.about-container').style.display = 'none'
+    document.querySelector('.contact-feedback-container').style.display = 'flex';
+    document.querySelector('.contact-container').style.display = 'none';
+}
 function viewMenu(){
     loadingPage();
     document.getElementById('non-menu').style.display = 'none';
+    document.querySelector('.contact-container').style.display = 'flex';
     const menu = document.getElementById('menu');
     if (menu) {
         menu.style.display = 'flex'; // or 'block', depending on your layout
@@ -87,8 +101,11 @@ function showLogin() {
     loadingPage();
     document.title = "Fabianero || Login";
     document.querySelector('.home-container').style.display = 'none';
+    document.querySelector('.about-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'flex';
+    document.querySelector('.contact-feedback-container').style.display = 'none';
+    document.querySelector('.contact-container').style.display = 'flex';
 }
 
 function showRegister() {
@@ -97,6 +114,9 @@ function showRegister() {
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'flex';
+    document.querySelector('.about-container').style.display = 'none';
+    document.querySelector('.contact-feedback-container').style.display = 'none';
+    document.querySelector('.contact-container').style.display = 'flex';
 }
 
 let cartItems = [];
@@ -209,6 +229,9 @@ function displayProducts(products, categoryName) {
         productsContainer.appendChild(productElement);
     });
 }
+function sendFeedbackNotif(){
+    alert('Feedback sent! Thank you for your feedback, we will read them soon!')
+}
 function showHome() {
     loadingPage();
     const homeContainer = document.querySelector('.home-container');
@@ -221,7 +244,8 @@ function showHome() {
     const logoutBtn = document.querySelector('.logout-btn');
     const loginBtn = document.querySelector('.login-btn');
     const signupBtn = document.querySelector('.signup-btn');
-
+    document.querySelector('.contact-feedback-container').style.display = 'none';
+    document.querySelector('.contact-container').style.display = 'flex';
     if (homeContainer) {
         homeContainer.style.display = 'flex';
     }
@@ -530,3 +554,21 @@ document.addEventListener('click', function(event) {
         dropdown.style.display = 'none';
     }
 });
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+            slide.classList.add('active');
+        }
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 3000);

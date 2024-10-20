@@ -27,10 +27,9 @@
         <button id="sidebar-toggle"><</button>
         <div class="sidebar">
             <div class="sidebar-header">
-                <i class="fas fa-coffee"></i>
+                <img src="https://files.oaiusercontent.com/file-8mGtF7GYZf55ZzYmkLIt5N1d?se=2024-10-19T10%3A01%3A23Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dd0523d60-440d-4572-badf-697ef6b94614.webp&sig=U4sv4Y8jpQXHxIAtwOmOmb3yBAOjnms%2BHJY0wNpYUi0%3D" alt="Admin Panel Icon" />
                 <h1 class="menu-text">Admin Panel</h1>
-                </div>
-                
+            </div>
             <ul>
                 <li onclick="showSection('menu-management')">
                     <i class="fas fa-utensils"></i>

@@ -75,42 +75,14 @@ $isLoggedIn = isset($_SESSION['user']);
     </div>
     <input type="hidden" id="is-logged-in" value="<?php echo $isLoggedIn ? 'true' : 'false'; ?>">
     <!-- Homepage -->
-    <div class="top-bar">
-    <div class="topBar-left">
-        <div class="location">
-            <i class="bx bxs-map"></i>
-            <span><a href="#">123 Coffee Lane, Brewtown, CA 12345</a></span>
-        </div>
-      <hr>
-        <div class="time">
-            <i class="bx bxs-time"></i>
-            <span>Daily: 6:00am to 12:00pm</span>
-        </div>
-    </div>
     
-    <div class="topBar-right">
-      <div class="phone">
-        <i class="bx bxs-phone"></i>
-        <span><a href="tel:+60177028198">+6034212039</a></span>
-      </div>
-      <hr>
-      <div class="email">
-        <i class="bx bxs-envelope"></i>
-        <span><a href="mailto:info@thegourmetgarage.com">info@thedailygrind.com</a></span>
-      </div>
-      <div class="admin">
-        <i class="bx bxs-lock"></i>
-        <span><a href="admin.php">Admin</a></span>
-      </div>
-    </div>
-  </div>
     <div class="navbar">
         <div class="logo">THE DAILY GRIND</div>
         <ul>
             <li><a href="#" onclick="showHome()">Home</a></li>
             <li><a href="#" onclick="showAbout()">About</a></li>
             <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#" onclick="showContact()">Contact</a></li>
         </ul>
         <div class="cart">
             <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> </a>
@@ -198,66 +170,118 @@ $isLoggedIn = isset($_SESSION['user']);
     <div id="non-menu">
         <div class="home-container" style="display: flex;">
             <div class="home-content">
-            <div class="home-title-container">
-                <h1>The Daily Grind</h1>
-                <p>A cozy destination that prides itself on serving high-quality coffee and a welcoming atmosphere.<br>Features a selection of pastries and light bites to complement your drink.</p>
-                <?php if ($isLoggedIn): ?>
-                    <button class="view-menu-btn" onclick="viewMenu()">Order Menu</button>
-                <?php else: ?>
-                    <button class="login-btn" onclick="showLogin()">Log-In</button>
-                    <button class="signup-btn" onclick="showRegister()">Sign-Up</button>
-                <?php endif; ?>
-                <div class="home-container-img"></div>
-            </div>
+                <div class="hero">
+                    <div class="hero-text">
 
-                <div class="line" style="margin-top:25;"></div>
-
-                <div class="home-advertise-container">
-                    <div class="advertise-circle"></div>
-                    <h2>TRY OUR PRODUCTS</h2>
-                    <p1>Experience the best. Upgrade your daily routine or treat yourself to <br> something special with our high-quality, innovative products.</p1>
-                    <button class="view-products-btn"style="display: flex;" onclick="viewMenu()">View Menu</button>
-                    <button class="menu-pdf-btn"style="display: flex;">Save Menu</button>
-
+                        <?php if ($isLoggedIn): ?>
+                            <p>DAILY GRIND ARE PROVIDING VARIOUS PRODUCTS RIGHT NOW!</p>
+                            <h1>THE DAILY GRIND</h1>
+                            <p style="font-size:15;">Welcome to The Daily Grind Coffee Shop, where each cup is brewed to perfection. Enjoy a cozy atmosphere with a diverse menu that caters to every coffee lover's cravings!</p>
+                            <button class="view-menu-btn" onclick="viewMenu()">View Menu</button>
+                        <?php else: ?>
+                            <p>NEW HERE? GET YOUR IDENTITY!</p>
+                            <h1>THE DAILY GRIND</h1>
+                            <p style="font-size:15;">Welcome to The Daily Grind Coffee Shop, where each cup is brewed to perfection. Enjoy a cozy atmosphere with a diverse menu that caters to every coffee lover's cravings!</p>
+                            <button class="login-btn" onclick="showLogin()">Log-In</button>
+                            <button class="signup-btn" onclick="showRegister()">Sign-Up</button>
+                        <?php endif; ?>
+                    </div>
+                    <div class="slides">
+                        <div class="overlay-gradient"></div>
+                        <img class="slide" alt="Hero Image 1" src="https://png.pngtree.com/background/20230519/original/pngtree-an-old-coffee-shop-with-very-dark-walls-picture-image_2652909.jpg">
+                        <img class="slide active" alt="Hero Image 2" src="https://png.pngtree.com/background/20230611/original/pngtree-cup-of-latte-on-wooden-table-picture-image_3171730.jpg">
+                        <img class="slide" alt="Hero Image 3" src="https://png.pngtree.com/background/20230611/original/pngtree-wooden-table-full-of-donuts-and-some-caffeine-drinks-picture-image_3170868.jpg">
+                    </div>
+                    
                 </div>
-
-
-                <div class="home-recommend-container">
-                    <div class="recommend-box">
-                        <h3>Recommandation</h3>
-                        <div class="recommend-row">
-                            <div class="recommend-item">
-                                <img src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Espresso---Feb-2023.jpeg" alt="Espresso">
-                                <div class="item-info">
-                                    <h4>Espresso</h4>
-                                    <p>RM 8.00</p>
-                                </div>
+                <div class="browse">
+                    <h2>Browse</h2>
+                    <h3>"Check out our categories at The Daily Grind Coffee! From espresso drinks to pastries, there's something for everyone."</h3>
+                    <div class="items" style="height: 250;">
+                        <div class="item">
+                            <img alt="Item 1" src="https://c4.wallpaperflare.com/wallpaper/180/462/561/dark-coffee-cup-wallpaper-preview.jpg" />
+                            <div class="hover-info" style="padding:23px;">
+                                <p1>COFFEE</p1>
+                                <p>Savor the rich and aromatic flavors of our expertly crafted coffee, from bold espressos to refreshing cold brews.</p>
                             </div>
-                            <div class="recommend-item">
-                                <img src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Cappuccino---Feb-2023.jpeg" alt="Cappuccino">
-                                <div class="item-info">
-                                    <h4>Cappuccino</h4>
-                                    <p>RM 13.00</p>
-                                </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Item 2" src="https://img.pikbest.com/ai/illus_our/20230423/2be586f55a60e8db58568e3318309dfd.jpg!w700wp" />
+                            <div class="hover-info" style="padding:23px;">
+                                <p1>BREAD</p1>
+                                <p>Enjoy our freshly baked bread, perfect for a quick snack or as a delicious side to complement your coffee.</p>
                             </div>
-                            <div class="recommend-item">
-                                <img src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Latte-Mug---Feb-2023.jpeg" alt="Caffè Latte">
-                                <div class="item-info">
-                                    <h4>Caffè Latte</h4>
-                                    <p>RM 14.00</p>
-                                </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Item 3" src="https://www.shutterstock.com/image-photo/beautiful-cake-cream-chocolate-decoration-600nw-1669432723.jpg" height="250px"/>
+                            <div class="hover-info" style="padding:23px;">
+                                <p1>CAKE</p1>
+                                <p>Indulge in our delightful range of cakes, from creamy classics to fruity favorites, made to satisfy every sweet craving.</p>
                             </div>
-                            <div class="recommend-item">
-                                <img src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Flat-White---Feb-2023.jpeg" alt="Flat White">
-                                <div class="item-info">
-                                    <h4>Flat White</h4>
-                                    <p>RM 14.00</p>
-                                </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <h2>Recommendation</h2>
+                    <h3>
+                    "Looking for something special? We recommend trying our smooth caramel coffee for a delightful pick-me-up, paired with a warm, flaky pastry. For dessert, indulge in our rich chocolate cake—it's sure to satisfy your sweet tooth!"<br></h3>
+                    <div class="items">
+                        <div class="item">
+                            <img alt="Recommendation 1" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Espresso---Feb-2023.jpeg" width="300"/>
+                            <div class="hover-info">
+                                <p1 style="font-size: 30px">ESPRESSO</p1>
+                                <p>RM8.00</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Recommendation 2" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Cappuccino---Feb-2023.jpeg" width="300"/>
+                            <div class="hover-info">
+                                <p1 style="font-size: 30px">CAPPUCCINO</p1>
+                                <p>RM13.00</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Recommendation 3" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Latte-Mug---Feb-2023.jpeg" width="300"/>
+                            <div class="hover-info">
+                                <p1 style="font-size: 30px">LATTE</p1>
+                                <p>RM14.00</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Recommendation 4" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/CH-AT-MOP-Sugar-Donut.jpeg" width="300"/>
+                            <div class="hover-info">
+                                <p1 style="font-size: 30px">DONUT</p1>
+                                <p>RM6.00</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Recommendation 5" height="200" src="https://www.starbucks.com.hk/media/catalog/product/4/c/4ce5ff0e-7946-4a65-83c4-f8983842f62d.jpg" width="300"/>
+                            <div class="hover-info">
+                                <p1 style="font-size: 30px">TIRAIMISU</p1>
+                                <p>RM16.00</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Recommendation 6" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Mocha--Feb-2023.jpeg" width="300"/>
+                            <div class="hover-info">
+                                <p1 style="font-size: 30px">MOCHA</p1>
+                                <p>RM16.00</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="introducing-products">
+                    <div class="text">
+                        <h2>Introducing Products</h2>
+                        <p>Our latest collection features innovative designs and high-quality materials to ensure the best experience for our customers.</p>
+                        <p>Explore our new range of products that combine functionality with style, perfect for any occasion.</p>
+                        <p>Stay tuned for more exciting releases and updates on our upcoming products.</p>
+                    </div>
+                    <div class="video">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -354,7 +378,20 @@ $isLoggedIn = isset($_SESSION['user']);
                 </div>  
             </div>
         </div>
-        
+        <div class="contact-feedback-container" style="display:none;">
+            <div class="contact-section">
+                <h1>Have any Questions or Inquiries?</h1>
+                <p>Having problems when using website? Thinking of a potential ideas?<br/>Mail your feedback to
+                <a href="mailto:hello@dailygrindcoffee.com">hello@dailygrindcoffee.com</a>. We'll be in touch.</p>
+            </div>
+            <div class="form-container">
+                <input placeholder="Name" type="text"/>
+                <input placeholder="E-mail" type="email"/>
+                <textarea placeholder="Message"></textarea>
+                <button onclick="sendFeedbackNotif()">Send Feedback</button>
+            </div>
+            </div>
+        </div>
         
     </div>
     <div id="menu">
@@ -469,25 +506,25 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="overlay" id="overlay1"></div>
     </div>
     <div class="contact-container" style="display: flex;">
-                <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;">Contact</h4>
-                <p>Want to learn more about Fabianero or have a question about our coffee shop? We'd love to hear from you!</p>
-                <div class="contact-info" style="font-weight:bold;">
-                        <p>Address: 123 Coffee Lane, Brewtown, CA 12345</p>
-                        <p>Phone: 555-555-5555</p>
-                        <p>Email: [info@fabianero.com](mailto:info@fabianero.com)</p>
-                </div>
-                <div class="socialMedia">
-                    <i class="bx bxl-facebook-circle"></i>
-                    <i class="bx bxl-instagram"></i>
-                    <i class="bx bxl-twitter"></i>
-                    <i class="bx bxs-phone"></i>
-                    <i class="bx bxl-gmail"></i>
-                </div>
+        <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;">Contact</h4>
+        <p>Want to learn more about Fabianero or have a question about our coffee shop? We'd love to hear from you!</p>
+        <div class="contact-info" style="font-weight:bold;">
+                <p>Address: 123 Coffee Lane, Brewtown, CA 12345</p>
+                <p>Phone: +601987-6543-210</p>
+                <p>Email: hello@dailygrindcoffee.com</p>
+        </div>
+        <div class="socialMedia">
+            <i class="bx bxl-facebook-circle"></i>
+            <i class="bx bxl-instagram"></i>
+            <i class="bx bxl-twitter"></i>
+            <i class="bx bxs-phone"></i>
+            <i class="bx bxl-gmail"></i>
+        </div>
         </div>
     <script src="index_scripts.js"></script>
     
     <footer>
-        <p>&copy; 2024 Fabianero Coffee. All rights reserved.<br>( Scarlet Production )</p>
+        <p>&copy; 2024 Daily Grind Coffee. All rights reserved.<br>( Scarlet Production )</p>
     </footer>
 </body>
 </html>
