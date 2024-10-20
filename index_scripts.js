@@ -5,54 +5,6 @@ window.onload = function() {
     }, 1000);
 }
 
-const prices = { 
-    'Espresso': 8.00,
-    'Americano': 10.00,
-    'Cappuccino': 13.00,
-    'Caffè Latte': 14.00,
-    'Flat White': 14.00,
-    'Caramel Macchiato': 16.00,
-    'Mocha': 16.00,
-    'Espresso Macchiato': 9.00,
-    'Espresso Con Panna': 10.00,
-    'Iced Americano': 10.00,
-    'Iced Latte': 14.00,
-    'Iced Caramel Macchiato': 16.00,
-    'Iced Mocha': 16.00,
-    'Iced Blonde Vanilla Latte': 15.00,
-    'Cold Brew Coffee': 12.00,
-    'Nitro Cold Brew': 14.00,
-    'Cold Brew Latte': 9.00,
-    'Blonde Vanilla Latte': 16.00,
-    'Dark Roast Coffee': 8.00,
-    'Caffè Misto': 12.00,
-    'Classic Donut': 6.50,
-    'Chocolate Cake': 13.00,
-    'Classic Cheesecake': 10.00,
-    'Cinnamon Roll': 10.50,
-    'Chocolate Croissant': 9.00,
-    'Almond Croissant': 10.00,
-    'Cheese Danish': 9.50,
-    'Banana Nut Bread': 12.00,
-    'Blueberry Muffin': 9.50,
-    'Chocolate Chip Muffin': 9.50,
-    'Plain Scone': 8.00,
-    'Blueberry Scone': 8.50,
-    'Raisin Scone': 8.50,
-    'Cheese Scone': 8.50,
-    'Multigrain Bagel': 8.50,
-    'Plain Bagel': 7.50,
-    'Ham & Chesee Roll': 11.50,
-    'Red Velvet Cake': 14.50,
-    'Chocolate Fudge Cake': 16.00,
-    'Carrot Cake': 14.00,
-    'Tiramisu': 15.50,
-    'Lemon Loaf Cake': 13.50,
-    'Chocolate Brownie': 12.50,
-    'Opera Cake': 16.50
-};
-
-
 function loadingPage(){
     document.getElementById('loading-screen').style.display = 'flex';
     setTimeout(function() {

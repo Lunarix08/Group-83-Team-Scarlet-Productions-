@@ -49,7 +49,6 @@ $isLoggedIn = isset($_SESSION['user']);
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="index_styles.css" rel="stylesheet">
-
 </head>
 <body>
     <?php // Start the session at the beginning of the file
@@ -84,14 +83,20 @@ $isLoggedIn = isset($_SESSION['user']);
             <li><a href="#">Services</a></li>
             <li><a href="#" onclick="showContact()">Contact</a></li>
         </ul>
-        <div class="cart">
-            <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> </a>
+        <div class="right-items">
+            <div class="right-icons">
+                <div class="cart">
+                    <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> </a>
+                </div>
+            </div>
+            <?php if ($isLoggedIn): ?>
+                <a href="logout.php" class="logout-btn">Log-Out</a>
+            <?php else: ?>
+                <a href="#" onclick="showLogin()" class="login-btn">Log-In</a>
+            <?php endif; ?>
         </div>
-        <?php if ($isLoggedIn): ?>
-            <a href="logout.php" class="logout-btn">Log-Out</a>
-        <?php else: ?>
-            <a href="#" onclick="showLogin()" class="login-btn">Log-In</a>
-        <?php endif; ?>
+        
+        
     </div>
 
     <!-- Login & Registeration Section-->
@@ -405,12 +410,6 @@ $isLoggedIn = isset($_SESSION['user']);
                     <!-- Categories will be dynamically added here -->
                 </div>
             </div>
-            <div class="filters">
-                <button>Filters</button>
-            </div>
-            <div class="sort">
-                <button>Sort by: Best selling</button>
-            </div>
             <div class="products" id="productsContainer">
                 <?php
                 // Connect to the database
@@ -453,58 +452,73 @@ $isLoggedIn = isset($_SESSION['user']);
         </div>
 
 
-        <div class="cart-sidebar" id="cartSidebar">
+        
+
+        
+    </div>
+    <div class="cart-sidebar" id="cartSidebar">
             <button class="close-btn" id="closeCartButton">x</button>
-            <h2>Shopping Cart</h2>
+            <h2 style="
+    font-family: 'Oswald', sans-serif;
+    font-size: 35;
+    margin: 0;
+    margin-bottom: 35px;
+">Shopping Cart</h2>
             <div id="cartItemsContainer">
                 <!-- Cart items will be dynamically added here -->
             </div>
-            <div class="cart-footer">
+            <?php if ($isLoggedIn): ?>
+                <div class="cart-footer">
                 <div class="total-price" id="totalPrice">Total: $0.00</div>
-                <button class="view-cart-btn">View Cart</button>
+
                 <button class="checkout-btn" id="checkoutButton" onclick="makeCheckout()">Checkout</button>
             </div>
-        </div>
-
-        <div class="payment-page">
-            <button class="close-payment-btn" id="closePaymentButton">Close</button>
-            <div class="payment-sidebar">
-            <h2>Order Summary</h2>
+            <?php else: ?>
+                <div class="cart-footer">
+                <div class="total-price" id="totalPrice">Total: $0.00</div>
+                <button class="checkout-btn" id="checkoutButton">Checkout</button>
+            </div>
+            <?php endif; ?>
             
-            <ul id="order-summary">
-                <!-- Cart items will be displayed here -->
-            </ul>
-            <p id="total-price">Total: $0.00</p>
-            </div>
-            <div class="payment-form">
-                <h2>Make Payment</h2>
-                <form id="payment-form" method="POST" action="process_payment.php" style="display: block;">
-                    <input type="hidden" id="order-id" name="order_id" value="">
-                    
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required><br><br>
-                    
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
-
-                    <label for="expiration-date">Phone Number:</label>
-                    <input type="text" id="phone_number" name="phone_number" required><br><br>
-                    
-                    
-                    <label for="card-number">Card Number:</label>
-                    <input type="text" id="card-number" name="card-number" required><br><br>
-                    
-                    
-                    <label for="cvv">CVV:</label>
-                    <input type="text" id="cvv" name="cvv" required><br><br>
-                    
-                    <button type="submit" id="make-payment">Make Payment</button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="overlay" id="overlay1"></div>
     </div>
+    <div class="payment-page">
+        <button class="close-payment-btn" id="closePaymentButton">Close</button>
+        <div class="payment-sidebar">
+        <h2 style="font-family: 'Oswald', sans-serif;margin-top: 15;">Order Summary</h2>
+        
+        <ul id="order-summary">
+            <!-- Cart items will be displayed here -->
+        </ul>
+        <p id="total-price">Total: $0.00</p>
+        </div>
+        <div class="payment-form">
+        <h2 style="font-family: 'Oswald', sans-serif;font-size: 40;margin-bottom: 5;margin-top: 0;">Make Payment</h2>
+            <form id="payment-form" method="POST" action="process_payment.php" style="display: block;">
+                <input type="hidden" id="order-id" name="order_id" value="">
+                
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="expiration-date">Phone Number:</label>
+                <input type="text" id="phone_number" name="phone_number" required><br><br>
+                
+                
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" required><br><br>
+                
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required><br><br>
+                
+                <button type="submit" id="make-payment">MAKE PAYMENT</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay1"></div>
     <div class="contact-container" style="display: flex;">
         <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;">Contact</h4>
         <p>Want to learn more about Fabianero or have a question about our coffee shop? We'd love to hear from you!</p>
