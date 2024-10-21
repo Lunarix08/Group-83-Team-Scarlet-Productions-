@@ -31,8 +31,8 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #292626;
-    position: fixed;
+    background-color: #242424;
+    position: fixed; 
     top: 0;
     left: 0;
     right: 0;
@@ -43,7 +43,8 @@ body, html {
     color: white;
     font-size: 24px;
     font-weight: bold;
-    flex: 1; /* This will make the logo take up available space on the left */
+    flex: 1; 
+    font-family: "Dancing Script", cursive;
 }
 
 .navbar ul {
@@ -52,7 +53,8 @@ body, html {
     justify-content: center;
     padding: 0;
     margin: 0;
-    flex: 5.5; /* This will make the navigation take up more space in the center */
+    flex: 10;
+    align-items: center;
 }
 
 .navbar ul li {
@@ -62,15 +64,26 @@ body, html {
 .navbar ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    padding: 2 15;
+    border-radius: 105px;
+    background-color: #2d2c2c;
+    transition: 0.5s ease;
 }
-
+.navbar ul li a:hover {
+    color: rgb(49, 48, 37);
+    font-size: 26px;
+    background-color: gold;
+    box-shadow: 0 0 80px rgb(150 150 150), 0 0 20px rgb(201, 186, 121);
+}
 .navbar .right-items {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 20px; /* Add some right margin */
-    gap: 15px; /* Add space between items */
+    margin-right: 20px; 
+    gap: 15px; 
 }
 
 .navbar .login-btn, .navbar .logout-btn {
@@ -89,7 +102,6 @@ body, html {
     font-weight: bold;
 }
 
-/* If you have any icons on the right, adjust their spacing */
 .navbar .right-icons i {
     margin: 0 10px;
     color: white;
@@ -109,14 +121,15 @@ body, html {
     background: rgb(26 26 26);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 80px rgb(150 150 150);
-    text-align: center;
+    box-shadow: 0 0 80px rgb(150 150 150), 0 0 20px rgb(201, 186, 121);
     position: relative;
+    width: 500;
 }
 .login-box h2, .register-box h2 {
     color: white;
     margin-bottom: 20px;
     font-size: 24px;
+    font-family: 'Oswald',sans-serif;
 }
 
 .login-box .input-group, .register-box .input-group {
@@ -129,8 +142,8 @@ body, html {
     border-radius: 25px;
     width: 100%;
     padding: 13px;
-    border: 2px solid #31ab30;
-    box-shadow: 0 0 15px rgb(76 135 22);
+    border: 2px solid gold;
+    box-shadow: 0 0 15px rgb(255 215 0);
     font-size: 16px;
 }
 
@@ -168,13 +181,20 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: 0.5s ease;
+}
+.login-box .login-btn:hover, .register-box .register-btn:hover {
+    border: 1px solid goldenrod;
+    color: goldenrod;
+    font-weight: bold;
 }
 
 .login-box .register-link, .register-box .login-link {
-    margin-top: 20px;
+    margin-top: 50px;
     display: block;
-    color: #007BFF;
-    text-decoration: none;
+    color: gold;
+    text-decoration: underline;
+    font-size: 15;
 }
 
 .close-btn {
@@ -278,15 +298,15 @@ body, html {
 }
 
 .about-title-container {
-    background-image: url('https://kaapimachines.com/wp-content/uploads/2021/10/coffee-latte-art-2021-09-03-01-05-38-utc.webp');
+    background-image: url(https://kaapimachines.com/wp-content/uploads/2021/10/coffee-latte-art-2021-09-03-01-05-38-utc.webp);
     background-size: cover;
     display: flex;
     flex-direction: column;
     padding: 60px;
-    background-color:white;
+    background-color: white;
     color: white;
     text-shadow: 5px 5px 10px rgb(33 31 39);
-    
+    margin-top: 100;
 }
 
 .about-title-container h1 {
@@ -951,25 +971,6 @@ footer {
     cursor: pointer;
     text-decoration: underline;
 }
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #1a1a1a;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-}
-.navbar a:hover {
-    text-decoration: underline;
-}
 .navbar .right-icons i {
     margin: 0 10px;
 }
@@ -1038,6 +1039,7 @@ footer {
     color:  #ffffe4;;
     margin-top: -15;
     margin-bottom: 30;
+    font-size: 20px;
 }
 .recommendation h3 {
     color:  #ffffe4;
@@ -1052,7 +1054,7 @@ footer {
 }
 .browse .item, .recommendation .item {
     width: 30%;
-    background-color: #333;
+    background-color: rgb(51 49 40);
     padding: 10px;
     border-radius: 5px;
     position: relative;
@@ -1127,6 +1129,7 @@ p1{
 }
 .introducing-products p{
     color: white;
+    font-size: 17px;
 }
 .about-container h1, .about-container h2, .about-container p{
     color: white;

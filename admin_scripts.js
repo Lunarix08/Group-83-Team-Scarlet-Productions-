@@ -3,130 +3,6 @@ window.onload = function() {
         document.getElementById('loading-screen').style.display = 'none';
     }, 1000);
 }
-const orders = [
-    {
-        id: 1,
-        customerName: 'Lim Guan Hong',
-        orderDate: '2023-10-01',
-        time: '01:30 p.m.',
-        status: 'pending',
-        products: 'a',
-    },
-    {
-        id: 2,
-        customerName: 'Jane Doe',
-        orderDate: '2023-10-02',
-        time: '02:30 p.m.',
-        status: 'completed',
-        products: 'a',
-    },
-    {
-        id: 3,
-        customerName: 'Bob Smith',
-        orderDate: '2023-10-03',
-        time: '03:30 p.m.',
-        status: 'pending',
-        products:'a',
-    },
-];
-
-
-
-
-function renderOrderList() {
-    loadingPage()
-    // Load orders from local storage
-    const orderList = document.getElementById('order-management');
-    orderList.innerHTML = '';
-    orders.forEach(order => {
-        const orderItem = document.createElement('div');
-        orderItem.classList.add('order-item');
-        if (order.status === 'cancelled') {
-            orderItem.style.opacity = '0.5';
-            orderItem.style.pointerEvents = 'none';
-        }
-        orderItem.innerHTML = `
-            <div>
-                <div>Order ID: <span class="text">${order.id}</span><input type="text" class="input hidden" value="${order.id}"></div>
-                <div>Customer Name: <span class="text">${order.customerName}</span><input type="text" class="input hidden" value="${order.customerName}"></div>
-                <div>Order Date: <span class="text">${order.orderDate}</span><input type="text" class="input hidden" value="${order.orderDate}"></div>
-                <div>Time Stamp: <span class="text">${order.time}</span><input type="text" class="input hidden" value="${order.time}"></div>
-            
-                <div>Status:
-                    <select class="status-select" onchange="refreshOrderManagement(event)">
-                        <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
-                        <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completed</option>
-                        <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
-                    </select>
-                </div>
-                <div>
-                    <a href="#" class="btn btn-view" onclick="showOrderDetails(${order.id})">View Details</a>
-                </div>
-            </div>
-        `;
-        orderList.appendChild(orderItem);
-    });
-}
-function refreshOrderManagement(event) {
-    const button = event.target;
-    
-    const orderItem = button.parentNode.parentNode.parentNode;
-    const orderId = orderItem.querySelector('div > div:first-child > span.text').textContent;
-    const orderStatus = orderItem.querySelector('.status-select').value;
-    if (confirm('Order ID '+orderId + ' has been changed to status "' + orderStatus +'"'+ '\n' + 'The status will be updated after refreshing the page.'+'\n'+'(Press OK to proceed)')) {
-        // Update the orders array
-        const orderIndex = orders.findIndex(order => order.id === parseInt(orderId));
-        if (orderIndex !== -1) {
-            orders[orderIndex].status = orderStatus;
-        }
-        
-        // Update the order status in the DOM
-        const statusDiv = orderItem.querySelector('div > div:nth-child(5)');
-        statusDiv.innerHTML = `
-        <div>Status:
-            <select class="status-select" onchange="refreshOrderManagement(event)">
-                <option value="pending" ${orderStatus === 'pending' ? 'selected' : ''}>Pending</option>
-                <option value="completed" ${orderStatus === 'completed' ? 'selected' : ''}>Completed</option>
-                <option value="cancelled" ${orderStatus === 'cancelled' ? 'selected' : ''}>Cancelled</option>
-            </select>
-        </div>`;
-        
-        // Update the order item style
-        if (orderStatus === 'cancelled') {
-            orderItem.style.opacity = '0.5';
-            orderItem.style.pointerEvents = 'none';
-        } else {
-            orderItem.style.opacity = '1';
-            orderItem.style.pointerEvents = 'auto';
-        }
-    }
-}
-function showOrderDetails(orderId) {
-    const order = orders.find(order => order.id === orderId);
-    const modalBody = document.getElementById('order-details-modal-body');
-    modalBody.innerHTML = `
-        <p><strong>Customer Name:</strong> ${order.customerName}</p>
-        <p><strong>Phone Number:</strong> 123-456-7890</p>
-        <p><strong>Order ID:</strong> ${order.id}</p>
-        <div class="line"></div>
-        <p><strong>Items Bought:</strong></p>
-        <div class="line"></div>
-        <div style="max-height: 340px; overflow-y: auto;">
-            ${order.products.map(product => `
-                <div>
-                    <p style="margin-top: 15;font-weight: bold;">${product.name}</p>
-                    <p>Quantity: ${product.quantity}</p>
-                    <p style="margin-bottom: 30;">Sub total (RM): ${Number(product.price * product.quantity).toFixed(2)}</p>
-                </div>
-            `).join('')}
-        </div>
-        <div class="line"></div>
-        <p><strong style="font-size: 26;font-weight: bold;">Total Price (RM): ${Number(order.products.reduce((total, product) => total + product.price * product.quantity, 0)).toFixed(2)}</strong></p>
-    `;
-    document.getElementById('modal-overlay').classList.add('show');
-    document.getElementById('order-details-modal').style.display = 'block';
-}
-document.addEventListener('DOMContentLoaded', renderOrderList);
 
 function deleteMenuItem(event) {
     if (confirm("Are you sure you want to delete this menu item?")) {
@@ -316,7 +192,6 @@ function showSection(sectionId) {
     loadingPage()
     document.getElementById('menu-management').classList.add('hidden');
     document.getElementById('user-management').classList.add('hidden');
-    document.getElementById('order-management').classList.add('hidden');
     document.getElementById('payment-management').classList.add('hidden');
     document.getElementById(sectionId).classList.remove('hidden');
 }
@@ -631,3 +506,58 @@ function loadingPage(){
         document.getElementById('loading-screen').style.display = 'none';
     }, 1000);
 }
+function adminSearch() {
+    // Get the search input value
+    var input = document.getElementById('admin-search');
+    var filter = input.value.toUpperCase();
+
+    // Get all the sections you want to search through
+    var sections = document.querySelectorAll('#menu-management, #user-management, #payment-management');
+
+    sections.forEach(function(section) {
+        // Get all items in each section
+        var items = section.querySelectorAll('.menu-item, .user-item, .payment-item');
+        var categories = section.querySelectorAll('.category-section');
+        var subcategories = section.querySelectorAll('.subcategory-section');
+        
+        var visibleItems = 0;
+
+        // Hide all categories and subcategories initially
+        categories.forEach(cat => cat.style.display = 'none');
+        subcategories.forEach(subcat => subcat.style.display = 'none');
+
+        items.forEach(function(item) {
+            var textContent = item.textContent || item.innerText;
+            if (textContent.toUpperCase().indexOf(filter) > -1) {
+                item.style.display = "";
+                visibleItems++;
+
+                // Show the parent subcategory and category
+                var parentSubcategory = item.closest('.subcategory-section');
+                var parentCategory = item.closest('.category-section');
+                
+                if (parentSubcategory) parentSubcategory.style.display = "";
+                if (parentCategory) parentCategory.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        });
+
+        // Show/hide "No results" message
+        var noResults = section.querySelector('.no-results') || document.createElement('p');
+        noResults.className = 'no-results';
+        noResults.textContent = 'No results found';
+        
+        if (visibleItems === 0) {
+            if (!section.contains(noResults)) {
+                section.appendChild(noResults);
+            }
+            noResults.style.display = "";
+        } else {
+            noResults.style.display = "none";
+        }
+    });
+}
+
+// Add event listener to search input
+document.getElementById('admin-search').addEventListener('keyup', adminSearch);

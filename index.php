@@ -43,11 +43,12 @@ $isLoggedIn = isset($_SESSION['user']);
 <?php endif; ?>
 
 <head>
-    <title>Daily Grind || Home</title>
+    <title>Daily Grind || Homepage</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
     <link href="index_styles.css" rel="stylesheet">
 </head>
 <body>
@@ -290,7 +291,8 @@ $isLoggedIn = isset($_SESSION['user']);
                         <p>Stay tuned for more exciting releases and updates on our upcoming products.</p>
                     </div>
                     <div class="video">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/vFcS080VYQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <p>Video made by: Old Game Box</p>
                     </div>
                 </div>
             </div>
@@ -523,7 +525,7 @@ $isLoggedIn = isset($_SESSION['user']);
                 <label for="cvv">CVV:</label>
                 <input type="text" id="cvv" name="cvv" required><br><br>
                 
-                <button type="submit" id="make-payment">MAKE PAYMENT</button>
+                <button type="submit" id="make-payment" onclick="storeCartInSession();">MAKE PAYMENT</button>
             </form>
         </div>
     </div>
@@ -531,7 +533,7 @@ $isLoggedIn = isset($_SESSION['user']);
     <div class="overlay" id="overlay1"></div>
     <div class="contact-container" style="display: flex;">
         <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;">Contact</h4>
-        <p>Want to learn more about Fabianero or have a question about our coffee shop? We'd love to hear from you!</p>
+        <p>Want to learn more about Daily Grind or have a question about our coffee shop? We'd love to hear from you!</p>
         <div class="contact-info" style="font-weight:bold;">
                 <p>Address: 123 Coffee Lane, Brewtown, CA 12345</p>
                 <p>Phone: +601987-6543-210</p>

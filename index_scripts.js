@@ -15,7 +15,7 @@ function showAbout() {
     loadingPage();
     document.getElementById('menu').style.display = 'none';
     document.getElementById('non-menu').style.display = 'flex';
-    document.title = "Fabianero || About Us";
+    document.title = "Daily Grind || About Us";
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
@@ -27,7 +27,7 @@ function showContact() {
     loadingPage();
     document.getElementById('menu').style.display = 'none';
     document.getElementById('non-menu').style.display = 'flex';
-    document.title = "Fabianero || About Us";
+    document.title = "Daily Grind || Contact Us";
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
@@ -37,6 +37,7 @@ function showContact() {
 }
 function viewMenu(){
     loadingPage();
+    document.title = "Daily Grind || Menu";
     document.getElementById('non-menu').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'flex';
     const menu = document.getElementById('menu');
@@ -51,7 +52,7 @@ function viewMenu(){
 
 function showLogin() {
     loadingPage();
-    document.title = "Fabianero || Login";
+    document.title = "Daily Grind || Login";
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.about-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
@@ -62,7 +63,7 @@ function showLogin() {
 
 function showRegister() {
     loadingPage();
-    document.title = "Fabianero || Register";
+    document.title = "Daily Grind || Register";
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'flex';
@@ -191,6 +192,7 @@ function sendFeedbackNotif(){
 }
 function showHome() {
     loadingPage();
+    document.title = "Daily Grind || Homepage";
     const homeContainer = document.querySelector('.home-container');
     const aboutContainer = document.querySelector('.about-container');
     const loginContainer = document.querySelector('.login-container');

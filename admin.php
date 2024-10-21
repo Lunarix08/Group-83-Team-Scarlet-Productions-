@@ -65,6 +65,7 @@
             <div id="management-header">
                 <h2>Menu Management</h2>
                 <a href="#" class="btn btn-add" onclick="addNewProduct(event)">New Product</a>
+                <input type="text" id="admin-search" placeholder="Search...">
             </div>
             
             <div class="line" style="margin-top:25;"></div>
@@ -151,6 +152,7 @@
         <div id="user-management" class="hidden">
             <h2>User Management</h2>
             <a href="#" class="btn btn-add" onclick="addNewUser(event)">New User</a>
+            <input type="text" id="admin-search" placeholder="Search...">
             <div id="user-list">
                 <?php
                 // Connect to the database
@@ -213,10 +215,6 @@
             </div>
         </div>
 
-        <div id="order-management" class="hidden">
-            <h2>Order Management</h2>      
-            //This is an abandon section!!!!      
-        </div>
 
         <div id="payment-management" class="hidden">
             <h2>Payment Management</h2>
