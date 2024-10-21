@@ -507,47 +507,51 @@ function loadingPage(){
     }, 1000);
 }
 function adminSearch() {
-    // Get the search input value
     var input = document.getElementById('admin-search');
     var filter = input.value.toUpperCase();
 
-    // Get all the sections you want to search through
+    // Arrays to hold all searchable items
+    var allItems = [];
+    var allSections = [];
+
+    // Get all the sections
     var sections = document.querySelectorAll('#menu-management, #user-management, #payment-management');
 
     sections.forEach(function(section) {
         // Get all items in each section
         var items = section.querySelectorAll('.menu-item, .user-item, .payment-item');
-        var categories = section.querySelectorAll('.category-section');
-        var subcategories = section.querySelectorAll('.subcategory-section');
-        
-        var visibleItems = 0;
+        allItems = allItems.concat(Array.from(items));
+        allSections = allSections.concat(Array.from(section.querySelectorAll('.category-section, .subcategory-section')));
+    });
 
-        // Hide all categories and subcategories initially
-        categories.forEach(cat => cat.style.display = 'none');
-        subcategories.forEach(subcat => subcat.style.display = 'none');
+    // Hide all sections initially
+    allSections.forEach(section => section.style.display = 'none');
 
-        items.forEach(function(item) {
-            var textContent = item.textContent || item.innerText;
-            if (textContent.toUpperCase().indexOf(filter) > -1) {
-                item.style.display = "";
-                visibleItems++;
+    var visibleItems = 0;
 
-                // Show the parent subcategory and category
-                var parentSubcategory = item.closest('.subcategory-section');
-                var parentCategory = item.closest('.category-section');
-                
-                if (parentSubcategory) parentSubcategory.style.display = "";
-                if (parentCategory) parentCategory.style.display = "";
-            } else {
-                item.style.display = "none";
+    allItems.forEach(function(item) {
+        var textContent = item.textContent || item.innerText;
+        if (textContent.toUpperCase().indexOf(filter) > -1) {
+            item.style.display = "";
+            visibleItems++;
+
+            // Show the parent sections
+            var parentSection = item.closest('.category-section, .subcategory-section');
+            while (parentSection) {
+                parentSection.style.display = "";
+                parentSection = parentSection.parentElement.closest('.category-section, .subcategory-section');
             }
-        });
+        } else {
+            item.style.display = "none";
+        }
+    });
 
-        // Show/hide "No results" message
+    // Show/hide "No results" message
+    sections.forEach(function(section) {
         var noResults = section.querySelector('.no-results') || document.createElement('p');
         noResults.className = 'no-results';
         noResults.textContent = 'No results found';
-        
+
         if (visibleItems === 0) {
             if (!section.contains(noResults)) {
                 section.appendChild(noResults);
@@ -557,6 +561,65 @@ function adminSearch() {
             noResults.style.display = "none";
         }
     });
+    var userManagement = document.getElementById('user-management');
+    var paymentManagement = document.getElementById('payment-management');
+
+    // Arrays to hold all searchable items
+    var userItems = userManagement.querySelectorAll('.user-item');
+    var paymentItems = paymentManagement.querySelectorAll('.payment-item');
+
+    var visibleUserItems = 0;
+    var visiblePaymentItems = 0;
+
+    // Search user items
+    userItems.forEach(function(item) {
+        var textContent = item.textContent || item.innerText;
+        if (textContent.toUpperCase().indexOf(filter) > -1) {
+            item.style.display = "";
+            visibleUserItems++;
+        } else {
+            item.style.display = "none";
+        }
+    });
+
+    // Search payment items
+    paymentItems.forEach(function(item) {
+        var textContent = item.textContent || item.innerText;
+        if (textContent.toUpperCase().indexOf(filter) > -1) {
+            item.style.display = "";
+            visiblePaymentItems++;
+        } else {
+            item.style.display = "none";
+        }
+    });
+
+    // Show/hide "No results" message for user management
+    var userNoResults = userManagement.querySelector('.no-results') || document.createElement('p');
+    userNoResults.className = 'no-results';
+    userNoResults.textContent = 'No users found';
+
+    if (visibleUserItems === 0) {
+        if (!userManagement.contains(userNoResults)) {
+            userManagement.appendChild(userNoResults);
+        }
+        userNoResults.style.display = "";
+    } else {
+        userNoResults.style.display = "none";
+    }
+
+    // Show/hide "No results" message for payment management
+    var paymentNoResults = paymentManagement.querySelector('.no-results') || document.createElement('p');
+    paymentNoResults.className = 'no-results';
+    paymentNoResults.textContent = 'No payments found';
+
+    if (visiblePaymentItems === 0) {
+        if (!paymentManagement.contains(paymentNoResults)) {
+            paymentManagement.appendChild(paymentNoResults);
+        }
+        paymentNoResults.style.display = "";
+    } else {
+        paymentNoResults.style.display = "none";
+    }
 }
 
 // Add event listener to search input

@@ -30,6 +30,9 @@
                 <img src="assets/icon.webp" alt="Admin Panel Icon" />
                 <h1 class="menu-text">Admin Panel</h1>
             </div>
+            <div class="sidebar-search">
+                <input type="text" id="admin-search" placeholder="Search...">
+            </div>
             <ul>
                 <li onclick="showSection('menu-management')">
                     <i class="fas fa-utensils"></i>
@@ -60,12 +63,10 @@
     </div>
     
     <div class="container">
-    
         <div id="menu-management">
             <div id="management-header">
                 <h2>Menu Management</h2>
                 <a href="#" class="btn btn-add" onclick="addNewProduct(event)">New Product</a>
-                <input type="text" id="admin-search" placeholder="Search...">
             </div>
             
             <div class="line" style="margin-top:25;"></div>
@@ -152,7 +153,6 @@
         <div id="user-management" class="hidden">
             <h2>User Management</h2>
             <a href="#" class="btn btn-add" onclick="addNewUser(event)">New User</a>
-            <input type="text" id="admin-search" placeholder="Search...">
             <div id="user-list">
                 <?php
                 // Connect to the database

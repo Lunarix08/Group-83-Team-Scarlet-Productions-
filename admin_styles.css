@@ -498,3 +498,28 @@ select#role, input, textarea, select{
     border-radius: 50%;
     margin-right: 15;
 }
+.sidebar-search {
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+
+#admin-search {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ffffff;
+    border-radius: 76px;
+    font-size: 14px;
+    background-color: #070d0b;
+    transition: all 0.3s ease;
+}
+
+#admin-search:focus {
+    outline: none;
+    border-color: #1e3932;
+    background-color: #fff;
+}
+
+.sidebar-container.collapsed .sidebar-search {
+    display: none;
+}
