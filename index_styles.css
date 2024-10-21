@@ -540,7 +540,7 @@ footer {
     font-size: 24px;
     font-weight: bold;
     animation: fadeOut 1s forwards;
-    z-index: 10;
+    z-index: 9999999;
 }
 /* Add this to your CSS file */
 .spinner-border {
@@ -598,14 +598,14 @@ footer {
 .category-dropdown {
     display: none;
     position: absolute;
-    top: 40px;
-    left: -275;
-    background-color: #333;
-    border-radius: 5px;
+    top: -15px;
+    left: 60;
+    background-color: #1a1a1a;
+    border-radius: 50px;
     overflow: hidden;
-    box-shadow: 0 0 31px rgb(0 0 0);
+    box-shadow: 0 0 50px rgb(0 0 0);
     z-index: 1;
-    border: 1px solid white;
+    border: .5px solid #ffffff;
 }
 .category-dropdown a {
     display: block;
@@ -615,7 +615,7 @@ footer {
     width: 300px;
 }
 .category-dropdown a:hover {
-    background-color: #555;
+    background-color: #272727;
 }
 .filters, .sort {
     display: inline-block;
@@ -1008,11 +1008,13 @@ footer {
 .hero-text h1 {
     font-size: 50px;
     margin: 0;
+    text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000;
 }
 .hero-text p {
     color: #ffffe4;
     font-size: 20px;
     margin: 10px 0;
+    text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000;
 }
 .hero-text button {
     padding: 10px 20px;
@@ -1198,4 +1200,34 @@ p1{
     width: 100%;
     height: 100%;
     margin-bottom: 20px;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    font-family: 'Montserrat',sans-serif;
+}
+
+#searchInput {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 30px 0 0 30px;
+    font-family: 'Montserrat',sans-serif;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    font-family: 'Montserrat',sans-serif;
+}
+
+#searchButton:hover {
+    background-color: #555;
 }

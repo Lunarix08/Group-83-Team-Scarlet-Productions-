@@ -416,6 +416,10 @@ $isLoggedIn = isset($_SESSION['user']);
                     <!-- Categories will be dynamically added here -->
                 </div>
             </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button id="searchButton">Search</button>
+            </div>
             <div class="products" id="productsContainer">
                 <?php
                 // Connect to the database

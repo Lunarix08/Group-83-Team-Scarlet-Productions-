@@ -169,8 +169,6 @@ overlay.addEventListener('click', function() {
 });
 
 
-// Add an event listener to the make payment button
-productsContainer.addEventListener('click', addToCart);
 function displayProducts(products, categoryName) {
     loadingPage();
     productsContainer.innerHTML = '';
@@ -271,7 +269,7 @@ function addToCartEventListeners() {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default button behavior
+            event.preventDefault();
             const name = this.getAttribute('data-name');
             const price = parseFloat(this.getAttribute('data-price'));
             const image = this.getAttribute('data-image');
@@ -407,6 +405,10 @@ function loadProducts(category = 'all') {
 
 // Function to add event listeners to "Add to Cart" buttons
 function addToCart(name, price, image) {
+    if (!name || typeof price !== 'number' || !image) {
+        console.error('Invalid product data:', { name, price, image });
+        return;
+    }
 
     const existingItem = cartItems.find(item => item.name === name);
     if (existingItem) {
@@ -505,6 +507,7 @@ function updateCartDisplay() {
 document.addEventListener('DOMContentLoaded', function() {
     loadSubcategories();
     loadProducts();
+    setupSearch();
 });
 document.addEventListener('click', function(event) {
     const dropdown = document.querySelector('.category-dropdown');
@@ -531,3 +534,31 @@ function nextSlide() {
 }
 
 setInterval(nextSlide, 3000);
+
+function searchProducts() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const allProducts = document.querySelectorAll('.product');
+    
+    allProducts.forEach(product => {
+        const productName = product.querySelector('h2').textContent.toLowerCase();
+        const productDescription = product.querySelector('p').textContent.toLowerCase();
+        
+        if (productName.includes(searchTerm) || productDescription.includes(searchTerm)) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+function setupSearch() {
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+
+    searchButton.addEventListener('click', searchProducts);
+    searchInput.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            searchProducts();
+        }
+    });
+}

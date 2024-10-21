@@ -464,7 +464,7 @@ select#role, input, textarea, select{
     font-size: 24px;
     font-weight: bold;
     animation: fadeOut 1s forwards;
-    z-index: 10;
+    z-index: 9999999;
 }
 /* Add this to your CSS file */
 .spinner-border {
