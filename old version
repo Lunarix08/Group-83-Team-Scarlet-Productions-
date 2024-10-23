@@ -1,6 +1,0 @@
-<?php if ($isLoggedIn): ?>
-                    <button class="view-menu-btn" onclick="viewMenu()">Order Menu</button>
-                <?php else: ?>
-                    <button class="login-btn" onclick="showLogin()">Log-In</button>
-                    <button class="signup-btn" onclick="showRegister()">Sign-Up</button>
-                <?php endif; ?>
