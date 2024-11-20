@@ -15,7 +15,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(0 0 0 / 77%);
+    background-color: rgb(28 28 28 / 70%);
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s, visibility 0.5s;
@@ -31,7 +31,8 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #242424;
+    background-color: rgb(28 28 28 / 70%); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply the blur effect */
     position: fixed; 
     top: 0;
     left: 0;
@@ -336,11 +337,10 @@ body, html {
 }
 
 .about-team-container {
-    padding: 60px;
-    margin: 60;
-    background-color: #81795c52;
-    width: 80%;
-    border-radius: 50px;
+    padding: 40px;
+    background: url(https://static.vecteezy.com/system/resources/previews/027/102/824/non_2x/group-of-business-team-members-raising-hands-in-the-sunset-sky-background-to-depict-teamwork-free-photo.jpg);
+    width: 100%;
+    background-size: cover;
 }
 
 .about-team-container h2 {
@@ -352,6 +352,13 @@ body, html {
     text-shadow: 5px 5px 10px rgb(33 31 39);
 }
 
+.about-team-container h3 {
+    font-size: 30px;
+    font-family: "Oswald", sans-serif;
+    color: white;
+}
+
+
 .team-members {
     display: flex;
     flex-wrap: wrap;
@@ -361,14 +368,15 @@ body, html {
 .team-member {
     margin: 20px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #1a1a1a;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 15%;
 }
 
 .team-member img {
-    width: 100%;
-    height: 150px;
+    width: 225px;
+    height: 225px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }
@@ -435,13 +443,13 @@ body, html {
 
 .about-goals-container li h4 {
     color: white;
-    font-size: 18px;
+    font-size: 25px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
 
 .about-goals-container li p {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 10px;
 }
 
@@ -452,6 +460,7 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 35px;
+    
 }
 
 .about-mission-container h2,
@@ -483,13 +492,14 @@ body, html {
     text-align: center;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    height: 280px;
 }
 
 
 .about-mission-container li h4,
 .about-values-container li h4 , .about-goals-container li h4{
     color: white;
-    font-size: 18px;
+    font-size: 25px;
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
@@ -504,7 +514,7 @@ body, html {
 }
 .about-mission-container li:hover,
 .about-values-container li:hover,  .about-goals-container li:hover{
-    background-color: #f7f7f7;
+    background-color: rgb(255 255 200);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
@@ -523,10 +533,7 @@ footer {
     background-color: #0000009e;
     text-align: center;
     color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    z-index: 1000;
+    padding: 10px;
 }
 .socialMedia{
     display: flex;
@@ -590,11 +597,12 @@ footer {
 }
 .header-image {
     width: 100%;
-    height: 300px;    
+    height: 300px;
     position: absolute;
+    margin-top: 115;
 }
 .container {
-    padding: 350 100 0 100;
+    padding: 465 100 0 100;
     text-align: center;
     width: 100%;
     margin-bottom: 100px;
@@ -669,9 +677,9 @@ footer {
 .product img {
     width: 100%;
     border-radius: 10px;
+    border: 2px solid #519986;
 }
 .product h2 {
-    margin: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -679,6 +687,9 @@ footer {
 .product h2 span {
     font-size: 16px;
     color: #ccc;
+}
+.product p{
+    text-align: left;
 }
 .product .add-to-cart {
     position: absolute;
@@ -1053,15 +1064,16 @@ footer {
     justify-content: space-between;
 }
 .browse .item, .recommendation .item {
-    width: 30%;
-    background-color: rgb(51 49 40);
-    padding: 10px;
-    border-radius: 5px;
+    width: 25%;
+    background-color: rgb(72 103 94);
+    padding: 4;
+    border-radius: 6px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 .browse .item{
-    height: 250px;
+    height: 275px;
 }
 .browse .item img{
     height: 250px;
@@ -1072,7 +1084,7 @@ footer {
 }
 .browse .item img, .recommendation .item img {
     width: 100%;
-    
+    height: 100%;
 }
 .recommendation .items {
     overflow-x: auto;
@@ -1097,7 +1109,7 @@ footer {
 .overlay-gradient{
     width: 100%;
     height: 800;
-    background: linear-gradient(0deg, black, transparent);
+    background: linear-gradient(0deg, #0c0906, transparent);
     z-index: 10;
     position: absolute;
 }
@@ -1106,7 +1118,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgb(136 195 178 / 56%), rgba(0, 0, 0, 0));
     color: #fff;
     padding: 10px;
     box-sizing: border-box;

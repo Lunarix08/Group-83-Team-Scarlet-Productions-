@@ -87,7 +87,7 @@ $isLoggedIn = isset($_SESSION['user']);
         <ul>
             <li><a href="#" onclick="showHome()">Home</a></li>
             <li><a href="#" onclick="showAbout()">About</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="#" onclick="viewMenu()">Menu</a></li>
             <li><a href="#" onclick="showContact()">Contact</a></li>
         </ul>
         <div class="right-items">
@@ -111,6 +111,7 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="login-box">
             <div class="close-btn" onclick="showHome()">×</div>
             <h2>Log-In </h2>
+            <!--<p>Login to explore the attractive menus to continue your journey on this website!</p>-->
             <form method="POST" action="login.php">
                 <div class="input-group">
                     <input name="email" placeholder="Email" type="text" required/>
@@ -370,25 +371,26 @@ $isLoggedIn = isset($_SESSION['user']);
                             </ul>
                         </div>
                     </div>
-                    <!--<div class="about-team-container">
-                        <h2>Meet Our Team</h2>
-                        <div class="team-members">
-                            <div class="team-member">
-                                <img src="team-member-1.jpg" alt="Team Member 1">
-                                <h3>John Doe</h3>
-                                <p>Founder and CEO</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
-                            </div>
-                            <div class="team-member">
-                                <img src="team-member-2.jpg" alt="Team Member 2">
-                                <h3>Jane Smith</h3>
-                                <p>Head of Coffee Operations</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
-                            </div>
-                        </div>
-                    </div>-->
+                    
             
                 </div>  
+            </div>
+            <div class="about-team-container">
+                <h2>Meet Our Team</h2>
+                <div class="team-members">
+                    <div class="team-member">
+                        <img src="https://img.freepik.com/free-photo/portrait-successful-handsome-executive-businessman-smart-casual-wear-looking-camera-smiling_7861-3115.jpg?t=st=1732107105~exp=1732110705~hmac=13dd5b2425dce1e152496468b76bdb13fbac2edf285013cbf7d088987fd4c9a6&w=1380" alt="Team Member 1">
+                        <h3>KOA FUJI</h3>
+                        <p>Founder and CEO</p>
+                        <p>Dedicated to crafting exceptional coffee experiences. With a love for coffee and community, he has turned The Daily Grind into a hub for premium brews and warm hospitality.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://img.freepik.com/free-photo/handsome-man_144627-18632.jpg" alt="Team Member 2">
+                        <h3>JOHN MASON</h3>
+                        <p>Head of Coffee Operations</p>
+                        <p>Dedicated to maintaining high standards in quality and efficiency, leading the team with passion and precision to deliver the best coffee experience to every customer.</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="contact-feedback-container" style="display:none;">
