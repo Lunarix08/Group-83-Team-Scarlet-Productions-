@@ -233,7 +233,7 @@ body, html {
     color: cornsilk;
     border: 2px solid cornsilk;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    
+    font-size: 20px;
     font-weight: bold;
     width: 150;
     height: 50;
@@ -382,11 +382,11 @@ body, html {
 }
 
 .contact-container {
-    padding: 60;
+    padding: 30 60;
     background-color: #292626;
     color: white;
     flex-direction: column;
-    height: 580px;
+    height: 450px;
 }
 
 .contact-container h2 {
@@ -394,11 +394,21 @@ body, html {
     font-family: "Oswald", sans-serif;
     margin-bottom: 10px;
 }
-
-
+.contact-container h4 {
+    font-size: 45px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    transition: 0.3s ease;
+    width: 1%;
+}
+.contact-container h4:hover {
+    color: gold;
+    cursor: pointer;
+    text-shadow: 0 0 80px rgb(41 38 38), 0 0 30px rgb(201, 186, 121);
+}
 
 .contact-container p {
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 10px;
 }
 
@@ -551,7 +561,7 @@ footer {
 }
 .socialMedia .bx:hover{
     cursor: pointer;
-    color: hsl(45, 3%, 28%);
+    color: white;
     transform: translateY(-4px);
     
 }
@@ -602,7 +612,7 @@ footer {
     margin-top: 115;
 }
 .container {
-    padding: 465 100 0 100;
+    padding: 465 40 0 40;
     text-align: center;
     width: 100%;
     margin-bottom: 100px;
@@ -663,7 +673,7 @@ footer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 .product {
     background-color: #333;
@@ -673,6 +683,7 @@ footer {
     text-align: center;
     position: relative;
     color: white;
+    transition: 0.5s ease;
 }
 .product img {
     width: 100%;
@@ -1213,7 +1224,7 @@ p1{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 730px;
     margin-bottom: 20px;
 }
 .search-container {
@@ -1245,4 +1256,25 @@ p1{
 
 #searchButton:hover {
     background-color: #555;
+}
+.cart{
+    position: relative;
+}
+.badge {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    background-color: #48675e;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+.whole-logo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.product:hover{
+    box-shadow: 0 0 30px rgb(181 181 181 / 70%), 0 0 20px gold;
 }

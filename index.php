@@ -77,12 +77,15 @@ $isLoggedIn = isset($_SESSION['user']);
     <!-- Homepage -->
     
     <div class="navbar">
-        <img src="assets/icon.webp" alt="Admin Panel Icon" style="
-            width: 60;
-            margin-right: 10;
-            border-radius: 50%;
-        ">
-        <div class="logo">THE DAILY GRIND</div>
+        <div class="whole-logo" onclick="showHome()">
+            <img src="assets/icon.webp" alt="Admin Panel Icon" style="
+                width: 60;
+                margin-right: 10;
+                border-radius: 50%;
+            ">
+            <div class="logo">THE DAILY GRIND</div>
+        </div>
+        
 
         <ul>
             <li><a href="#" onclick="showHome()">Home</a></li>
@@ -93,7 +96,8 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="right-items">
             <div class="right-icons">
                 <div class="cart">
-                    <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> </a>
+                    <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="badge">0</span></a>
+                    
                 </div>
             </div>
             <?php if ($isLoggedIn): ?>
@@ -534,7 +538,7 @@ $isLoggedIn = isset($_SESSION['user']);
     
     <div class="overlay" id="overlay1"></div>
     <div class="contact-container" style="display: flex;">
-        <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;">Contact</h4>
+        <h4 style="font-size: 45px;font-family: 'Oswald', sans-serif;" onclick="showContact()">Contact</h4>
         <p>Want to learn more about Daily Grind or have a question about our coffee shop? We'd love to hear from you!</p>
         <div class="contact-info" style="font-weight:bold;">
                 <p>Address: 123 Coffee Lane, Brewtown, CA 12345</p>

@@ -407,6 +407,7 @@ function loadProducts(category = 'all') {
 
 // Function to add event listeners to "Add to Cart" buttons
 function addToCart(name, price, image) {
+    
     if (!name || typeof price !== 'number' || !image) {
         console.error('Invalid product data:', { name, price, image });
         return;
@@ -424,6 +425,7 @@ function addToCart(name, price, image) {
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById('cartItemsContainer');
     const orderSummary = document.getElementById('order-summary');
+    const cartCountBadge = document.getElementById('cart-count'); 
     if (!cartItemsContainer || !orderSummary) {
         console.error('Cart items container or order summary not found');
         return;
@@ -505,7 +507,10 @@ function updateCartDisplay() {
     if (totalPriceElementInOrderSummary) {
         totalPriceElementInOrderSummary.textContent = `Total: RM${total.toFixed(2)}`;
     }
+    const totalItemsCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    cartCountBadge.textContent = totalItemsCount > 0 ? totalItemsCount : '0'; // Show count or hide if 0
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     loadSubcategories();
     loadProducts();
@@ -564,3 +569,4 @@ function setupSearch() {
         }
     });
 }
+let cartCount = 0;
