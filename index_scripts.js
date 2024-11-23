@@ -507,10 +507,17 @@ function updateCartDisplay() {
     if (totalPriceElementInOrderSummary) {
         totalPriceElementInOrderSummary.textContent = `Total: RM${total.toFixed(2)}`;
     }
+    
     const totalItemsCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
     cartCountBadge.textContent = totalItemsCount > 0 ? totalItemsCount : '0'; // Show count or hide if 0
-}
 
+    // Show or hide the cart count badge
+    if (totalItemsCount === 0) {
+        cartCountBadge.style.display = 'none'; // Hide badge if cart is empty
+    } else {
+    cartCountBadge.style.display = 'block'; // Show badge if there are items in the cart
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     loadSubcategories();
     loadProducts();

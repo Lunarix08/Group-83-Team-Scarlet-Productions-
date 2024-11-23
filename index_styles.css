@@ -5,7 +5,7 @@ body, html {
     width: 100%;
     height: 100%;
     font-family: "Montserrat", sans-serif;
-    background-color: #1a1a1a;
+    background-color: #f3d8c4;
     position: absolute;
     z-index: 1;
 }
@@ -98,9 +98,10 @@ body, html {
     transition: 0.5s ease;
 }
 .navbar .login-btn:hover , .navbar .logout-btn:hover {
-    border: 1px solid gold;
-    color: gold;
-    font-weight: bold;
+    border: 1px solid #ffe6d5;
+    color: #f8c9aa;
+    border-radius: 50px;
+    background-color: rgb(73 58 48 / 50%);
 }
 
 .navbar .right-icons i {
@@ -216,29 +217,27 @@ body, html {
 }
 
 .home-container .view-menu-btn, .home-container .login-btn, .home-container .signup-btn {
-    font-family: "Montserrat", sans-serif;
-    background: #0b1c0788;
-    color: gold;
-    border: 2px solid gold;
-    border-radius: 5px;
+    font-family: "Oswald", sans-serif;
+    background: #141817ba;
+    color: #ffcfaf;
+    border: 1.5px solid #ffe6d5;
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 25px;
     margin: 10px;
-    width: 140;
-    height: 40;
-    transition: 0.8s ease;
+    width: 200;
+    height: 60;
+    transition: 0.3s ease;
+    position: relative;
+    left: -10px;
 }
 .home-container .view-menu-btn:hover, .home-container .login-btn:hover, .home-container .signup-btn:hover {
-    background-color: #0b1c0788;
-    color: cornsilk;
-    border: 2px solid cornsilk;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    font-size: 20px;
+    background-color: #e3b99c;
+    color: #352a23;
+    border: 1.5px solid #893800;
+    box-shadow: 0 0 10px rgb(215 134 78);
     font-weight: bold;
-    width: 150;
-    height: 50;
 }
-
 
 .line {
     border-bottom: 1.5px solid #000000;
@@ -290,7 +289,7 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1a1a1a;
+    background-color: #f3d8c4;
     transition: opacity 0.5s;
 }
 
@@ -299,70 +298,91 @@ body, html {
 }
 
 .about-title-container {
-    background-image: url(https://kaapimachines.com/wp-content/uploads/2021/10/coffee-latte-art-2021-09-03-01-05-38-utc.webp);
-    background-size: cover;
+    position: relative; /* Make the parent relative to position the overlay */
     display: flex;
     flex-direction: column;
     padding: 60px;
-    background-color: white;
-    color: white;
-    text-shadow: 5px 5px 10px rgb(33 31 39);
-    margin-top: 100;
+    margin-top: 100px; /* Add 'px' to margin-top value */
+    color: white; /* Text color */
+    text-shadow: 5px 5px 10px rgb(33, 31, 39); /* Text shadow */
+    overflow: hidden; /* Ensure no overflow from the pseudo-element */
 }
 
-.about-title-container h1 {
-    font-size: 48px;
-    
-    font-family: "Oswald", sans-serif;
-    margin-bottom: 10px;
+.about-title-container::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position it absolutely within the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(https://kaapimachines.com/wp-content/uploads/2021/10/coffee-latte-art-2021-09-03-01-05-38-utc.webp); /* Background image */
+    background-size: cover; /* Cover the entire area */
+    opacity: 0.5; /* Adjust the opacity to darken the image */
+    z-index: 1; /* Place it below text */
 }
 
-.about-text-container h1 {
-    font-size: 48px;
-    font-family: "Oswald", sans-serif;
-
-}
-
-.about-title-container p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-
-
-
-.about-mission-container p {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
 
 .about-team-container {
-    padding: 40px;
-    background: url(https://static.vecteezy.com/system/resources/previews/027/102/824/non_2x/group-of-business-team-members-raising-hands-in-the-sunset-sky-background-to-depict-teamwork-free-photo.jpg);
-    width: 100%;
-    background-size: cover;
+    position: relative; /* Make the parent relative to position the overlay */
+    padding: 100px;
+    overflow: hidden; /* Ensure no overflow from the pseudo-element */
+}
+
+.about-team-container::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position it absolutely within the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(https://static.vecteezy.com/system/resources/previews/027/102/824/non_2x/group-of-business-team-members-raising-hands-in-the-sunset-sky-background-to-depict-teamwork-free-photo.jpg); /* Background image */
+    background-size: cover; /* Cover the entire area */
+    filter: brightness(0.5);
+    z-index: 1; /* Place it below text */
+}
+.about-team-content {
+    position: relative; /* Ensure text is above the overlay */
+    z-index: 2; /* Ensure it is above the overlay */
+    color: white; /* Change text color if needed for contrast */
+}
+
+.about-team-container h1 {
+    font-size: 55px;
+    font-family: "Playfair Display SC", serif;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 900;
 }
 
 .about-team-container h2 {
-    font-size: 46px;
-    font-family: "Oswald", sans-serif;
-    margin-bottom: 10px;
-    text-align: center;
-    color: white;
-    text-shadow: 5px 5px 10px rgb(33 31 39);
-}
-
-.about-team-container h3 {
     font-size: 30px;
     font-family: "Oswald", sans-serif;
     color: white;
 }
-
-
 .team-members {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+.introducing-us-container{
+    padding: 65 200px;
+    text-align: left;
+}
+.introducing-us-container h1 {
+    font-size: 55px;
+    font-family: "Playfair Display SC", serif;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 900;
+    color: #310808;
+}
+
+.shop-introduction-content{
+    padding: 15 30;
+    background-color: #e5c6b0;
+    border-radius: 25px;
+    margin-bottom: 35px;
+    width: 45%;
 }
 
 .team-member {
@@ -375,7 +395,7 @@ body, html {
 }
 
 .team-member img {
-    width: 225px;
+    width: 100%;
     height: 225px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
@@ -420,130 +440,15 @@ body, html {
     font-size: 18px;
     margin-bottom: 10px;
 }
-.about-goals-container {
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.about-goals-container h2 {
-    font-size: 36px;
-    font-family: "Oswald", sans-serif;
-    margin-bottom: 10px;
-}
-
-.about-goals-container ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.about-goals-container li {
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-}
-
-.about-goals-container li h4 {
-    color: white;
-    font-size: 25px;
-    font-family: "Oswald", sans-serif;
-    margin-bottom: 10px;
-}
-
-.about-goals-container li p {
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.about-mission-container,
-.about-values-container, .about-goals-container {
-    margin-bottom: 100px;
-    background-color: #292929;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 35px;
-    
-}
-
-.about-mission-container h2,
-.about-values-container h2, .about-goals-container h2 {
-    font-size: 36px;
-    font-family: "Montserrat", sans-serif;
-    margin-bottom: 10px;
-}
-
-.about-mission-container ul,
-.about-values-container ul, .about-goals-container ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.about-mission-container li,
-.about-values-container li,  .about-goals-container li {
-    margin: 10px;
-    padding: 20px;
-    background-color: #2f3332;
-    border: 1px solid gold;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    height: 280px;
-}
-
-
-.about-mission-container li h4,
-.about-values-container li h4 , .about-goals-container li h4{
-    color: white;
-    font-size: 25px;
-    font-family: "Oswald", sans-serif;
-    margin-bottom: 10px;
-}
-
-.about-mission-container li p,
-.about-values-container li p, .about-goals-container li p {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-.about-mvg-container{
-    padding: 60px; 
-}
-.about-mission-container li:hover,
-.about-values-container li:hover,  .about-goals-container li:hover{
-    background-color: rgb(255 255 200);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-}
-
-.about-mission-container li:hover h4,
-.about-values-container li:hover h4,  .about-goals-container li:hover h4{
-    color: rgb(99, 84, 0);
-}
-
-.about-mission-container li:hover p,
-.about-values-container li:hover p,  .about-goals-container li:hover p{
-    color: #666;
-}
 footer {
     
-    background-color: #0000009e;
+    background-color: #1a1818;
     text-align: center;
     color: white;
     padding: 10px;
+}
+footer p{
+    font-family: "Playfair Display SC", serif;
 }
 .socialMedia{
     display: flex;
@@ -606,10 +511,10 @@ footer {
     }
 }
 .header-image {
-    width: 100%;
-    height: 300px;
+        width: 100%;
+    height: 530;
     position: absolute;
-    margin-top: 115;
+    margin-top: -100;
 }
 .container {
     padding: 465 40 0 40;
@@ -621,7 +526,9 @@ footer {
     display: inline-block;
     margin-bottom: 20px;
     font-family: "Oswald", sans-serif;
-    color: white;
+    color: #333333;
+    text-shadow: 0px 0px 5px rgb(163 163 163);
+    font-size: 40;
 }
 .category-selector {
     display: inline-block;
@@ -630,8 +537,9 @@ footer {
     position: relative;
 }
 .category-selector i {
-    font-size: 24px;
-    color: white;
+    font-size: 30px;
+    color: #333333;
+    text-shadow: 0px 0px 5px rgb(163 163 163);
 }
 .category-dropdown {
     display: none;
@@ -853,7 +761,8 @@ footer {
 }
 
 .close-payment-btn:hover {
-    background-color: #e68900;
+    background-color: #511f1f;
+    border: 1px solid red;
 }
 
 .payment-page {
@@ -863,7 +772,7 @@ footer {
     transform: translateX(-50%);
     width: 90%;
     height: 80%;
-    background-color: #1a1a1aa3;
+    backdrop-filter: blur(70px);
     display: flex;
     z-index: 1001;
     justify-content: center;
@@ -874,6 +783,7 @@ footer {
     border-radius: 20px;
     transition: 0.5s ease-in-out;
     z-index: 100001;
+    box-shadow: 0 0 100px rgb(0 0 0);
 }
 
 .payment-page.show {
@@ -1002,11 +912,10 @@ footer {
     color: white;
     overflow: hidden;
     background-color: black;
-    height: 800px; /* Adjust the height as needed */
+    height: 1080px; /* Adjust the height as needed */
 }
 .hero img {
     width: 100%;
-    height: 100%;
     transition: opacity 1s ease-in-out;
     position: absolute;
     top: 0;
@@ -1019,19 +928,21 @@ footer {
 }
 .hero-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 30%;
+    left: 38%;
     transform: translate(-50%, -50%);
     z-index: 11;
-    justify-content: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
 }
 .hero-text h1 {
-    font-size: 50px;
+    font-family: "Playfair Display SC", serif;
+    font-size: 70px;
     margin: 0;
-    text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000;
+    text-shadow: 0 0 20px #000000, 0 0 30px #48675e;
+    font-weight: 900;
 }
 .hero-text p {
     color: #ffffe4;
@@ -1049,26 +960,41 @@ footer {
 }
 .browse, .recommendation, .introducing-products, .contact, .feedback {
     padding: 65px;
-
+}
+.recommendation{
+    background-color: #af9380 ;
+    height: 715px;
+}
+.recommendation-banner img{
+    position: absolute;
+    height: 845px;
+    right: 0;
+}
+.browse{
+    text-align: center;
+    padding: 60 200;
+    margin-bottom: 100;
 }
 .browse h2, .recommendation h2, .introducing-products h2, .contact h2, .feedback h2 {
-    color: white;
-    font-size: 45px;
-    font-family: "Oswald", sans-serif;
+    color: #310808;
+    font-size: 50px;
+    font-family: "Playfair Display SC", serif;
     margin: 0 0 20px 0;
+    font-weight: 900;
 }
 .browse h3 {
-    color:  #ffffe4;;
+    color:  black;
     margin-top: -15;
     margin-bottom: 30;
     font-size: 20px;
 }
 .recommendation h3 {
-    color:  #ffffe4;
+    color: #310808;
     margin-top: -15;
     margin-bottom: 45;
     font-weight: normal;
     font-size: 15;
+    width: 500;
 }
 .browse .items, .recommendation .items {
     display: flex;
@@ -1076,7 +1002,7 @@ footer {
 }
 .browse .item, .recommendation .item {
     width: 25%;
-    background-color: rgb(72 103 94);
+    background-color: rgb(189 154 131);
     padding: 4;
     border-radius: 6px;
     position: relative;
@@ -1084,7 +1010,7 @@ footer {
     cursor: pointer;
 }
 .browse .item{
-    height: 275px;
+    box-sizing: border-box;
 }
 .browse .item img{
     height: 250px;
@@ -1100,6 +1026,15 @@ footer {
 .recommendation .items {
     overflow-x: auto;
     white-space: nowrap;
+    width: 455;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #6f5a4b;
+    border-radius: 100px;
+    padding: 15px 0px 15px 15px;
 }
 .recommendation .item {
     display: inline-block;
@@ -1110,17 +1045,32 @@ footer {
 .introducing-products {
     display: flex;
     justify-content: space-between;
+    background-color: #d7b49d;
+    border-radius: 50px;
+    padding: 50px;
+    margin-bottom: 150;
+}
+.introduce{
+    padding: 50px;
 }
 .introducing-products .text {
     width: 60%;
 }
-.introducing-products .video {
-    width: 35%;
+.introducing-products p2 {
+    width: 85%;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
 }
-.overlay-gradient{
+.introducing-products .video {
+    width: 45%;
+    font-family: 'Oswald',sans-serif;
+    font-weight: bold;
+}
+.overlay-gradient {
     width: 100%;
-    height: 800;
-    background: linear-gradient(0deg, #0c0906, transparent);
+    height: 100%;
+    background: linear-gradient(0deg, #000000, #000000e0, #000000bf, #4b4b4b00);
     z-index: 10;
     position: absolute;
 }
@@ -1129,13 +1079,17 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgb(136 195 178 / 56%), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgb(53 47 42), rgb(0 0 0 / 56%), rgb(53 47 42));
     color: #fff;
     padding: 10px;
     box-sizing: border-box;
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 .item:hover .hover-info {
     opacity: 1;
@@ -1151,11 +1105,9 @@ p1{
                  0 0 40px #000;
 }
 .introducing-products p{
-    color: white;
+    color: black;
     font-size: 17px;
-}
-.about-container h1, .about-container h2, .about-container p{
-    color: white;
+    width: 450px;
 }
 .contact-section {
     margin-top: 50px;
@@ -1235,12 +1187,12 @@ p1{
 }
 
 #searchInput {
-    width: 300px;
+    width: 400px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ddd;
+    border: 2px solid #1e3932;
     border-radius: 30px 0 0 30px;
-    font-family: 'Montserrat',sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #searchButton {
@@ -1251,7 +1203,8 @@ p1{
     border: none;
     border-radius: 0 30px 30px 0;
     cursor: pointer;
-    font-family: 'Montserrat',sans-serif;
+    font-family: "Oswald", sans-serif;
+    font-weight: bold;
 }
 
 #searchButton:hover {
@@ -1269,6 +1222,7 @@ p1{
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 12px;
+    display: none;
 }
 .whole-logo{
     display: flex;
@@ -1277,4 +1231,56 @@ p1{
 }
 .product:hover{
     box-shadow: 0 0 30px rgb(181 181 181 / 70%), 0 0 20px gold;
+}
+.about-us {
+    position: relative;
+    padding: 65px;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+}
+
+.about-us::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position it absolutely within the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://i.pinimg.com/736x/f2/9f/7d/f29f7d4417c0b48adbe661c5645ae035.jpg') no-repeat center center; /* Background image */
+    background-size: cover; /* Cover the entire area */
+    filter: brightness(0.2); /* Adjust the opacity to darken the image */
+    z-index: 1; /* Place it below text */
+}
+
+.about-us-content {
+    position: relative; /* Ensure text is above the overlay */
+    z-index: 2; /* Ensure it is above the overlay */
+    color: white; /* Change text color if needed for contrast */
+}
+.about-us h1{
+    font-family: "Playfair Display SC", serif;
+    font-size: 50px;
+    color: white;
+    font-weight: 900;
+}
+.about-us p{
+    width: 600;
+}
+.about-us .read-more{
+    margin-top: 15px;
+    width: 150;
+    height: 50;
+    background: none;
+    border: 2px solid #f3d8c4;
+    color: #f3d8c4;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    transition: 0.5s ease;
+}
+.about-us .read-more:hover{
+    background: #f3d8c4;
+    border: 2px solid #f3d8c4;
+    color: black;
+    cursor: pointer;
 }

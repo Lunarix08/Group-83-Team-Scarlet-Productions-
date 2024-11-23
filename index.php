@@ -49,6 +49,7 @@ $isLoggedIn = isset($_SESSION['user']);
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href="index_styles.css" rel="stylesheet">
 </head>
 <body>
@@ -96,7 +97,7 @@ $isLoggedIn = isset($_SESSION['user']);
         <div class="right-items">
             <div class="right-icons">
                 <div class="cart">
-                    <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="badge">0</span></a>
+                    <a href="#" id="cartButton"><i class="fas fa-shopping-cart"></i><span id="cart-count" class="badge">0</span></a>
                     
                 </div>
             </div>
@@ -194,7 +195,7 @@ $isLoggedIn = isset($_SESSION['user']);
                             <p>DAILY GRIND ARE PROVIDING VARIOUS PRODUCTS RIGHT NOW!</p>
                             <h1>THE DAILY GRIND</h1>
                             <p style="font-size:15;">Welcome to The Daily Grind Coffee Shop, where each cup is brewed to perfection. Enjoy a cozy atmosphere with a diverse menu that caters to every coffee lover's cravings!</p>
-                            <button class="view-menu-btn" onclick="viewMenu()">View Menu</button>
+                            <button class="view-menu-btn" onclick="viewMenu()">Order Now!</button>
                         <?php else: ?>
                             <p>NEW HERE? GET YOUR IDENTITY!</p>
                             <h1>THE DAILY GRIND</h1>
@@ -211,38 +212,14 @@ $isLoggedIn = isset($_SESSION['user']);
                     </div>
                     
                 </div>
-                <div class="browse">
-                    <h2>Browse</h2>
-                    <h3>"Check out our categories at The Daily Grind Coffee! From espresso drinks to pastries, there's something for everyone."</h3>
-                    <div class="items" style="height: 250;">
-                        <div class="item">
-                            <img alt="Item 1" src="https://c4.wallpaperflare.com/wallpaper/180/462/561/dark-coffee-cup-wallpaper-preview.jpg" />
-                            <div class="hover-info" style="padding:23px;">
-                                <p1>COFFEE</p1>
-                                <p>Savor the rich and aromatic flavors of our expertly crafted coffee, from bold espressos to refreshing cold brews.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img alt="Item 2" src="https://img.pikbest.com/ai/illus_our/20230423/2be586f55a60e8db58568e3318309dfd.jpg!w700wp" />
-                            <div class="hover-info" style="padding:23px;">
-                                <p1>BREAD</p1>
-                                <p>Enjoy our freshly baked bread, perfect for a quick snack or as a delicious side to complement your coffee.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img alt="Item 3" src="https://www.shutterstock.com/image-photo/beautiful-cake-cream-chocolate-decoration-600nw-1669432723.jpg" height="250px"/>
-                            <div class="hover-info" style="padding:23px;">
-                                <p1>CAKE</p1>
-                                <p>Indulge in our delightful range of cakes, from creamy classics to fruity favorites, made to satisfy every sweet craving.</p>
-                            </div>
-                        </div>
-                        
-                    </div>
+                <div class="recommendation-banner">
+                        <img alt="Banner" src="https://i.pinimg.com/736x/f6/ac/69/f6ac695339d9fc5905f7ebb87ed11c31.jpg"/>
                 </div>
                 <div class="recommendation">
-                    <h2>Recommendation</h2>
-                    <h3>
-                    "Looking for something special? We recommend trying our smooth caramel coffee for a delightful pick-me-up, paired with a warm, flaky pastry. For dessert, indulge in our rich chocolate cake—it's sure to satisfy your sweet tooth!"<br></h3>
+                    
+                    <h2>Recommendation: <br>Find Your Coffee!</h2>
+                    <h3>"Looking for something special? We recommend trying our smooth caramel coffee for a delightful pick-me-up, paired with a warm, flaky pastry. For dessert, indulge in our rich chocolate cake—it's sure to satisfy your sweet tooth!"<br></h3>
+                    
                     <div class="items">
                         <div class="item">
                             <img alt="Recommendation 1" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Espresso---Feb-2023.jpeg" width="300"/>
@@ -272,128 +249,92 @@ $isLoggedIn = isset($_SESSION['user']);
                                 <p>RM6.00</p>
                             </div>
                         </div>
-                        <div class="item">
-                            <img alt="Recommendation 5" height="200" src="https://www.starbucks.com.hk/media/catalog/product/4/c/4ce5ff0e-7946-4a65-83c4-f8983842f62d.jpg" width="300"/>
-                            <div class="hover-info">
-                                <p1 style="font-size: 30px">TIRAIMISU</p1>
-                                <p>RM16.00</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img alt="Recommendation 6" height="200" src="https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Mocha--Feb-2023.jpeg" width="300"/>
-                            <div class="hover-info">
-                                <p1 style="font-size: 30px">MOCHA</p1>
-                                <p>RM16.00</p>
-                            </div>
-                        </div>
+                    
                     </div>
                 </div>
-                <div class="introducing-products">
-                    <div class="text">
-                        <h2>Introducing Products</h2>
-                        <p>Our latest collection features innovative designs and high-quality materials to ensure the best experience for our customers.</p>
-                        <p>Explore our new range of products that combine functionality with style, perfect for any occasion.</p>
-                        <p>Stay tuned for more exciting releases and updates on our upcoming products.</p>
+                <div class="browse">
+                    <h2>Browse</h2>
+                    <h3>"Check out our categories at The Daily Grind Coffee! From espresso drinks to pastries, there's something for everyone."</h3>
+                    <div class="items">
+                        <div class="item">
+                            <img alt="Item 1" src="https://c4.wallpaperflare.com/wallpaper/180/462/561/dark-coffee-cup-wallpaper-preview.jpg" />
+                            <div class="hover-info" style="padding:23px;">
+                                <p1>COFFEE</p1>
+                                <p>Savor the rich and aromatic flavors of our expertly crafted coffee, from bold espressos to refreshing cold brews.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Item 2" src="https://img.pikbest.com/ai/illus_our/20230423/2be586f55a60e8db58568e3318309dfd.jpg!w700wp" />
+                            <div class="hover-info" style="padding:23px;">
+                                <p1>BREAD</p1>
+                                <p>Enjoy our freshly baked bread, perfect for a quick snack or as a delicious side to complement your coffee.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="Item 3" src="https://www.shutterstock.com/image-photo/beautiful-cake-cream-chocolate-decoration-600nw-1669432723.jpg" height="250px"/>
+                            <div class="hover-info" style="padding:23px;">
+                                <p1>CAKE</p1>
+                                <p>Indulge in our delightful range of cakes, from creamy classics to fruity favorites, made to satisfy every sweet craving.</p>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="video">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/vFcS080VYQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <p>Video made by: Old Game Box</p>
+                </div>
+                <div class="about-us">
+                    <div class="about-us-content">
+                        <h1>Discover the Histories:<br> A Journey Through Coffee History</h1>
+                        <p>Explore coffee’s journey from ancient Ethiopia to today’s modern cafes. Discover how this beloved beverage evolved through centuries of culture, craft, and passion. Each cup tells a story—inviting you to savor the history behind your daily grind.</p>
+                        <button class="read-more" onclick="showAbout()">READ MORE</button>
+                    </div>
+                </div>
+                <div class="others">
+                    
+                </div>
+                <div class="introduce">
+                    <div class="introducing-products">
+                        <div class="text">
+                            <h2>The Coffee</h2>
+                            <p>Our coffee experience combines crafted styles, quality ingredients, and unique flavors to make each cup special.<br><br> From rich espressos to smooth lattes and refreshing cold brews, every style highlights the essence of our carefully selected beans. With premium coffee, fresh milk, dairy alternatives, and natural sweeteners, we create balanced, flavorful blends. <br><br>Each cup has its own character, with tastes ranging from fruity and bright to chocolatey and bold.</p>
+                            <p2>Whether you're new to coffee or a seasoned enthusiast, our brews invite you to explore, savor, and find your perfect cup.</p2> 
+                            
+                        </div>
+                        <div class="video">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/vFcS080VYQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <p>Video made by: Old Game Box</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="about-container" style="display:none;">
-            <div class="about-content">
-                <div class="about-title-container">
-                    <h1>About Us</h1>
-                    <p>The Daily Grind Coffee Shop is a cozy destination that prides itself on serving <br>high-quality coffee and a welcoming atmosphere. Our coffee<br>shop features a selection of pastries and light bites to <br>complement your drink.</p>
-                    <p>We are passionate about providing excellent customer service<br> and creating a warm and inviting environment for our customers to<br>relax and enjoy their favorite beverages. Our team is dedicated to<br>sourcing the finest ingredients and using only the best practices to<br>ensure that every cup of coffee is perfect.</p>
-                </div>
-                
-
-            <div class="about-mvg-container">
-                        <div class="about-text-container">
-                        <h1>Our Mission, Values & Goals</h1>
-                        <h2>Our Mission</h2>
-                        <p>At Daily Grind, our mission is to provide high-quality coffee and exceptional customer service in a warm and welcoming environment. We strive to create a sense of community among our customers and to make every visit a memorable one.</p>
-                            <div class="about-mission-container">
-                            <ul>
-                                <li>
-                                    <h4>Provide High-Quality Products</h4>
-                                    <p>We are committed to providing our customers with the highest quality products and services.</p>
-                                </li>
-                                <li>
-                                    <h4>Build Strong Relationships</h4>
-                                    <p>We strive to build strong relationships with our customers, partners, and community.</p>
-                                </li>
-                                <li>
-                                    <h4>Promote Sustainability</h4>
-                                    <p>We aim to promote sustainability in all aspects of our business and operations.</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <h2>Our Values</h2>
-                        <p>At Daily Grind, our mission is to provide high-quality coffee and exceptional customer service in a warm and welcoming environment.</p>
-                        <div class="about-values-container">
-                            
-                            <ul>
-                                <li>
-                                    <h4>Integrity</h4>
-                                    <p>We operate with integrity and transparency in all our business dealings.</p>
-                                </li>
-                                <li>
-                                    <h4>Respect</h4>
-                                    <p>We respect our customers, partners, and community, and strive to build strong relationships with them.</p>
-                                </li>
-                                <li>
-                                    <h4>Excellence</h4>
-                                    <p>We strive for excellence in all aspects of our business and operations.</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <h2>Our Goals</h2>
-                        <p>We strive to create a sense of community among our customers and to make every visit a memorable one.</p>
-                        <div class="about-goals-container">
-                            <ul>
-                                <li>
-                                    <h4>Increase Customer Base</h4>
-                                    <p>Increase our customer base by 20% within the next 12 months</p>
-                                </li>
-                                <li>
-                                    <h4>Reduce Environmental Impact</h4>
-                                    <p>Reduce our environmental impact by 10% within the next 12 months</p>
-                                </li>
-                                <li>
-                                    <h4>Achieve High Customer Satisfaction</h4>
-                                    <p>Achieve a customer satisfaction rating of 95% or higher within the next 12 months</p>
-                                </li>
-                                <li>
-                                    <h4>Expand Product Offerings</h4>
-                                    <p>Expand our product offerings to include a wider range of coffee and food options within the next 12 months</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-            
-                </div>  
-            </div>
             <div class="about-team-container">
-                <h2>Meet Our Team</h2>
-                <div class="team-members">
-                    <div class="team-member">
-                        <img src="https://img.freepik.com/free-photo/portrait-successful-handsome-executive-businessman-smart-casual-wear-looking-camera-smiling_7861-3115.jpg?t=st=1732107105~exp=1732110705~hmac=13dd5b2425dce1e152496468b76bdb13fbac2edf285013cbf7d088987fd4c9a6&w=1380" alt="Team Member 1">
-                        <h3>KOA FUJI</h3>
-                        <p>Founder and CEO</p>
-                        <p>Dedicated to crafting exceptional coffee experiences. With a love for coffee and community, he has turned The Daily Grind into a hub for premium brews and warm hospitality.</p>
+                <div class="about-team-content">
+                    <h1>Without Them, <br>Without Today</h1>
+                    <div class="team-members">
+                        <div class="team-member">
+                            <img src="https://img.freepik.com/free-photo/portrait-successful-handsome-executive-businessman-smart-casual-wear-looking-camera-smiling_7861-3115.jpg?t=st=1732107105~exp=1732110705~hmac=13dd5b2425dce1e152496468b76bdb13fbac2edf285013cbf7d088987fd4c9a6&w=1380" alt="Team Member 1">
+                            <h2>KOA FUJI</h2>
+                            <p>Founder and CEO</p>
+                            <p>Dedicated to crafting exceptional coffee experiences. With a love for coffee and community, he has turned The Daily Grind into a hub for premium brews and warm hospitality.</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://pbs.twimg.com/profile_images/991321088763224064/N55xqpoH_400x400.jpg" alt="Team Member 2">
+                            <h2>GOPI A/P DORAISAMY</h2>
+                            <p>...</p>
+                            <p>Yo what</p>
+                        </div>
                     </div>
-                    <div class="team-member">
-                        <img src="https://img.freepik.com/free-photo/handsome-man_144627-18632.jpg" alt="Team Member 2">
-                        <h3>JOHN MASON</h3>
-                        <p>Head of Coffee Operations</p>
-                        <p>Dedicated to maintaining high standards in quality and efficiency, leading the team with passion and precision to deliver the best coffee experience to every customer.</p>
-                    </div>
+                </div>
+            </div>
+            <div class="introducing-us-container">
+                <h1>About Us</h1>
+                <div class="shop-introduction-content">
+                    
+                    <p>The Daily Grind Coffee Shop was founded by individuals with a shared passion for exceptional coffee and delicious food. We believe that everyone deserves a perfect cup of coffee and a hearty meal to fuel their day. Committed to quality, we source only the freshest ingredients and locally roasted coffee beans, crafting a menu that combines both local and international flavors without compromising on taste.</p>
+                </div>
+                <div class="shop-introduction-content">
+                    <p>Our welcoming, semi-casual atmosphere encourages a genuine connection between our team and our guests, aiming to provide an experience that’s both memorable and meaningful. At The Daily Grind, our mission is simple: to bring friends and families closer over great coffee and satisfying meals. We value continuous learning, team development, and customer feedback, ensuring a positive environment for our staff and a delightful experience for our patrons.</p>
                 </div>
             </div>
         </div>
@@ -414,7 +355,7 @@ $isLoggedIn = isset($_SESSION['user']);
         
     </div>
     <div id="menu">
-        <div class="header-image" style="background: url('https://png.pngtree.com/background/20230528/original/pngtree-hand-making-coffee-with-flowers-topped-with-plants-picture-image_2778722.jpg') no-repeat center center; background-size: cover;"></div>
+        <div class="header-image" style="background: url('https://png.pngtree.com/background/20230528/original/pngtree-hand-making-coffee-with-flowers-topped-with-plants-picture-image_2778722.jpg') no-repeat;background-size: cover;"></div>
         <div class="container">
             
             <h1 id="categoryTitle">All Products</h1>
@@ -485,18 +426,11 @@ $isLoggedIn = isset($_SESSION['user']);
             <div id="cartItemsContainer">
                 <!-- Cart items will be dynamically added here -->
             </div>
-            <?php if ($isLoggedIn): ?>
-                <div class="cart-footer">
+            <div class="cart-footer">
                 <div class="total-price" id="totalPrice">Total: $0.00</div>
 
                 <button class="checkout-btn" id="checkoutButton" onclick="makeCheckout()">Checkout</button>
             </div>
-            <?php else: ?>
-                <div class="cart-footer">
-                <div class="total-price" id="totalPrice">Total: $0.00</div>
-                <button class="checkout-btn" id="checkoutButton">Checkout</button>
-            </div>
-            <?php endif; ?>
             
     </div>
     <div class="payment-page">
@@ -556,7 +490,7 @@ $isLoggedIn = isset($_SESSION['user']);
     <script src="index_scripts.js"></script>
     
     <footer>
-        <p>&copy; 2024 Daily Grind Coffee.( Scarlet Production )</p>
+        <p>&copy; 2024 Daily Grind Coffee. ||  Scarlet Production. </p>
     </footer>
 </body>
 </html>
