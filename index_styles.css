@@ -337,7 +337,7 @@ body, html {
     bottom: 0;
     background: url(https://static.vecteezy.com/system/resources/previews/027/102/824/non_2x/group-of-business-team-members-raising-hands-in-the-sunset-sky-background-to-depict-teamwork-free-photo.jpg); /* Background image */
     background-size: cover; /* Cover the entire area */
-    filter: brightness(0.5);
+    filter: brightness(0.3);
     z-index: 1; /* Place it below text */
 }
 .about-team-content {
@@ -364,27 +364,6 @@ body, html {
     flex-wrap: wrap;
     justify-content: center;
 }
-.introducing-us-container{
-    padding: 65 200px;
-    text-align: left;
-}
-.introducing-us-container h1 {
-    font-size: 55px;
-    font-family: "Playfair Display SC", serif;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: 900;
-    color: #310808;
-}
-
-.shop-introduction-content{
-    padding: 15 30;
-    background-color: #e5c6b0;
-    border-radius: 25px;
-    margin-bottom: 35px;
-    width: 45%;
-}
-
 .team-member {
     margin: 20px;
     padding: 20px;
@@ -1283,4 +1262,38 @@ p1{
     border: 2px solid #f3d8c4;
     color: black;
     cursor: pointer;
+}
+.introduction-container{
+    padding: 85px;
+    display: flex;
+    align-items: baseline;
+    gap: 165px;
+    vertical-align: baseline;
+}
+.about-us-container{
+    width: 25%;
+    
+}
+.about-us-container h1 {
+    font-size: 55px;
+    font-family: "Playfair Display SC", serif;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: 900;
+    color: #310808;
+}
+.about-us-container p {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #310808;
+}
+.business-hour-container h2 {
+    font-size: 55px;
+    font-family: "Playfair Display SC", sans-serif;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: 900;
+    color: #310808;
 }

@@ -327,15 +327,24 @@ $isLoggedIn = isset($_SESSION['user']);
                     </div>
                 </div>
             </div>
-            <div class="introducing-us-container">
-                <h1>About Us</h1>
-                <div class="shop-introduction-content">
-                    
+            <div class="introduction-container">
+                <div class="about-us-container">
+                    <h1>About Us</h1>
                     <p>The Daily Grind Coffee Shop was founded by individuals with a shared passion for exceptional coffee and delicious food. We believe that everyone deserves a perfect cup of coffee and a hearty meal to fuel their day. Committed to quality, we source only the freshest ingredients and locally roasted coffee beans, crafting a menu that combines both local and international flavors without compromising on taste.</p>
-                </div>
-                <div class="shop-introduction-content">
                     <p>Our welcoming, semi-casual atmosphere encourages a genuine connection between our team and our guests, aiming to provide an experience that’s both memorable and meaningful. At The Daily Grind, our mission is simple: to bring friends and families closer over great coffee and satisfying meals. We value continuous learning, team development, and customer feedback, ensuring a positive environment for our staff and a delightful experience for our patrons.</p>
                 </div>
+                <div class="business-hour-container">
+                    <h2>About Our Shop</h2>
+                    <h3>Opening Hours:</h2>
+                    <p><span style="color: red;">Monday to Friday:</span> 7:00 AM - 12:00 PM <br><span style="color: red;">Saturday to Sunday:</span> 8:00 AM - 12:00 PM</p>
+                    <h3>Address</h3>
+                    <p>123 Coffee Lane, Brewtown, CA 12345</p>
+                    <h3>Contact Number</h3>
+                    <p>+6 01987-6543-210</p>
+                    <h3>Email</h3>
+                    <p>hello@dailygrindcoffee.com</p>
+                </div>
+                
             </div>
         </div>
         <div class="contact-feedback-container" style="display:none;">
