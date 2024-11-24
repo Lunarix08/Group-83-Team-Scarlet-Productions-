@@ -330,13 +330,19 @@ $isLoggedIn = isset($_SESSION['user']);
             <div class="introduction-container">
                 <div class="about-us-container">
                     <h1>About Us</h1>
-                    <p>The Daily Grind Coffee Shop was founded by individuals with a shared passion for exceptional coffee and delicious food. We believe that everyone deserves a perfect cup of coffee and a hearty meal to fuel their day. Committed to quality, we source only the freshest ingredients and locally roasted coffee beans, crafting a menu that combines both local and international flavors without compromising on taste.</p>
+                    <p>The Daily Grind Coffee Shop was founded by individuals with a shared passion for exceptional coffee and delicious food since year 2016. We believe that everyone deserves a perfect cup of coffee and a hearty meal to fuel their day. Committed to quality, we source only the freshest ingredients and locally roasted coffee beans, crafting a menu that combines both local and international flavors without compromising on taste.</p>
                     <p>Our welcoming, semi-casual atmosphere encourages a genuine connection between our team and our guests, aiming to provide an experience that’s both memorable and meaningful. At The Daily Grind, our mission is simple: to bring friends and families closer over great coffee and satisfying meals. We value continuous learning, team development, and customer feedback, ensuring a positive environment for our staff and a delightful experience for our patrons.</p>
                 </div>
+                
+                <div class="image-container">
+                    <img src="https://images.squarespace-cdn.com/content/58cfd41c17bffcb09bd654f0/1618331670353-X33MH2UJL8BOGXAZN541/unsplash-image-8IKf54pc3qk.jpg?format=1500w&content-type=image%2Fjpeg" alt="Coffee Image" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+            </div>
+            <div class="introduction-container">
                 <div class="business-hour-container">
                     <h2>About Our Shop</h2>
                     <h3>Opening Hours:</h2>
-                    <p><span style="color: red;">Monday to Friday:</span> 7:00 AM - 12:00 PM <br><span style="color: red;">Saturday to Sunday:</span> 8:00 AM - 12:00 PM</p>
+                    <p><span style="font-weight: bold;">Monday to Friday:</span> 7:00 AM - 12:00 PM <br><span style="font-weight: bold;">Saturday to Sunday:</span> 8:00 AM - 12:00 PM</p>
                     <h3>Address</h3>
                     <p>123 Coffee Lane, Brewtown, CA 12345</p>
                     <h3>Contact Number</h3>
@@ -344,7 +350,30 @@ $isLoggedIn = isset($_SESSION['user']);
                     <h3>Email</h3>
                     <p>hello@dailygrindcoffee.com</p>
                 </div>
-                
+                <div class="skill-container">
+                    <div class="skill-content">
+                        <h1>Since 2016, We Gained:</h1>
+                        <div class="skill-boxes">
+                            <div class="skill">
+                                <h2>400K</h2>
+                                <p>Lovely Customers</p>
+                                <i class='bx bx-group'></i>
+                            </div>
+                            <div class="skill">
+                                <h2>13</h2>
+                                <p>Type Products</p>
+                                <i class='bx bx-dish'></i>
+                            </div>
+                            <div class="skill">
+                                <h2>8</h2>
+                                <p>Years Expierence</p>
+                                <i class='bx bx-briefcase-alt-2' ></i>
+                            </div>
+                            
+                        </div>
+                        <p>Our team is dedicated to delivering quality and excellence across all our offerings. With years of experience, we craft a range of products designed to satisfy diverse tastes. Our focus is on understanding customer preferences and exceeding expectations. Through skillful innovation, we continually enhance our offerings for a memorable experience. Every day, we strive to serve our community with passion, care, and expertise.</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="contact-feedback-container" style="display:none;">
@@ -366,14 +395,21 @@ $isLoggedIn = isset($_SESSION['user']);
     <div id="menu">
         <div class="header-image" style="background: url('https://png.pngtree.com/background/20230528/original/pngtree-hand-making-coffee-with-flowers-topped-with-plants-picture-image_2778722.jpg') no-repeat;background-size: cover;"></div>
         <div class="container">
-            
-            <h1 id="categoryTitle">All Products</h1>
-            <div class="category-selector">
-                <i class="fas fa-chevron-down"></i>
-                <div class="category-dropdown" id="categoryDropdown">
-                    <!-- Categories will be dynamically added here -->
+            <div class="category-container">
+                <div class="category-content">
+                    <p>Choose Your Category:</p>
+                    <h1 id="categoryTitle">All Products</h1>
+                    
+                </div>
+                <div class="category-selector">
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="category-dropdown" id="categoryDropdown">
+                        <!-- Categories will be dynamically added here -->
+                    </div>
                 </div>
             </div>
+            
+            
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search products...">
                 <button id="searchButton">Search</button>

@@ -504,10 +504,27 @@ footer p{
 .container h1 {
     display: inline-block;
     margin-bottom: 20px;
-    font-family: "Oswald", sans-serif;
-    color: #333333;
-    text-shadow: 0px 0px 5px rgb(163 163 163);
+    font-family: "Playfair Display SC", serif;
+    color: #310808;
     font-size: 40;
+    font-weight: 900;
+    margin-top: 0;
+}
+.category-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    transform: translate(20px, 10px);
+}
+.category-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.category-content p{
+    color: #310808;
+    margin-bottom: 0;
 }
 .category-selector {
     display: inline-block;
@@ -517,8 +534,7 @@ footer p{
 }
 .category-selector i {
     font-size: 30px;
-    color: #333333;
-    text-shadow: 0px 0px 5px rgb(163 163 163);
+    color: #310808;
 }
 .category-dropdown {
     display: none;
@@ -563,14 +579,15 @@ footer p{
     gap: 30px;
 }
 .product {
-    background-color: #333;
+    background-color: #876f5e;
     padding: 20px;
     border-radius: 10px;
     width: 300px;
     text-align: center;
     position: relative;
-    color: white;
+    color: #ffe3cf;
     transition: 0.5s ease;
+    z-index: -1;
 }
 .product img {
     width: 100%;
@@ -581,10 +598,16 @@ footer p{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
+    font-family: "Playfair Display SC", serif;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
 }
 .product h2 span {
     font-size: 16px;
     color: #ccc;
+    margin-left: 50px;
 }
 .product p{
     text-align: left;
@@ -1161,8 +1184,8 @@ p1{
 .search-container {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
-    font-family: 'Montserrat',sans-serif;
+    margin: 0px 0 85 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #searchInput {
@@ -1209,7 +1232,10 @@ p1{
     cursor: pointer;
 }
 .product:hover{
-    box-shadow: 0 0 30px rgb(181 181 181 / 70%), 0 0 20px gold;
+    transform: translateY(-15px);
+    cursor: pointer;
+    box-shadow: 0 0 20px #3d3631;
+
 }
 .about-us {
     position: relative;
@@ -1263,16 +1289,32 @@ p1{
     color: black;
     cursor: pointer;
 }
-.introduction-container{
+.introduction-container {
     padding: 85px;
     display: flex;
-    align-items: baseline;
-    gap: 165px;
-    vertical-align: baseline;
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space out the content evenly */
+    gap: 80px;
 }
+
 .about-us-container{
-    width: 25%;
-    
+    width: 80%; /* Adjust width to fit content */
+}
+.business-hour-container {
+    width: 40%;
+    background-color: #b59c89;
+    padding: 0 60 030;
+    border-radius: 15px;
+}
+.image-container {
+    display: flex;
+    align-items: center;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 .about-us-container h1 {
     font-size: 55px;
@@ -1295,5 +1337,71 @@ p1{
     margin-bottom: 10px;
     text-align: left;
     font-weight: 900;
-    color: #310808;
+    color: #ffecde;
+}
+.business-hour-container h3 {
+    font-family: "Oswald", sans-serif;
+    color: #ffecde;
+}
+.business-hour-container p {
+    color: white;
+}
+.skill-container::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(https://cdn.shopify.com/s/files/1/1616/2815/files/coffee_in_cups.jpg?v=1682497686) no-repeat center;
+    background-size: cover;
+    filter: brightness(0.3);
+    z-index: 1;
+    
+    
+}
+.skill-container{
+    width: 1080;
+    height: 100%;
+    position: relative;
+    overflow:hidden;
+    border-radius: 15px;
+}
+.skill-content {
+    position: relative; 
+    z-index: 2; 
+    padding: 35 65px;
+}
+.skill-content h1{
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+.skill{
+    border: 5px solid #b59c89;
+    width: 100%;
+    height: 200;
+    text-align: center;
+}
+.skill h2{
+    color: antiquewhite;
+    font-size: 40;
+    margin-bottom: 0;
+}
+.skill p{
+    color: #b59c89;  
+    font-size: 15;
+    margin-top: 0;
+}
+.skill-boxes{
+    display: flex;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+.skill-content p{
+    color: white;
+}
+.skill i{
+    color: #fff3e4;
+    font-size: 45;
+
 }
