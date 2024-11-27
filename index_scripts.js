@@ -13,6 +13,7 @@ function loadingPage(){
 }
 function showAbout() {
     loadingPage();
+    document.querySelector('.navbar').style.display = 'flex';
     document.getElementById('menu').style.display = 'none';
     document.getElementById('non-menu').style.display = 'flex';
     document.title = "Daily Grind || About Us";
@@ -25,6 +26,7 @@ function showAbout() {
 }
 function showContact() {
     loadingPage();
+    document.querySelector('.navbar').style.display = 'flex';
     document.getElementById('menu').style.display = 'none';
     document.getElementById('non-menu').style.display = 'flex';
     document.title = "Daily Grind || Contact Us";
@@ -38,7 +40,10 @@ function showContact() {
 function viewMenu(){
     loadingPage();
     document.title = "Daily Grind || Menu";
+    document.querySelector('.navbar').style.display = 'flex';
     document.getElementById('non-menu').style.display = 'none';
+    document.querySelector('.login-container').style.display = 'none';
+    document.querySelector('.register-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'flex';
     const menu = document.getElementById('menu');
     if (menu) {
@@ -53,23 +58,27 @@ function viewMenu(){
 function showLogin() {
     loadingPage();
     document.title = "Daily Grind || Login";
+    document.querySelector('.navbar').style.display = 'none';
+    document.getElementById('menu').style.display = 'none';
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.about-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'flex';
     document.querySelector('.contact-feedback-container').style.display = 'none';
-    document.querySelector('.contact-container').style.display = 'flex';
+    document.querySelector('.contact-container').style.display = 'none';
 }
 
 function showRegister() {
     loadingPage();
+    document.querySelector('.navbar').style.display = 'none';
     document.title = "Daily Grind || Register";
+    document.getElementById('menu').style.display = 'none';
     document.querySelector('.home-container').style.display = 'none';
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'flex';
     document.querySelector('.about-container').style.display = 'none';
     document.querySelector('.contact-feedback-container').style.display = 'none';
-    document.querySelector('.contact-container').style.display = 'flex';
+    document.querySelector('.contact-container').style.display = 'none';
 }
 
 let cartItems = [];
@@ -87,6 +96,10 @@ const closePaymentButton = document.getElementById('closePaymentButton');
 
 function makeCheckout() {
     // Check if the cart is empty
+    if (isLoggedIn != true) {
+        alert("Please log in or sign up to continue the purchasing progress!");
+        return; // Exit the function early
+    }
     if (cartItems.length === 0) {
         // Alert the customer if the cart is empty
         alert("Your cart is empty. Please add items to your cart before checking out.");
@@ -144,7 +157,7 @@ function updateTotalPrice() {
 
 // Display all products by default
 
-
+const sidebar = document.getElementById('categorySidebar');
 // Cart sidebar functionality
 cartButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -163,6 +176,7 @@ closePaymentButton.addEventListener('click', function() {
 });
 
 overlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
     cartSidebar.classList.remove('open');
     const paymentPage = document.querySelector('.payment-page');
     paymentPage.classList.remove('show'); 
@@ -193,6 +207,7 @@ function sendFeedbackNotif(){
 function showHome() {
     loadingPage();
     document.title = "Daily Grind || Homepage";
+        document.querySelector('.navbar').style.display = 'flex';
     const homeContainer = document.querySelector('.home-container');
     const aboutContainer = document.querySelector('.about-container');
     const loginContainer = document.querySelector('.login-container');
@@ -203,6 +218,7 @@ function showHome() {
     const logoutBtn = document.querySelector('.logout-btn');
     const loginBtn = document.querySelector('.login-btn');
     const signupBtn = document.querySelector('.signup-btn');
+    document.querySelector('.navbar').style.display = 'flex';
     document.querySelector('.contact-feedback-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'flex';
     if (homeContainer) {
@@ -359,10 +375,7 @@ function addCategoryEventListeners() {
 }
 
 // Function to toggle category dropdown visibility
-function toggleCategoryDropdown() {
-    const dropdown = document.querySelector('.category-dropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
+
 
 // Function to load products
 function loadProducts(category = 'all') {
@@ -523,13 +536,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
     setupSearch();
 });
-document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.category-dropdown');
-    const categorySelector = document.querySelector('.category-selector');
-    if (!categorySelector.contains(event.target) && dropdown.style.display === 'block') {
-        dropdown.style.display = 'none';
-    }
-});
+
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
@@ -577,3 +584,9 @@ function setupSearch() {
     });
 }
 let cartCount = 0;
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('categorySidebar');
+    sidebar.classList.toggle('open'); // Toggle the 'open' class
+    overlay.classList.toggle('show');
+}

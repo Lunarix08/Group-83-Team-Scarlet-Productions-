@@ -113,73 +113,86 @@ $isLoggedIn = isset($_SESSION['user']);
 
     <!-- Login & Registeration Section-->
     <div class="login-container">
+        
         <div class="login-box">
-            <div class="close-btn" onclick="showHome()">×</div>
-            <h2>Log-In </h2>
-            <!--<p>Login to explore the attractive menus to continue your journey on this website!</p>-->
-            <form method="POST" action="login.php">
-                <div class="input-group">
-                    <input name="email" placeholder="Email" type="text" required/>
-                    <i class="fas fa-envelope"></i>
-                </div>
+            <div class="login-picture">
+                <img src="https://i.pinimg.com/736x/d1/c8/d9/d1c8d9819d951a399b4003120f63858f.jpg" alt="LoginPic">
+            </div>
+            <div class="login-content">
+                <div class="close-btn" onclick="showHome()">×</div>
+                <h2>Log-In </h2>
+                <!--<p>Login to explore the attractive menus to continue your journey on this website!</p>-->
+                <form method="POST" action="login.php">
+                    <div class="input-group">
+                        <input name="email" placeholder="Email" type="text" required/>
+                        <i class="fas fa-envelope"></i>
+                    </div>
 
-                <div class="input-group">
-                    <input name="password" placeholder="Password" type="password" required/><i class="fas fa-lock"></i>
-                </div>
-
-                <button class="login-btn">Log-In</button>
-                <?php if (isset($loginError)): ?>
-                    <p style="color: red;"><?php echo $loginError; ?></p>
-                <?php endif; ?>
-                <a class="register-link" href="#" onclick="showRegister()">Don't have an account? Register!</a>
-            </form>
+                    <div class="input-group">
+                        <input name="password" placeholder="Password" type="password" required/><i class="fas fa-lock"></i>
+                    </div>
+                    <?php if (isset($loginError)): ?>
+                        <p style="color: red;font-weight: bold;font-size: 13px;"><?php echo $loginError; ?></p>
+                    <?php endif; ?>
+                    <a class="register-link" href="#" onclick="showRegister()">Don't have an account? Register!</a>
+                    <button class="login-btn">Log-In</button>
+                    
+                    
+                </form>
+            </div>
         </div>
     </div>
     
     <div class="register-container">
         <div class="register-box">
-            <div class="close-btn" onclick="showHome()">×</div>
-            <h2>Sign-Up</h2>
+            <div class="register-picture">
+                <img src="https://i.pinimg.com/736x/d1/c8/d9/d1c8d9819d951a399b4003120f63858f.jpg" alt="LoginPic">
+            </div>
 
-            <form method="POST" action="register.php">
+            <div class="register-content">
+                <div class="close-btn" onclick="showHome()">×</div>
+                <h2>Sign-Up</h2>
 
-                <div class="input-group">
-                    <input name="username" placeholder="Username" type="text" required/>
-                    <i class="fas fa-user"></i>
-                </div>
+                <form method="POST" action="register.php">
 
-                <div class="input-group">
-                    <input name="email" placeholder="Email" type="text" required/>
-                    <i class="fas fa-envelope"></i>
-                </div>
+                    <div class="input-group">
+                        <input name="username" placeholder="Username" type="text" required/>
+                        <i class="fas fa-user"></i>
+                    </div>
 
-                <div class="input-group">
-                    <input name="phone_number" placeholder="Phone Number" type="text" required/>
-                    <i class="fas fa-phone"></i>
-                </div>
+                    <div class="input-group">
+                        <input name="email" placeholder="Email" type="text" required/>
+                        <i class="fas fa-envelope"></i>
+                    </div>
 
-                <div class="input-group">
-                    <input name="address" placeholder="Address" type="text" required/>
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
+                    <div class="input-group">
+                        <input name="phone_number" placeholder="Phone Number" type="text" required/>
+                        <i class="fas fa-phone"></i>
+                    </div>
 
-                <div class="input-group">
-                    <input name="password" placeholder="Password" type="password" required/>
-                    <i class="fas fa-lock"></i>
-                </div>
+                    <div class="input-group">
+                        <input name="address" placeholder="Address" type="text" required/>
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
 
-                <div class="input-group">
-                    <input name="confirm_password" placeholder="Confirm Password" type="password" required/>
-                    <i class="fas fa-lock"></i>
-                </div>
+                    <div class="input-group">
+                        <input name="password" placeholder="Password" type="password" required/>
+                        <i class="fas fa-lock"></i>
+                    </div>
 
-                <?php if (isset($registerError)): ?>
-                    <p style="color: red;"><?php echo $registerError; ?></p>
-                <?php endif; ?>
+                    <div class="input-group">
+                        <input name="confirm_password" placeholder="Confirm Password" type="password" required/>
+                        <i class="fas fa-lock"></i>
+                    </div>
 
-                <button class="register-btn">Sign-Up</button>
-                <a class="login-link" href="#" onclick="showLogin()">Already have an account? Login</a>
-            </form>
+                    <?php if (isset($registerError)): ?>
+                        <p style="color: red;font-weight: bold;font-size: 13px;"><?php echo $registerError; ?></p>
+                    <?php endif; ?>
+                    <a class="login-link" href="#" onclick="showLogin()">Already have an account? Login</a>
+                    <button class="register-btn">Sign-Up</button>
+                    
+                </form>
+            </div>
         </div>
     </div>
 
@@ -313,16 +326,16 @@ $isLoggedIn = isset($_SESSION['user']);
                     <h1>Without Them, <br>Without Today</h1>
                     <div class="team-members">
                         <div class="team-member">
-                            <img src="https://img.freepik.com/free-photo/portrait-successful-handsome-executive-businessman-smart-casual-wear-looking-camera-smiling_7861-3115.jpg?t=st=1732107105~exp=1732110705~hmac=13dd5b2425dce1e152496468b76bdb13fbac2edf285013cbf7d088987fd4c9a6&w=1380" alt="Team Member 1">
+                            <img src="https://i.pinimg.com/736x/5e/96/4b/5e964b4d1a6a514bf141c694f5037537.jpg" alt="Team Member 1">
                             <h2>KOA FUJI</h2>
-                            <p>Founder and CEO</p>
+                            <h3>Founder and CEO</h>
                             <p>Dedicated to crafting exceptional coffee experiences. With a love for coffee and community, he has turned The Daily Grind into a hub for premium brews and warm hospitality.</p>
                         </div>
                         <div class="team-member">
-                            <img src="https://pbs.twimg.com/profile_images/991321088763224064/N55xqpoH_400x400.jpg" alt="Team Member 2">
-                            <h2>GOPI A/P DORAISAMY</h2>
-                            <p>...</p>
-                            <p>Yo what</p>
+                            <img src="https://i.pinimg.com/736x/4d/7a/4c/4d7a4c5a453f241da99432c5fc90b620.jpg" alt="Team Member 2">
+                            <h2>JOHN MASON</h2>
+                            <h3>Head Operator</h3>
+                            <p>Overseeing daily operations and ensuring smooth service. With extensive experience in the coffee industry, Mason is dedicated to maintaining high standards in quality and efficiency, leading the team with passion and precision to deliver the best coffee experience to every customer.</p>
                         </div>
                     </div>
                 </div>
@@ -378,17 +391,63 @@ $isLoggedIn = isset($_SESSION['user']);
         </div>
         <div class="contact-feedback-container" style="display:none;">
             <div class="contact-section">
-                <h1>Have any Questions or Inquiries?</h1>
-                <p>Having problems when using website? Thinking of a potential ideas?<br/>Mail your feedback to
-                <a href="mailto:hello@dailygrindcoffee.com">hello@dailygrindcoffee.com</a>. We'll be in touch.</p>
+                <div class="contact-content">
+                    <h1>Contact Us</h1>
+                    <p>Having problems when using website? Thinking of a potential ideas?<br/>Mail your feedback to
+                    <a href="mailto:hello@dailygrindcoffee.com">hello@dailygrindcoffee.com</a>. We'll be in touch.</p>
+                    <div class="form-container">
+                        <h1>Name:</h1>
+                        <input placeholder="Name" type="text"/>
+                        <h1>Email Address:</h1>
+                        <input placeholder="E-mail" type="email"/>
+                        <h1>Your Topic:</h1>
+                        <select placeholder="Topic" class="topic-selector">
+                            <option value="">-</option>
+                            <option value="Website Issues">Website Issues</option>
+                            <option value="Account Management">Account Management</option>
+                            <option value="Payment Related/Concerns">Payment Related/Concerns</option>
+                            <option value="Foods/Drinks Issues">Foods/Drinks Issues</option>
+                            <option value="General Information">General Information</option>
+                        </select>
+                        <h1>Description:</h1>
+                        <p>Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
+                        <textarea placeholder="Message"></textarea>
+                        <button onclick="sendFeedbackNotif()">Send Feedback</button>
+                    </div>
+                </div>
+                <div class="find-us-content">
+                    <div class="find-us-boxes">
+                        <h>Find Us</h>
+                        <h1>Address:</h1>
+                        <p>15 & 15A Jalan Cemerlang Niaga 5, Cemerlang Heights Business Park, Taman Cemerlang Jaya, 58200 Kuala Lumpur.</p>
+                        <h1>Email:</h1>
+                        <p>hello@dailygrindcoffee.com</p>
+                        <h1>Phone Number:</h1>
+                        <p>+601987-6543-210</p>
+                        
+                        <div style="border-bottom: 2px solid #ddd;margin-bottom:10px;"></div>
+                        <h>Opening Hours:</h>
+                        <p><span style="font-weight:bold;">Monday to Friday:</span> 7:00 AM - 12:00 PM</p>
+                        <p><span style="font-weight:bold;">Saturday to Sunday:</span> 8:00 AM - 12:00 PM</p3>
+                        <p>*Our customer service closed on Sunday.</p>
+                    </div>
+                    <div class="find-us-boxes">
+                        <h>Our HQ</h>
+                        <h1>Daily Grind Coffee Co. (M) Sdn Bhd (1234567X)</h1>
+                        <p>10 & 10A Jalan Permata Niaga 3, Permata Heights Business Park, Taman Permata Indah, 57000 Kuala Lumpur.</p>
+                        <h1 style="margin-bottom:8px;margin-top:5px;">Our Social Platform:</h1>
+                        <div class="socialMedia" style="margin-bottom:20px;">
+                            <i class="bx bxl-facebook-circle" style="border:none;"></i>
+                            <i class="bx bxl-instagram" style="border:none;"></i>
+                            <i class="bx bxl-twitter" style="border:none;"></i>
+                        </div>
+                    </div>
+                
+                    
+                </div>
             </div>
-            <div class="form-container">
-                <input placeholder="Name" type="text"/>
-                <input placeholder="E-mail" type="email"/>
-                <textarea placeholder="Message"></textarea>
-                <button onclick="sendFeedbackNotif()">Send Feedback</button>
-            </div>
-            </div>
+            
+
         </div>
         
     </div>
@@ -401,14 +460,17 @@ $isLoggedIn = isset($_SESSION['user']);
                     <h1 id="categoryTitle">All Products</h1>
                     
                 </div>
-                <div class="category-selector">
+                <div class="category-selector" onclick="toggleSidebar()">
                     <i class="fas fa-chevron-down"></i>
-                    <div class="category-dropdown" id="categoryDropdown">
-                        <!-- Categories will be dynamically added here -->
-                    </div>
                 </div>
             </div>
-            
+            <div class="sidebar" id="categorySidebar">
+                <button id="closeSidebarButton" onclick="toggleSidebar()">×</button>
+                <h2>Categories</h2>
+                <div class="category-dropdown" id="categoryDropdown">
+                    <!-- Categories will be dynamically rendered here -->
+                </div>
+            </div>
             
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search products...">
@@ -462,34 +524,38 @@ $isLoggedIn = isset($_SESSION['user']);
     </div>
     <div class="cart-sidebar" id="cartSidebar">
             <button class="close-btn" id="closeCartButton">x</button>
-            <h2 style="
-    font-family: 'Oswald', sans-serif;
-    font-size: 35;
-    margin: 0;
-    margin-bottom: 35px;
-">Shopping Cart</h2>
-            <div id="cartItemsContainer">
-                <!-- Cart items will be dynamically added here -->
-            </div>
-            <div class="cart-footer">
-                <div class="total-price" id="totalPrice">Total: $0.00</div>
+            <h2>Shopping Cart</h2>
+            <div style="border: 1px solid #ffe9d9;border-radius: 10px;background: #2d2a28;">
+                <div id="cartItemsContainer">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-footer">
+                    <div class="total-price" id="totalPrice">Total: RM0.00</div>
 
-                <button class="checkout-btn" id="checkoutButton" onclick="makeCheckout()">Checkout</button>
+                    <button class="checkout-btn" id="checkoutButton" onclick="makeCheckout()">Checkout</button>
+                </div>
             </div>
+            
             
     </div>
     <div class="payment-page">
         <button class="close-payment-btn" id="closePaymentButton">Close</button>
         <div class="payment-sidebar">
-        <h2 style="font-family: 'Oswald', sans-serif;margin-top: 15;">Order Summary</h2>
+        <h2 style="font-family: 'Playfair Display SC', serif;margin-top: 15;border-bottom: 1px solid #cbb5a4;color: #ffe9d9;">Order Summary</h2>
         
         <ul id="order-summary">
             <!-- Cart items will be displayed here -->
         </ul>
+        <div class="ways-to-eat-container">
+            <button class="ways-to-eat-btn">Dine-In</button>
+            <button class="ways-to-eat-btn">Delivery</button>
+            <button class="ways-to-eat-btn">Take Away</button>
+        </div>
+        
         <p id="total-price">Total: $0.00</p>
         </div>
         <div class="payment-form">
-        <h2 style="font-family: 'Oswald', sans-serif;font-size: 40;margin-bottom: 5;margin-top: 0;">Make Payment</h2>
+        <h2 style="font-family: 'Playfair Display SC', serif;margin-top: 15;border-bottom: 1px solid #cbb5a4;color: #ffe9d9;font-size: 40;margin-bottom: 50;margin-top: -6px;">Make Payment</h2>
             <form id="payment-form" method="POST" action="process_payment.php" style="display: block;">
                 <input type="hidden" id="order-id" name="order_id" value="">
                 

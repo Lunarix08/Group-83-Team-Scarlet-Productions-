@@ -72,12 +72,13 @@ body, html {
     border-radius: 105px;
     background-color: #2d2c2c;
     transition: 0.5s ease;
+    border: 1px solid #2d2c2c;
 }
 .navbar ul li a:hover {
-    color: rgb(49, 48, 37);
-    font-size: 26px;
-    background-color: gold;
-    box-shadow: 0 0 80px rgb(150 150 150), 0 0 20px rgb(201, 186, 121);
+    color: rgb(243 216 196);
+    font-size: 23px;
+    box-shadow: 0 0 80px rgb(150 150 150), 0 0 20px rgb(181 156 137);
+    border-bottom: 1.5px solid #f3d8c4;
 }
 .navbar .right-items {
     display: flex;
@@ -109,29 +110,54 @@ body, html {
     color: white;
     margin-right: 20px;
 }
-
-.login-container, .register-container{
-    background: linear-gradient(295deg, #3f3f3f, transparent);
+.login-picture img, .register-picture img{
+    height: 705px;
+    width: 420px;
+    border-radius: 5px 0px 0px 5px;
+}
+.login-content, .register-content{
+    width: 100%;
+    padding: 40px;
+}
+.login-container, .register-container {
+    position: relative; /* Make the container relative for absolute positioning of the pseudo-element */
     display: none;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 852px;
+    
+}
+
+.login-container::before, .register-container::before {
+    content: ""; /* Required for pseudo-elements */
+    position: absolute; /* Position it absolutely within the container */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(https://png.pngtree.com/background/20230519/original/pngtree-an-old-coffee-shop-with-very-dark-walls-picture-image_2652909.jpg);
+    background-size: cover;
+    filter: brightness(0.2);
+    z-index: 1; /* Ensure it is below the content but above the background */
 }
 
 .login-box, .register-box {
     font-family: "Montserrat", sans-serif;
-    background: rgb(26 26 26);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 80px rgb(150 150 150), 0 0 20px rgb(201, 186, 121);
+    background-color: #f3d8c4;
     position: relative;
-    width: 500;
+    width: 80%;
+    display: flex;
+    z-index: 2;
+    border: 5px solid #75655a;
+    box-shadow: 0 0 50px #5f5f5f;
+    border-radius: 10px;
 }
 .login-box h2, .register-box h2 {
-    color: white;
+    color: #310808;
     margin-bottom: 20px;
-    font-size: 24px;
-    font-family: 'Oswald',sans-serif;
+    font-size: 30px;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 900;
 }
 
 .login-box .input-group, .register-box .input-group {
@@ -144,8 +170,8 @@ body, html {
     border-radius: 25px;
     width: 100%;
     padding: 13px;
-    border: 2px solid gold;
-    box-shadow: 0 0 15px rgb(255 215 0);
+    border: 2px solid #310808;
+    box-shadow: 0 0 15px rgb(203 170 139);
     font-size: 16px;
 }
 
@@ -175,37 +201,41 @@ body, html {
 }
 
 .login-box .login-btn, .register-box .register-btn {
-    font-family: "Montserrat", sans-serif;
-    background: #00000000;
-    border: 1px solid white;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    font-family: "Oswald", sans-serif;
+    background: #f3d8c4;
+    border: 1px solid #6b594c;
+    color: #6b594c;
+    padding: 5px 20px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     transition: 0.5s ease;
+    font-weight: bold;
+    width: 150;
 }
 .login-box .login-btn:hover, .register-box .register-btn:hover {
-    border: 1px solid goldenrod;
-    color: goldenrod;
-    font-weight: bold;
+    background: #6b594c;
+    border: 1px solid #f3d8c4;
+    color: #f3d8c4;
+    
 }
 
 .login-box .register-link, .register-box .login-link {
-    margin-top: 50px;
+    margin-bottom: 50px;
     display: block;
-    color: gold;
+    color: #3b3129;
     text-decoration: underline;
     font-size: 15;
+    width: 248px;
 }
 
 .close-btn {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     font-size: 30px;
     cursor: pointer;
-    color: white;
+    color: #310808;
 }
 
 .home-container {
@@ -363,20 +393,21 @@ body, html {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 65px;
 }
 .team-member {
     margin: 20px;
     padding: 20px;
     background-color: #1a1a1a;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 15%;
+    box-shadow: 0 0 10px rgb(243 216 196);
+    width: 25%;
 }
 
 .team-member img {
     width: 100%;
-    height: 225px;
-    object-fit: cover;
+    height: 350px;
+    object-fit: scale-down;
     border-radius: 10px 10px 0 0;
 }
 
@@ -537,16 +568,12 @@ footer p{
     color: #310808;
 }
 .category-dropdown {
-    display: none;
+    display: flex;
     position: absolute;
-    top: -15px;
-    left: 60;
-    background-color: #1a1a1a;
-    border-radius: 50px;
     overflow: hidden;
-    box-shadow: 0 0 50px rgb(0 0 0);
     z-index: 1;
-    border: .5px solid #ffffff;
+    flex-direction: column;
+    text-align: left;
 }
 .category-dropdown a {
     display: block;
@@ -554,9 +581,14 @@ footer p{
     color: #fff;
     text-decoration: none;
     width: 300px;
+    transition: 0.2s ease;
+    border-radius: 50px;
 }
 .category-dropdown a:hover {
-    background-color: #272727;
+    background-color: #ffe9d9;
+    
+    color: black;
+    font-weight: bold;
 }
 .filters, .sort {
     display: inline-block;
@@ -587,7 +619,6 @@ footer p{
     position: relative;
     color: #ffe3cf;
     transition: 0.5s ease;
-    z-index: -1;
 }
 .product img {
     width: 100%;
@@ -631,37 +662,43 @@ footer p{
 }
 .cart-sidebar {
     position: fixed;
-    top: 15;
+    top: 2%;
     right: -700px;
     width: 500;
-    height: 93%;
-    background-color: #333;
+    height: 96%;
+    backdrop-filter: blur(100px);
     color: #fff;
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 0 55px;
     transition: right 0.3s ease-out;
     z-index: 100001;
-    border-radius: 25px;
+    border: 2px solid #f3d8c4;
+    border-radius: 15px;
 }
 #cartItemsContainer{
-    max-height: 70vh;
+    max-height: 55vh;
     overflow-y: auto;
-    margin-bottom: 35;
+    padding: 5px;
+}
+.cart-sidebar h2 {
+    font-family: 'Playfair Display SC', serif;
+    color: #ffe9d9;
+    font-size: 35px;
+    border-bottom: 1px solid;
+    margin-top: 60px;
 }
 .cart-sidebar.open {
-    right: 15;
+    right: 35;
 }
 .cart-sidebar .close-btn {
     font-family: "Montserrat", sans-serif;
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #333333;
+    background-color: #ffffff00;
     color: #fff;
     border: none;
-    padding: 5px 10px;
     cursor: pointer;
-    border-radius: 50px;
+    font-size: 20;
 }
 
 .cart-item {
@@ -699,20 +736,16 @@ footer p{
     color: #fff;
 }
 .cart-footer {
-    margin-top: 20px;
     text-align: left;
-    bottom: 15;
-    position: absolute;
-    width: 93%;
-    padding: 20 0;
-    border-radius: 15px;
-    background-color: #232222;
+    width: 498;
+    padding: 23px 0;
 }
 .cart-footer .total-price {
     font-size: 23px;
-    margin-bottom: 10px;
-    margin-left: 20;
+    margin: 0 20 20;
     font-weight: bold;
+    font-family: "Playfair Display SC", serif;
+    border-bottom: 1px solid;
 }
 
 .cart-footer .checkout-btn, .cart-footer .view-cart-btn {
@@ -733,7 +766,9 @@ footer p{
 }
 
 .cart-footer .checkout-btn:hover, .cart-footer .view-cart-btn:hover {
-    background-color: #e68900;
+    background-color: #f3d8c4;
+    color: #2a2927;
+    border: 1px solid #d9d9d9;
 }
 .overlay1 {
     position: fixed;
@@ -770,17 +805,17 @@ footer p{
 .payment-page {
     position: fixed;
     left: -100%;
-    bottom: 80px;
+    bottom: 5%;
     transform: translateX(-50%);
     width: 90%;
-    height: 80%;
+    height: 90%;
     backdrop-filter: blur(70px);
     display: flex;
     z-index: 1001;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     color: white;
-    border: 1px solid #ddd;
+    border: 2px solid #cbb5a4;
     padding: 10;
     border-radius: 20px;
     transition: 0.5s ease-in-out;
@@ -793,16 +828,18 @@ footer p{
 }
 .payment-sidebar {
     width: 30%;
-    background-color: #333;
+    background-color: #2d2a28;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
-    height: 580;
+    height: 90%;
     margin-right: 10;
+    border: 1px solid #f3d8c4;
 }
 .payment-form {
     width: 60%;
     padding: 20px;
+    height: 90%;
 }
 
 #order-summary {
@@ -859,9 +896,11 @@ footer p{
     font-size: 14px;
 }
 #total-price {
-    font-size: 18px;
+    font-size: 21px;
     font-weight: bold;
     margin-top: 20px;
+    font-family: 'Playfair Display SC';
+    color: white;
 }
 #payment-form label {
     display: block;
@@ -872,8 +911,10 @@ footer p{
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 15px;
-    border: 2px solid #00bb00;
+    border: 2px solid #cbb5a4;
     font-family: "Montserrat", sans-serif;
+    background: none;
+    color: white;
 }
 #make-payment {
     background-color: #000000;
@@ -1111,76 +1152,7 @@ p1{
     font-size: 17px;
     width: 450px;
 }
-.contact-section {
-    margin-top: 50px;
-}
-.contact-section h1 {
-    color: white;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-.contact-section p {
-    color: white;
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-.contact-section p a {
-    color: gold;
-    text-decoration: underline;
-}
-.form-container {
-    font-family: "Montserrat", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 800;
-    background-color: #262929;
-    padding: 20px;
-    border-radius: 20px;
-    border: 1px solid #6f5d00;
-}
-.form-container input, .form-container textarea {
-    font-family: "Montserrat", sans-serif;
-    width: 300px;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #45453d;
-    border-radius: 5px;
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
-.form-container textarea {
-    height: 150px;
-    width: 626px;
-    max-width: 800px;
-    min-width: 800px;
-    max-height: 230px;
-}
-.form-container button {
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 25px;
-    background-color: #333333;
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin-top: 35px;
-}
-.form-container button:hover {
-    background-color: #555555;
-}
-.contact-feedback-container {
-    text-align: center;
-    padding: 50px 20px;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 730px;
-    margin-bottom: 20px;
-}
+
 .search-container {
     display: flex;
     justify-content: center;
@@ -1219,12 +1191,13 @@ p1{
     position: absolute;
     top: -15px;
     right: -10px;
-    background-color: #48675e;
-    color: white;
+    background-color: #f3d8c4;
+    color: #000000;
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 12px;
     display: none;
+    font-weight: bold;
 }
 .whole-logo{
     display: flex;
@@ -1404,4 +1377,218 @@ p1{
     color: #fff3e4;
     font-size: 45;
 
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -1050px;
+    width: 350px;
+    height: 100%;
+    backdrop-filter: blur(100px);
+    transition: left 0.3s ease;
+    z-index: 1000001;
+    padding: 32px;
+    border-right: 3px solid beige;
+}
+
+.sidebar.open {
+    left: 0; /* Show the sidebar */
+}
+
+/* Add styles for the close button */
+#closeSidebarButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ffe9d9;
+    position: absolute;
+    left: 370;
+    top: 15;
+    
+}
+.sidebar h2{
+    margin: 30;
+    font-family: 'Playfair Display SC', serif;
+    color: #ffe9d9;
+    font-size: 35px;
+    border-bottom: 1px solid;
+}
+.contact-section {
+    position: relative;
+    padding: 100px;
+    overflow: hidden;
+    display: flex;
+    align-items:baseline;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+.contact-section::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position it absolutely within the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://t3.ftcdn.net/jpg/06/23/15/02/360_F_623150253_lPqjQnwD86LgDRDd2S6xY6RCqjo1Ttm9.jpg')no-repeat center; /* Background image */
+    background-size: cover; /* Cover the entire area */
+    filter: brightness(0.5);
+    z-index: 1; /* Place it below text */
+}
+.contact-content, .find-us-content{
+    z-index: 2;
+    position: relative;
+}
+.contact-content h1 {
+    font-size: 55px;
+    font-family: 'Playfair Display SC', serif;
+    color: white;
+    font-weight: 900;
+    margin-top: 75px;
+}
+.contact-content p {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+.contact-content p a {
+    color: gold;
+    text-decoration: underline;
+}
+.form-container {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 800;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #f3d8c4;
+}
+.form-container input, .form-container textarea {
+    font-family: "Montserrat", sans-serif;
+    width: 300px;
+    padding: 15px;
+    margin: 5px 0 20 0;;
+    border: 1px solid #f3d8c4;
+    border-radius: 5px;
+    background-color: #231f1c96;
+    color: #ffffff;
+    transition: 0.5s ease;
+    
+}
+.form-container textarea {
+    height: 150px;
+    width: 626px;
+    max-width: 800px;
+    min-width: 800px;
+    max-height: 230px;
+}
+.form-container button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 35px;
+}
+.form-container button:hover {
+    background-color: #555555;
+}
+.contact-feedback-container {
+    flex-direction: column;
+    width: 100%;
+}
+.feedback-container{
+    display: flex;
+    justify-content: center;
+}
+.form-container h1{
+    font-size: 15px;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+.form-container p{
+    font-size: 13;
+    margin: 5 0;
+}
+.topic-selector{
+    font-family: "Montserrat", sans-serif;
+    width: 500px;
+    padding: 15px;
+    margin: 5px 0 20 0;
+    border: 1px solid #f3d8c4;
+    border-radius: 5px;
+    background-color: #231f1c96;
+    color: #ffffff;
+    transition: 0.5s ease;
+}
+.find-us-boxes{
+    background-color: #514740e0;
+    padding: 15 30px;
+    width: 550;
+    border-radius: 5px;
+
+}
+.find-us-boxes h{
+    color: white;
+    font-family: 'Playfair Display SC',serif;
+    font-size: 45px;
+}
+.find-us-boxes h1{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+}
+.find-us-boxes p{
+    color: white;
+    font-size: 15px;
+}
+.find-us-boxes p2{
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+.find-us-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.team-member p{
+    font-weight: normal;
+    font-size: 18;
+}
+.team-member h3{
+    font-weight: bold;
+}
+.ways-to-eat-btn{
+    width: 144px;
+    height: 40px;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    background: none;
+    border: 1px solid #ffe9d9;
+    color: #ffe9d9;
+    padding: 5 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+.ways-to-eat-btn:hover{
+    background-color: #d5bfad;
+    color: #2d2a28;
+    border: 1px solid #d5bfad;
+    cursor: pointer;
+}
+.ways-to-eat-container{
+    display: flex;
+    gap: 0px;
+    justify-content: center;
 }
