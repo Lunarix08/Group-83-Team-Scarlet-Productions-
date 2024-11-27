@@ -547,9 +547,9 @@ $isLoggedIn = isset($_SESSION['user']);
             <!-- Cart items will be displayed here -->
         </ul>
         <div class="ways-to-eat-container">
-            <button class="ways-to-eat-btn">Dine-In</button>
-            <button class="ways-to-eat-btn">Delivery</button>
-            <button class="ways-to-eat-btn">Take Away</button>
+            <button class="ways-to-eat-btn" value="dine-in" onclick="toggleButton(this)">Dine-In</button>
+            <button class="ways-to-eat-btn" value="delivery" onclick="toggleButton(this)">Delivery</button>
+            <button class="ways-to-eat-btn" value="take-away" onclick="toggleButton(this)">Take Away</button>
         </div>
         
         <p id="total-price">Total: $0.00</p>

@@ -1592,3 +1592,6 @@ p1{
     gap: 0px;
     justify-content: center;
 }
+.ways-to-eat-btn.active {
+    background-color: #3c8f1a;
+}

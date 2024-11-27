@@ -590,3 +590,16 @@ function toggleSidebar() {
     sidebar.classList.toggle('open'); // Toggle the 'open' class
     overlay.classList.toggle('show');
 }
+function toggleButton(clickedButton) {
+    // Get all buttons
+    const buttons = document.querySelectorAll('.ways-to-eat-btn');
+
+    // Remove 'active' class from all buttons
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+
+    // Add 'active' class to the clicked button
+    clickedButton.classList.add('active');
+    const selectedValue = clickedButton.value;
+}
