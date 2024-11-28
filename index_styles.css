@@ -1591,7 +1591,12 @@ p1{
     display: flex;
     gap: 0px;
     justify-content: center;
+    margin-bottom: 35px;
+
 }
 .ways-to-eat-btn.active {
     background-color: #3c8f1a;
+}
+.order-container{
+    width: 100%;
 }

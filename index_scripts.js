@@ -23,6 +23,7 @@ function showAbout() {
     document.querySelector('.about-container').style.display = 'flex';
     document.querySelector('.contact-feedback-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'flex';
+    document.querySelector('.order-container').style.display = 'none';
 }
 function showContact() {
     loadingPage();
@@ -36,6 +37,7 @@ function showContact() {
     document.querySelector('.about-container').style.display = 'none'
     document.querySelector('.contact-feedback-container').style.display = 'flex';
     document.querySelector('.contact-container').style.display = 'none';
+    document.querySelector('.order-container').style.display = 'none';
 }
 function viewMenu(){
     loadingPage();
@@ -45,15 +47,26 @@ function viewMenu(){
     document.querySelector('.login-container').style.display = 'none';
     document.querySelector('.register-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'flex';
+    document.querySelector('.order-container').style.display = 'none';
     const menu = document.getElementById('menu');
     if (menu) {
-        menu.style.display = 'flex'; // or 'block', depending on your layout
+        menu.style.display = 'flex'; 
     }
 }
-
-
-// Make sure to set this variable when logging in
-
+function showOrder() {
+    loadingPage();
+    document.querySelector('.navbar').style.display = 'flex';
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('non-menu').style.display = 'flex';
+    document.title = "Daily Grind || Contact Us";
+    document.querySelector('.home-container').style.display = 'none';
+    document.querySelector('.login-container').style.display = 'none';
+    document.querySelector('.register-container').style.display = 'none';
+    document.querySelector('.about-container').style.display = 'none'
+    document.querySelector('.contact-feedback-container').style.display = 'none';
+    document.querySelector('.contact-container').style.display = 'flex';
+    document.querySelector('.order-container').style.display = 'flex';
+}
 
 function showLogin() {
     loadingPage();
@@ -66,6 +79,7 @@ function showLogin() {
     document.querySelector('.login-container').style.display = 'flex';
     document.querySelector('.contact-feedback-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'none';
+    document.querySelector('.order-container').style.display = 'none';
 }
 
 function showRegister() {
@@ -79,6 +93,7 @@ function showRegister() {
     document.querySelector('.about-container').style.display = 'none';
     document.querySelector('.contact-feedback-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'none';
+    document.querySelector('.order-container').style.display = 'none';
 }
 
 let cartItems = [];
@@ -117,6 +132,32 @@ function makeCheckout() {
     // Show the overlay
     overlay.classList.add('show');
 }
+document.getElementById('make-payment').addEventListener('click', function() {
+    // Prepare data to send
+    const orderData = {
+        items: cartItems,
+        total: cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+    };
+
+    // Send data to PHP file to record order
+    fetch('record_order.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message); // Show success message
+            // Optionally, redirect or update the UI
+        } else {
+            alert(data.message); // Show error message
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
 function createCategoryLink(category) {
     const link = document.createElement('a');
     link.href = '#';
@@ -207,7 +248,7 @@ function sendFeedbackNotif(){
 function showHome() {
     loadingPage();
     document.title = "Daily Grind || Homepage";
-        document.querySelector('.navbar').style.display = 'flex';
+    document.querySelector('.navbar').style.display = 'flex';
     const homeContainer = document.querySelector('.home-container');
     const aboutContainer = document.querySelector('.about-container');
     const loginContainer = document.querySelector('.login-container');
@@ -218,6 +259,8 @@ function showHome() {
     const logoutBtn = document.querySelector('.logout-btn');
     const loginBtn = document.querySelector('.login-btn');
     const signupBtn = document.querySelector('.signup-btn');
+    const orderContainer = document.querySelector('.order-container');
+    
     document.querySelector('.navbar').style.display = 'flex';
     document.querySelector('.contact-feedback-container').style.display = 'none';
     document.querySelector('.contact-container').style.display = 'flex';
@@ -232,6 +275,9 @@ function showHome() {
     }
     if (registerContainer) {
         registerContainer.style.display = 'none';
+    }
+    if (orderContainer) {
+        orderContainer.style.display = 'none';
     }
     if (menu) {
         menu.style.display = 'none';
@@ -602,4 +648,39 @@ function toggleButton(clickedButton) {
     // Add 'active' class to the clicked button
     clickedButton.classList.add('active');
     const selectedValue = clickedButton.value;
+    console.log("Selected option:", selectedValue);
+
+    // Set the hidden input value
+    document.getElementById('selected-way').value = selectedValue;
+}
+function applyOrder() {
+    const cartItems = []; // Array to hold cart items
+    const totalPrice = calculateTotalPrice(); // Function to calculate total price
+
+    // Assuming you have a way to get cart items
+    document.querySelectorAll('.cart-item').forEach(item => {
+        cartItems.push({
+            name: item.dataset.name,
+            price: item.dataset.price,
+            quantity: item.dataset.quantity
+        });
+    });
+
+    // Send data to the server
+    fetch('process_order.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            total_price: totalPrice,
+            cart_items: cartItems
+        })
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data); // Show success message
+        // Optionally redirect or update the UI
+    })
+    .catch(error => console.error('Error:', error));
 }

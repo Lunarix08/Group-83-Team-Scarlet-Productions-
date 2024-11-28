@@ -24,12 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Generate new order_id
     if ($max_order_id) {
-        // Extract the numeric part and increment it
         $number = (int)substr($max_order_id, 3); // Remove 'Ord' and convert to integer
         $new_order_id = 'Ord' . ($number + 1); // Increment and prepend 'Ord'
     } else {
-        // If there are no orders, start with Ord1
-        $new_order_id = 'Ord1';
+        $new_order_id = 'Ord1'; // Start with Ord1 if no orders exist
     }
 
     // Get payment information from the form
@@ -38,10 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone_number = $_POST['phone_number'];
     $card_number = $_POST['card-number'];
     $cvv = $_POST['cvv'];
+    $way_to_eat = $_POST['way_to_eat']; // Get the selected way to eat
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO payments (order_id, name, email, phone_number, card_number, cvv) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $new_order_id, $name, $email, $phone_number, $card_number, $cvv);
+    $stmt = $conn->prepare("INSERT INTO payments (order_id, name, email, phone_number, card_number, cvv, way_to_eat) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $new_order_id, $name, $email, $phone_number, $card_number, $cvv, $way_to_eat);
 
     // Execute the statement
     if ($stmt->execute()) {

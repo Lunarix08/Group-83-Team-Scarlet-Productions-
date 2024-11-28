@@ -92,7 +92,9 @@ $isLoggedIn = isset($_SESSION['user']);
             <li><a href="#" onclick="showHome()">Home</a></li>
             <li><a href="#" onclick="showAbout()">About</a></li>
             <li><a href="#" onclick="viewMenu()">Menu</a></li>
+            <li><a href="#" onclick="showOrder()">View Order</a></li>
             <li><a href="#" onclick="showContact()">Contact</a></li>
+            
         </ul>
         <div class="right-items">
             <div class="right-icons">
@@ -319,7 +321,7 @@ $isLoggedIn = isset($_SESSION['user']);
                 </div>
             </div>
         </div>
-        
+
         <div class="about-container" style="display:none;">
             <div class="about-team-container">
                 <div class="about-team-content">
@@ -389,6 +391,7 @@ $isLoggedIn = isset($_SESSION['user']);
                 </div>
             </div>
         </div>
+
         <div class="contact-feedback-container" style="display:none;">
             <div class="contact-section">
                 <div class="contact-content">
@@ -449,8 +452,14 @@ $isLoggedIn = isset($_SESSION['user']);
             
 
         </div>
+        <div class="order-container" style="display:none;">
+            <div class="order-content">
+                <h>Orders</h>
+            </div>
+        </div>
         
     </div>
+
     <div id="menu">
         <div class="header-image" style="background: url('https://png.pngtree.com/background/20230528/original/pngtree-hand-making-coffee-with-flowers-topped-with-plants-picture-image_2778722.jpg') no-repeat;background-size: cover;"></div>
         <div class="container">
@@ -522,6 +531,7 @@ $isLoggedIn = isset($_SESSION['user']);
 
         
     </div>
+
     <div class="cart-sidebar" id="cartSidebar">
             <button class="close-btn" id="closeCartButton">x</button>
             <h2>Shopping Cart</h2>
@@ -538,6 +548,7 @@ $isLoggedIn = isset($_SESSION['user']);
             
             
     </div>
+
     <div class="payment-page">
         <button class="close-payment-btn" id="closePaymentButton">Close</button>
         <div class="payment-sidebar">
@@ -546,17 +557,20 @@ $isLoggedIn = isset($_SESSION['user']);
         <ul id="order-summary">
             <!-- Cart items will be displayed here -->
         </ul>
-        <div class="ways-to-eat-container">
-            <button class="ways-to-eat-btn" value="dine-in" onclick="toggleButton(this)">Dine-In</button>
-            <button class="ways-to-eat-btn" value="delivery" onclick="toggleButton(this)">Delivery</button>
-            <button class="ways-to-eat-btn" value="take-away" onclick="toggleButton(this)">Take Away</button>
-        </div>
         
         <p id="total-price">Total: $0.00</p>
         </div>
         <div class="payment-form">
         <h2 style="font-family: 'Playfair Display SC', serif;margin-top: 15;border-bottom: 1px solid #cbb5a4;color: #ffe9d9;font-size: 40;margin-bottom: 50;margin-top: -6px;">Make Payment</h2>
             <form id="payment-form" method="POST" action="process_payment.php" style="display: block;">
+                <p style="text-align: center;font-size: 18;margin: 2;font-weight: bold;color: #ffffff;">Choose Your Ways:</p>
+                <div class="ways-to-eat-container">
+                    
+                    <button class="ways-to-eat-btn active" value="dine-in" onclick="toggleButton(this)">Dine-In</button>
+                    <button class="ways-to-eat-btn" value="delivery" onclick="toggleButton(this)">Delivery</button>
+                    <button class="ways-to-eat-btn" value="take-away" onclick="toggleButton(this)">Take Away</button>
+                </div>
+                <input type="hidden" id="selected-way" name="way_to_eat" value="dine-in">
                 <input type="hidden" id="order-id" name="order_id" value="">
                 
                 <label for="name">Name:</label>
@@ -576,7 +590,7 @@ $isLoggedIn = isset($_SESSION['user']);
                 <label for="cvv">CVV:</label>
                 <input type="text" id="cvv" name="cvv" required><br><br>
                 
-                <button type="submit" id="make-payment" onclick="storeCartInSession();">MAKE PAYMENT</button>
+                <button type="submit" id="make-payment" onclick="makePayment();">MAKE PAYMENT</button>
             </form>
         </div>
     </div>
