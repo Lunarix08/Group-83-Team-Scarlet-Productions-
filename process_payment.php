@@ -18,16 +18,18 @@ if ($conn->connect_error) {
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the current maximum order_id
-    $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM orders");
+    $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM payments");
     $row = $result->fetch_assoc();
     $max_order_id = $row['max_order_id'];
 
     // Generate new order_id
     if ($max_order_id) {
+        // Extract the numeric part and increment it
         $number = (int)substr($max_order_id, 3); // Remove 'Ord' and convert to integer
         $new_order_id = 'Ord_' . ($number + 1); // Increment and prepend 'Ord'
     } else {
-        $new_order_id = 'Ord_1'; // Start with Ord1 if no orders exist
+        // If there are no orders, start with Ord1
+        $new_order_id = 'Ord_1';
     }
 
     // Get payment information from the form

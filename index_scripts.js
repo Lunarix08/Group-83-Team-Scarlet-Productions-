@@ -132,32 +132,7 @@ function makeCheckout() {
     // Show the overlay
     overlay.classList.add('show');
 }
-document.getElementById('make-payment').addEventListener('click', function() {
-    // Prepare data to send
-    const orderData = {
-        items: cartItems,
-        total: cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
-    };
 
-    // Send data to PHP file to record order
-    fetch('record_order.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert(data.message); // Show success message
-            // Optionally, redirect or update the UI
-        } else {
-            alert(data.message); // Show error message
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
 function createCategoryLink(category) {
     const link = document.createElement('a');
     link.href = '#';
