@@ -18,16 +18,16 @@ if ($conn->connect_error) {
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the current maximum order_id
-    $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM payments");
+    $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM orders");
     $row = $result->fetch_assoc();
     $max_order_id = $row['max_order_id'];
 
     // Generate new order_id
     if ($max_order_id) {
         $number = (int)substr($max_order_id, 3); // Remove 'Ord' and convert to integer
-        $new_order_id = 'Ord' . ($number + 1); // Increment and prepend 'Ord'
+        $new_order_id = 'Ord_' . ($number + 1); // Increment and prepend 'Ord'
     } else {
-        $new_order_id = 'Ord1'; // Start with Ord1 if no orders exist
+        $new_order_id = 'Ord_1'; // Start with Ord1 if no orders exist
     }
 
     // Get payment information from the form
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $card_number = $_POST['card-number'];
     $cvv = $_POST['cvv'];
     $way_to_eat = $_POST['way_to_eat']; // Get the selected way to eat
-
+ 
     // Prepare and bind
     $stmt = $conn->prepare("INSERT INTO payments (order_id, name, email, phone_number, card_number, cvv, way_to_eat) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssss", $new_order_id, $name, $email, $phone_number, $card_number, $cvv, $way_to_eat);
