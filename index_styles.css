@@ -1598,5 +1598,30 @@ p1{
     background-color: #3c8f1a;
 }
 .order-container{
-    width: 100%;
+    padding: 65px;
+    margin-top: 150px;
+}
+.order-content{
+    display: block;
+}
+.order-content h{
+    font-size: 35px;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 900;
+}
+.order-box{
+    padding: 10 30;
+    background-color: #af9380;
+    border-radius: 15px;
+    height: 135px;
+    width: 500;
+    margin-top: 20px;
+
+}
+.order-box h1{
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+}
+.order-box p{
+    margin: 0;
 }

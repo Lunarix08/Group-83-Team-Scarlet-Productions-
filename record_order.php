@@ -14,6 +14,7 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents('php://input'), true);
 
 // Record the order
+
 $order_items = [];
 foreach ($data['items'] as $item) {
     $order_items[] = $item['name'] . " x" . $item['quantity'];

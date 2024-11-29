@@ -454,7 +454,12 @@ $isLoggedIn = isset($_SESSION['user']);
         </div>
         <div class="order-container" style="display:none;">
             <div class="order-content">
-                <h>Orders</h>
+                <h>Order</h>
+                <div class="order-box">
+                    <h1>Order ID: Ord_10</h1>
+                    <p>Order At: idk</p>
+                    <p>Ways: Dine-In</p>
+                </div>
             </div>
         </div>
         
