@@ -1603,20 +1603,21 @@ p1{
 .order-container{
     padding: 65px;
     margin-top: 150px;
+    width: 100%;
 }
 .order-content{
-    display: block;
+    display: flex;
+    gap: 30px;
 }
-.order-content h{
+.order-container h{
     font-size: 35px;
     font-family: 'Playfair Display SC', serif;
     font-weight: 900;
 }
 .order-box{
-    padding: 10 30;
-    background-color: #af9380;
+    padding: 30;
+    background-color: #e9c9b3;
     border-radius: 15px;
-    height: 135px;
     width: 500;
     margin-top: 20px;
 
@@ -1625,6 +1626,19 @@ p1{
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
 }
+.order-box h2{
+    font-family:'Playfair Display SC',serif;font-weight: 900;font-size:20px;
+}
 .order-box p{
     margin: 0;
+}
+.order-box h{
+    padding: 3 12;
+    width: 150;
+    text-align: center;
+    border-radius: 5px;
+    height: 10;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-family: "Montserrat", sans-serif;
 }

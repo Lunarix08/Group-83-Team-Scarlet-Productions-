@@ -370,10 +370,51 @@ function deletePayment(event) {
     }
 }
 function togglePaymentDetails(event) {
+    event.preventDefault();
+    const paymentId = event.target.closest('.payment-item').querySelector('.text').textContent; // Get the payment ID
+    fetchOrderDetails(paymentId); // Fetch order details for the specific payment ID
     document.getElementById('modal-overlay').classList.add('show');
     document.getElementById('payment-&-order-details-modal').style.display = 'flex';
 }
-// In admin_scripts.js
+function fetchOrderDetails(paymentId) {
+    const modalBody = document.getElementById('payment-&-order-details-modal-body');
+    modalBody.innerHTML = ''; // Clear existing content
+
+    fetch(`fetch_payments.php?payment_id=${paymentId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const order = data.order;
+                const orderItem = document.createElement('div');
+                orderItem.className = 'payment-n-order-item';
+                orderItem.innerHTML = `
+                    <p style="font-family:'Oswald',sans-serif;font-weight:bold;font-size:25px;">ID Numbers</p>
+                    <p style="font-weight:bold;">Payment ID: <span style="font-weight:normal;">${order.payment_id}</span></p>
+                    <p style="font-weight:bold;">Order ID: <span style="font-weight:normal;">${order.order_id}</span></p>
+                    <p style="font-weight:bold;">Created At: <span style="font-weight:normal;">${order.created_at}</span></p>
+                    <div class="line" style:"margin-top: 25px"></div>
+                    <p style="font-family:'Oswald',sans-serif;font-weight:bold;font-size:25px;">Customer Info </p>
+                    <p style="font-weight:bold;">Name: <span style="font-weight:normal;">${order.name}</span></p>
+                    <p style="font-weight:bold;">Email: <span style="font-weight:normal;">${order.email}</span></p>
+                    <p style="font-weight:bold;">Phone Number: <span style="font-weight:normal;">${order.phone_number}</span></p>                    
+                    <div class="line" style:"margin-top: 25px"></div>
+                    <p style="font-family:'Oswald',sans-serif;font-weight:bold;font-size:25px;">Order Info </p>
+                    <p style="font-weight:bold;">Way to Eat: <span style="font-weight:normal;">${order.way_to_eat}</span></p>
+                    <p style="font-weight:bold;">Order List: <span style="font-weight:normal;">${order.order_list}</span></p>
+                    <div class="line" style:"margin-top: 25px"></div>
+                    <p style="font-family:'Oswald',sans-serif;font-weight:bold;font-size:25px;margin-bottom:35px;">Total Price (RM): ${order.total_price}</p>
+
+                `;
+                modalBody.appendChild(orderItem);
+            } else {
+                modalBody.innerHTML = `<p>${data.message}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching order details:', error);
+            modalBody.innerHTML = `<p>Error fetching order details.</p>`;
+        });
+}
 
 function addNewProduct(event) {
     event.preventDefault();

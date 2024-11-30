@@ -452,9 +452,91 @@ $isLoggedIn = isset($_SESSION['user']);
             
 
         </div>
-        <div class="order-container" style="display:none;">
+        <div class="order-container" style="display:none;flex-direction: column;">
+            <h>Order</h>
             <div class="order-content">
-                <h>Order</h>
+                
+                <?php
+                $_SESSION = array(); 
+                function capitalizeWords($string) {
+                    return ucwords(strtolower($string)); // Convert to lowercase and capitalize first letter of each word
+                }
+
+                function getStatusColor($status) {
+                    switch (strtolower($status)) {
+                        case 'completed':
+                            return '#9fbb9f'; // Color for completed orders
+                        case 'pending':
+                            return 'orange'; // Color for pending orders
+                        case 'cancelled':
+                            return '#ff7070'; // Color for canceled orders
+                        case 'in-progress':
+                            return '#9c9cc5'; // Color for in-progress orders
+                        default:
+                            return '#af9a8b'; // Default color for unknown statuses
+                    }
+                }
+                // Database connection
+                $servername = "localhost"; // Your database server
+                $username = "root"; // Your database username
+                $password = ""; // Your database password
+                $dbname = "fabianero"; // Your database name
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Check if user is logged in
+                if (!isset($_SESSION['user_id'])) {
+                    echo "You must be logged in to view your orders.";
+                    exit();
+                }
+
+                // Get the user ID from the session
+                $user_id = $_SESSION['user_id'];
+
+                // Prepare and execute the SQL statement to fetch orders for the logged-in user
+                $stmt = $conn->prepare("SELECT * FROM orders_and_payments WHERE user_id = ?");
+                $stmt->bind_param("i", $user_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                // Check if there are any orders
+                if ($result->num_rows > 0) {
+
+                    
+                    // Fetch and display each order as a card
+                    while ($row = $result->fetch_assoc()) {
+                        $statusColor = getStatusColor($row['order_status']); 
+                        echo "
+                            <div class='order-box'>
+                                <h style='background-color:$statusColor;'>" . htmlspecialchars(capitalizeWords($row['order_status'])) . "</h>
+
+                                <h1 style='margin-bottom:0;font-size:25px'>Order ID: " . htmlspecialchars($row['order_id']) . "</h1>
+                                <h1 style='margin:0;font-size:18px'>Payment ID: " . htmlspecialchars($row['payment_id']) . "</h1>
+                                <p style='margin: 0 0 15 0;'><strong>Time-Stamp:</strong> " . htmlspecialchars($row['created_at']) . "</p>
+                                <div style='border-bottom:2px solid #af9a8b4d;margin-bottom:25px;'></div>
+                                <p><strong>Way to Eat:</strong> " . htmlspecialchars(capitalizeWords($row['way_to_eat'])) . "</p><br>
+                                <div style='border-bottom:2px solid #af9a8b4d;margin-bottom:25px;'></div>
+                                <p><strong>Order List:</strong><br> " . htmlspecialchars($row['order_list']) . "</p>
+                                
+                                <h2 <strong>Total Price:</strong> RM" . htmlspecialchars($row['total_price']) . "</h1>
+                                
+                            </div>";
+                    }
+                } else {
+                    echo "No orders found.";
+                }
+
+                // Close the statement and connection
+                $stmt->close();
+                $conn->close();
+                ?>
+                
                 <div class="order-box">
                     <h1>Order ID: Ord_10</h1>
                     <p>Order At: idk</p>

@@ -273,7 +273,7 @@
     <div class="modal-overlay" id="modal-overlay"></div>
 
 
-    <div class="modal" id="payment-&-order-details-modal">
+    <div class="modal" id="payment-&-order-details-modal" style="flex-direction: column;">
         <div class="modal-header">
             <h3>Payment & Order Details</h3>
             <span class="modal-close" onclick="closeDetails()">&times;</span>
@@ -291,30 +291,30 @@
             <form id="add-product-form">
                 <div class="input-group" style=" margin-bottom: 15px; ">
                     
-                    <label for="user-id">Product Name:</label>
+                    <label for="user-id" style="font-weight:bold;">Product Name:</label>
                     <br>
                     <input name="name" placeholder="Product Name" type="text" required/>
 
                 </div>
                 <div class="input-group" style=" margin-bottom: 15px; ">
-                    <label for="user-id">Price:</label>
+                    <label for="user-id" style="font-weight:bold;">Price:</label>
                     <br>
                     <input name="price" placeholder="Price" type="number" step="0.01" required/>
 
                 </div>
                 <div class="input-group" style=" margin-bottom: 15px; ">
-                    <label for="user-id">Image (Currently support URL only):</label>
+                    <label for="user-id" style="font-weight:bold;">Image (Currently support URL only):</label>
                     <br>
                     <input name="image" placeholder="Image URL" type="text" required/>
 
                 </div>
                 <div class="input-group" style=" margin-bottom: 15px; ">
-                    <label for="user-id">Description:</label>
+                    <label for="user-id" style="font-weight:bold;">Description:</label>
                     <br>
                     <textarea name="description" placeholder="Description" required></textarea>
                 </div>
                 <div class="input-group" style=" margin-bottom: 15px; ">
-                    <label for="user-id">Main Category:</label>
+                    <label for="user-id" style="font-weight:bold;">Main Category:</label>
                     <br>
                     <select name="maincategory" required>
                         <option value="">Select Main Category</option>
@@ -325,12 +325,12 @@
 
                 </div>
                 <div class="input-group" style=" margin-bottom: 15px; ">
-                    <label for="user-id">Subcategory:</label>
+                    <label for="user-id" style="font-weight:bold;">Subcategory:</label>
                     <label for="user-id"><br>(Help: If you want to create a new subcategory, type the subcategory name.)<br></label>
                     <input name="subcategory" placeholder="Subcategory" type="text" required/>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-save">Save</button>
+                    <button type="submit" class="btn btn-save" style="width:100px;height:35px;font-size:18px;">Save</button>
                 </div>
             </form>
         </div>
