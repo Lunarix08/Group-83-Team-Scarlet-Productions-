@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the current maximum order_id
-    $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM payments");
+    $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM orders_and_payments");
     $row = $result->fetch_assoc();
     $max_order_id = $row['max_order_id'];
 
@@ -39,10 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $card_number = $_POST['card-number'];
     $cvv = $_POST['cvv'];
     $way_to_eat = $_POST['way_to_eat']; // Get the selected way to eat
- 
+    $order_list = $_POST['order_list']; // Capture the order list
+    $total_price = $_POST['total_price']; // Capture the total price
+
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO payments (order_id, name, email, phone_number, card_number, cvv, way_to_eat) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $new_order_id, $name, $email, $phone_number, $card_number, $cvv, $way_to_eat);
+    $stmt = $conn->prepare("INSERT INTO orders_and_payments (order_id, name, email, phone_number, card_number, cvv, way_to_eat, order_list, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssss", $new_order_id, $name, $email, $phone_number, $card_number, $cvv, $way_to_eat, $order_list, $total_price);
 
     // Execute the statement
     if ($stmt->execute()) {

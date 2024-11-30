@@ -234,7 +234,7 @@
                 }
 
                 // Retrieve payment data from the database
-                $sql = "SELECT * FROM payments";
+                $sql = "SELECT * FROM orders_and_payments";
                 $result = $conn->query($sql);
 
                 // Display payment data

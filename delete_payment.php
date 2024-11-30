@@ -17,7 +17,7 @@ if (isset($_POST['payment_id'])) {
     }
 
     // Prepare and execute the SQL statement to delete the payment
-    $stmt = $conn->prepare("DELETE FROM payments WHERE payment_id = ?");
+    $stmt = $conn->prepare("DELETE FROM orders_and_payments WHERE payment_id = ?");
     $stmt->bind_param("s", $payment_id);
 
     if ($stmt->execute()) {

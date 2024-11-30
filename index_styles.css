@@ -916,6 +916,9 @@ footer p{
     background: none;
     color: white;
 }
+#payment-form input::-internal-autofill-selected {
+    background: none;
+}
 #make-payment {
     background-color: #000000;
     color: #fff;

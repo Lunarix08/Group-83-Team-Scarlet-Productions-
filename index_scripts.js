@@ -116,12 +116,17 @@ function makeCheckout() {
         return; // Exit the function early
     }
     if (cartItems.length === 0) {
-        // Alert the customer if the cart is empty
         alert("Your cart is empty. Please add items to your cart before checking out.");
         return; // Exit the function early
     }
 
-    // If the cart is not empty, proceed with checkout
+    // Populate the hidden fields with order summary and total price
+    const orderList = cartItems.map(item => `${item.name} x${item.quantity}`).join(', ');
+    const totalPrice = calculateTotalPrice(); // Assuming you have a function to calculate total price
+
+    document.getElementById('order_list').value = orderList;
+    document.getElementById('total_price').value = totalPrice;
+
     // Hide the cart sidebar
     cartSidebar.classList.remove('open');
 
@@ -132,7 +137,11 @@ function makeCheckout() {
     // Show the overlay
     overlay.classList.add('show');
 }
-
+function calculateTotalPrice() {
+    return cartItems.reduce((total, item) => {
+        return total + (item.price * item.quantity);
+    }, 0);
+}
 function createCategoryLink(category) {
     const link = document.createElement('a');
     link.href = '#';

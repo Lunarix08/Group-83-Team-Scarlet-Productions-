@@ -530,10 +530,6 @@ $isLoggedIn = isset($_SESSION['user']);
                 ?>
             </div>
         </div>
-
-
-        
-
         
     </div>
 
@@ -576,6 +572,8 @@ $isLoggedIn = isset($_SESSION['user']);
                     <button class="ways-to-eat-btn" value="take-away" onclick="toggleButton(this)">Take Away</button>
                 </div>
                 <input type="hidden" id="selected-way" name="way_to_eat" value="dine-in">
+                <input type="hidden" name="order_list" id="order_list" value="">
+                <input type="hidden" name="total_price" id="total_price" value="">
                 <input type="hidden" id="order-id" name="order_id" value="">
                 
                 <label for="name">Name:</label>
