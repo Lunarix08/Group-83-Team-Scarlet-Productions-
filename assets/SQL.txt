@@ -3,16 +3,22 @@ CREATE DATABASE fabianero;
 
 USE fabianero;
 
-CREATE TABLE payments (
-    payment_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id VARCHAR(50) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20),
-    card_number VARCHAR(20) NOT NULL,
-    cvv VARCHAR(10) NOT NULL,
-    created_at DATETIME NOT NULL
-);
+CREATE TABLE `orders_and_payments` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` varchar(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone_number` varchar(15) NOT NULL,
+  `card_number` varchar(20) NOT NULL,
+  `cvv` varchar(4) NOT NULL,
+  `way_to_eat` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_list` text,
+  `total_price` decimal(10,2) DEFAULT NULL,
+  `order_status` enum('in-progress','completed','cancelled','pending') NOT NULL DEFAULT 'pending',
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Insert data into the payments table
 INSERT INTO payments (payment_id, order_id, name, email, phone_number, card_number, cvv, created_at) VALUES
