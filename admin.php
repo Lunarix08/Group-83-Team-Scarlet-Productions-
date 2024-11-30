@@ -252,7 +252,7 @@
                                 <div>Phone Number: <span class="text"><?php echo $row['phone_number']; ?></span></div>
                                 
                                 <div style="margin-top: 25;">
-                                    <a href="#" class="btn btn-view" onclick="togglePaymentDetails()">View Details</a>
+                                    <a href="#" class="btn btn-view" onclick="togglePaymentDetails(event)">View Details</a>
                                     <a href="#" class="btn btn-delete" onclick="deletePayment(event)">Discard</a>
                                 </div>
                             </div>
@@ -275,52 +275,11 @@
 
     <div class="modal" id="payment-&-order-details-modal">
         <div class="modal-header">
-            <h3>Order Details</h3>
+            <h3>Payment & Order Details</h3>
             <span class="modal-close" onclick="closeDetails()">&times;</span>
         </div>
         <div class="modal-body" id="payment-&-order-details-modal-body">
-            <?php
-            // Connect to the database
-            $db_host = 'localhost';
-            $db_user = 'root';
-            $db_password = '';
-            $db_name = 'fabianero';
-
-            $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            // Retrieve payment data from the database
-            $sql = "SELECT * FROM orders_and_payments";
-            $result = $conn->query($sql);
-
-            // Display payment data
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    ?>
-                        <div>
-                            <div style="font-size:30px;">Payment ID: <span class="text"><?php echo $row['payment_id']; ?></span></div>
-                            <div style="font-size:20px;";>Order ID: <span class="text"><?php echo $row['order_id']; ?></span></div>
-                            <div class="line" style="margin-top:25;"></div>
-                            
-                            <div>Created At: <span class="text"><?php echo $row['created_at']; ?></span></div>
-                            <div>Email: <span class="text"><?php echo $row['email']; ?></span></div>
-                            <div>Phone Number: <span class="text"><?php echo $row['phone_number']; ?></span></div>
-                            
-                        </div>
-                    </div>
-                    <?php
-                }
-            } else {
-                echo "No payments found.";
-            }
-
-            // Close the database connection
-            $conn->close();
-            ?>
+            <!-- Order details will be displayed here -->
         </div>
     </div>
     <div class="modal" id="add-product-modal">

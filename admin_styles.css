@@ -219,6 +219,8 @@ span.text{
     cursor: pointer;
     color: #dc3545;
     font-size: 30px;
+    position: absolute;
+    right: 25;
 }
 
 .modal-body {
