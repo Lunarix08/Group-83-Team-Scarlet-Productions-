@@ -198,7 +198,7 @@ function showSection(sectionId) {
 
 function closeDetails() {
     document.getElementById('modal-overlay').classList.remove('show');
-    document.getElementById('order-details-modal').style.display = 'none';
+    document.getElementById('payment-&-order-details-modal').style.display = 'none';
 }
 
 function editItem(event) {
@@ -370,9 +370,8 @@ function deletePayment(event) {
     }
 }
 function togglePaymentDetails(event) {
-    event.preventDefault();
-    const paymentItem = event.target.closest('.payment-item');
-    paymentItem.querySelector('.payment-details').classList.toggle('hidden');
+    document.getElementById('modal-overlay').classList.add('show');
+    document.getElementById('payment-&-order-details-modal').style.display = 'flex';
 }
 // In admin_scripts.js
 

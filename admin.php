@@ -44,7 +44,7 @@
                 </li>
                 <li onclick="showSection('payment-management')">
                     <i class="fas fa-credit-card"></i>
-                    <span class="menu-text">Payments</span>
+                    <span class="menu-text">Orders & Payments</span>
                 </li>
                 <!-- Add more menu items as needed -->
                 
@@ -217,7 +217,7 @@
 
 
         <div id="payment-management" class="hidden">
-            <h2>Payment Management</h2>
+            <h2>Orders & Payments Management</h2>
             <div id="payment-list">
                 <?php
                 // Connect to the database
@@ -244,25 +244,15 @@
                         <div class="payment-item">
                             <div>
                                 <div style="font-size:30px;">Payment ID: <span class="text"><?php echo $row['payment_id']; ?></span></div>
+                                <div style="font-size:20px;";>Order ID: <span class="text"><?php echo $row['order_id']; ?></span></div>
                                 <div class="line" style="margin-top:25;"></div>
-                                <div style="font-size:15px;";>Order ID: <span class="text"><?php echo $row['order_id']; ?></span></div>
+                                
                                 <div>Created At: <span class="text"><?php echo $row['created_at']; ?></span></div>
-                                <div class="payment-details hidden">
-                                    <div>Name: <span class="text"><?php echo $row['name']; ?></span></div>
-                                    <div>Email: <span class="text"><?php echo $row['email']; ?></span></div>
-                                    <div>Phone Number: <span class="text"><?php echo $row['phone_number']; ?></span></div>
-                                    <div>Card Number: <span class="text"><?php
-                                        if (strlen($row['card_number']) >= 4) {
-                                            echo str_repeat('*', strlen($row['card_number']) - 4) . substr($row['card_number'], -4);
-                                        } else {
-                                            echo $row['card_number'];
-                                        }
-                                    ?></span></div>
-                                    
-                                </div>
+                                <div>Email: <span class="text"><?php echo $row['email']; ?></span></div>
+                                <div>Phone Number: <span class="text"><?php echo $row['phone_number']; ?></span></div>
                                 
                                 <div style="margin-top: 25;">
-                                    <a href="#" class="btn btn-view" onclick="togglePaymentDetails(event)">View Details</a>
+                                    <a href="#" class="btn btn-view" onclick="togglePaymentDetails()">View Details</a>
                                     <a href="#" class="btn btn-delete" onclick="deletePayment(event)">Discard</a>
                                 </div>
                             </div>
@@ -282,13 +272,55 @@
 
     <div class="modal-overlay" id="modal-overlay"></div>
 
-    <div class="modal" id="order-details-modal">
+
+    <div class="modal" id="payment-&-order-details-modal">
         <div class="modal-header">
             <h3>Order Details</h3>
             <span class="modal-close" onclick="closeDetails()">&times;</span>
         </div>
-        <div class="modal-body" id="order-details-modal-body">
-            <!-- Order details will be displayed here -->
+        <div class="modal-body" id="payment-&-order-details-modal-body">
+            <?php
+            // Connect to the database
+            $db_host = 'localhost';
+            $db_user = 'root';
+            $db_password = '';
+            $db_name = 'fabianero';
+
+            $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Retrieve payment data from the database
+            $sql = "SELECT * FROM orders_and_payments";
+            $result = $conn->query($sql);
+
+            // Display payment data
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+                        <div>
+                            <div style="font-size:30px;">Payment ID: <span class="text"><?php echo $row['payment_id']; ?></span></div>
+                            <div style="font-size:20px;";>Order ID: <span class="text"><?php echo $row['order_id']; ?></span></div>
+                            <div class="line" style="margin-top:25;"></div>
+                            
+                            <div>Created At: <span class="text"><?php echo $row['created_at']; ?></span></div>
+                            <div>Email: <span class="text"><?php echo $row['email']; ?></span></div>
+                            <div>Phone Number: <span class="text"><?php echo $row['phone_number']; ?></span></div>
+                            
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "No payments found.";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
         </div>
     </div>
     <div class="modal" id="add-product-modal">

@@ -151,7 +151,7 @@ h3{
     font-size: 30px;
     margin-bottom: -10;
 }
-#order-details-modal.modal{
+#payment-&-order-details-modal.modal{
     width: 800;
     border-radius: 25px;
 }
