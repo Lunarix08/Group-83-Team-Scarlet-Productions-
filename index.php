@@ -92,7 +92,9 @@ $isLoggedIn = isset($_SESSION['user']);
             <li><a href="#" onclick="showHome()">Home</a></li>
             <li><a href="#" onclick="showAbout()">About</a></li>
             <li><a href="#" onclick="viewMenu()">Menu</a></li>
-            <li><a href="#" onclick="showOrder()">View Order</a></li>
+            <?php if ($isLoggedIn): ?>
+                <li><a href="#" onclick="showOrder()">View Order</a></li>
+            <?php endif; ?>
             <li><a href="#" onclick="showContact()">Contact</a></li>
             
         </ul>
@@ -457,7 +459,7 @@ $isLoggedIn = isset($_SESSION['user']);
             <div class="order-content">
                 
                 <?php
-                $_SESSION = array(); 
+                
                 function capitalizeWords($string) {
                     return ucwords(strtolower($string)); // Convert to lowercase and capitalize first letter of each word
                 }
@@ -491,58 +493,53 @@ $isLoggedIn = isset($_SESSION['user']);
                 }
 
                 // Check if user is logged in
-                if (!isset($_SESSION['user_id'])) {
-                    echo "You must be logged in to view your orders.";
-                    exit();
-                }
+                if ($isLoggedIn) {
+                    $user_id = $_SESSION['user_id'];
+                    // Prepare and execute the SQL statement to fetch orders for the logged-in user
+                    $stmt = $conn->prepare("SELECT * FROM orders_and_payments WHERE user_id = ?");
+                    $stmt->bind_param("i", $user_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-                // Get the user ID from the session
-                $user_id = $_SESSION['user_id'];
+                    // Check if there are any orders
+                    if ($result->num_rows > 0) {
+                        // Fetch and display each order as a card
+                        while ($row = $result->fetch_assoc()) {
+                            $statusColor = getStatusColor($row['order_status']); 
+                            echo "
+                                <div class='order-box'>
+                                    <h style='background-color:$statusColor;'>" . htmlspecialchars(capitalizeWords($row['order_status'])) . "</h>
 
-                // Prepare and execute the SQL statement to fetch orders for the logged-in user
-                $stmt = $conn->prepare("SELECT * FROM orders_and_payments WHERE user_id = ?");
-                $stmt->bind_param("i", $user_id);
-                $stmt->execute();
-                $result = $stmt->get_result();
+                                    <h1 style='margin-bottom:0;font-size:25px'>Order ID: " . htmlspecialchars($row['order_id']) . "</h1>
+                                    <h1 style='margin:0;font-size:18px'>Payment ID: " . htmlspecialchars($row['payment_id']) . "</h1>
+                                    <p style='margin: 0 0 15 0;'><strong>Time-Stamp:</strong> " . htmlspecialchars($row['created_at']) . "</p>
+                                    <div style='border-bottom:2px solid #af9a8b4d;margin-bottom:25px;'></div>
+                                    <p><strong>Way to Eat:</strong> " . htmlspecialchars(capitalizeWords($row['way_to_eat'])) . "</p><br>
+                                    <div style='border-bottom:2px solid #af9a8b4d;margin-bottom:25px;'></div>
+                                    <p><strong>Order List:</strong><br> " . htmlspecialchars($row['order_list']) . "</p>
+                                    
+                                    <h2 <strong>Total Price:</strong> RM" . htmlspecialchars($row['total_price']) . "</h1>
+                                    
+                                </div>";
+                        }
+                    } else {
+                        echo "<p>No orders found.</p>";
+                    }
 
-                // Check if there are any orders
-                if ($result->num_rows > 0) {
-
-                    
-                    // Fetch and display each order as a card
-                    while ($row = $result->fetch_assoc()) {
-                        $statusColor = getStatusColor($row['order_status']); 
-                        echo "
-                            <div class='order-box'>
-                                <h style='background-color:$statusColor;'>" . htmlspecialchars(capitalizeWords($row['order_status'])) . "</h>
-
-                                <h1 style='margin-bottom:0;font-size:25px'>Order ID: " . htmlspecialchars($row['order_id']) . "</h1>
-                                <h1 style='margin:0;font-size:18px'>Payment ID: " . htmlspecialchars($row['payment_id']) . "</h1>
-                                <p style='margin: 0 0 15 0;'><strong>Time-Stamp:</strong> " . htmlspecialchars($row['created_at']) . "</p>
-                                <div style='border-bottom:2px solid #af9a8b4d;margin-bottom:25px;'></div>
-                                <p><strong>Way to Eat:</strong> " . htmlspecialchars(capitalizeWords($row['way_to_eat'])) . "</p><br>
-                                <div style='border-bottom:2px solid #af9a8b4d;margin-bottom:25px;'></div>
-                                <p><strong>Order List:</strong><br> " . htmlspecialchars($row['order_list']) . "</p>
-                                
-                                <h2 <strong>Total Price:</strong> RM" . htmlspecialchars($row['total_price']) . "</h1>
-                                
-                            </div>";
+                    // Close the statement
+                    if (isset($stmt)) {
+                        $stmt->close();
                     }
                 } else {
-                    echo "No orders found.";
+                    echo "<p>You must be logged in to view your orders.</p>";
                 }
 
-                // Close the statement and connection
-                $stmt->close();
+                // Close the connection
                 $conn->close();
                 ?>
                 
-                <div class="order-box">
-                    <h1>Order ID: Ord_10</h1>
-                    <p>Order At: idk</p>
-                    <p>Ways: Dine-In</p>
-                </div>
             </div>
+        </div>
         </div>
         
     </div>
